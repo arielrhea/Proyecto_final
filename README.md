@@ -97,7 +97,7 @@ Favoritos:
 				- registro de usuario
 				- modificar perfil //
 		- Productocontroller:
-				- consulta de productos (con y sin filtros) (retorna Array de objetos [{}])
+				- consulta de productos (con y sin filtros) (retorna Array de objetos [{}]) (nombres de los filtros: categoria,estado,busqueda,ubicacion)
     	                        - consulta de producto (retorna Array de objeto [{}])
 				- alta de producto
 				- modificar producto

@@ -4,23 +4,26 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #333;
+    background-color: #333 /*bacground del header*/;
     color: white;
 }
 
 .swaply {
+    /* esto se va a sustituir por un icono de tipo texto+ un icono dibujado */
+
     color: red;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .barra {
+
     flex: 1; /* Ocupa todo el espacio restante */
     margin: 0 20px; /* Añade un margen a la barra de búsqueda */
 }
 
 button {
-    color: beige;
-    background-color: #555;
+    color: beige; /*Color letra del botón*/
+    background-color: #555; /*color del background boton*/
     padding: 10px 20px;
     border: none;
     cursor: pointer;
