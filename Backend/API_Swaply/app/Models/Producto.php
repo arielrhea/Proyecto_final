@@ -27,6 +27,12 @@ class Producto extends Model{
         return $q->where('CategoriaID', $categoria);
       });
 
+      $consulta->when($ubicacion, function ($q, $ubicacion) {
+        return $q->whereHas('usuario', function ($q) use ($ubicacion) {
+            $q->where('Ciudad', 'like', "%$ubicacion%");
+        });
+      });
+
       $consulta->when($estado, function($q, $estado){
         return $q->where('EstadoProducto', 'like', "%$estado%");
       });
