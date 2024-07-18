@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
-    public function consultaProductos()
-    {
-        return Producto::all();
+    public function consultaProductos($id = null){ 
+        return Producto::consulta($id);
     }
 
     public function store(Request $request)
