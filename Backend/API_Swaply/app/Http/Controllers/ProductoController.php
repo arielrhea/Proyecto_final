@@ -8,11 +8,17 @@ use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
-    public function consultaProductos($id = null){ 
-        return Producto::consulta($id);
+    public function consultaProductos(Request $request, $id = null){ 
+
+        $categoria = $request->categoria ?? null;
+        $ubicacion = $request->ubicacion ?? null;
+        $estado    = $request->estado ?? null;
+        $busqueda  = $request->busqueda ?? null;
+
+        return Producto::consulta($id, $categoria, $ubicacion, $estado, $busqueda);
     }
 
-    public function store(Request $request)
+    public function altaProducto(Request $request)
     {
         $producto = new Producto();
         $producto->UsuarioID = $request->UsuarioID;
