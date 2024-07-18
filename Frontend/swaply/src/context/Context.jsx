@@ -1,17 +1,17 @@
 import React, { createContext, useState, useContext } from 'react';
 
 
-export const Contexto = createContext();
+export const Context = createContext();
 
 
 export const ContextoProvider = ({ children }) => {
     
-   
+
     return (
-       
-        <Contexto.Provider value={{  }}>
+    
+        <Context.Provider value={{  }}>
             {children}
-        </Contexto.Provider>
+        </Context.Provider>
     );
 };
 
