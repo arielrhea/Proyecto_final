@@ -1,0 +1,39 @@
+header {
+    margin: 0;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    color: white;
+}
+
+.swaply {
+    color: red;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.barra {
+    flex: 1; /* Ocupa todo el espacio restante */
+    margin: 0 20px; /* Añade un margen a la barra de búsqueda */
+}
+
+button {
+    color: beige;
+    background-color: #555;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+button:first-child {
+    margin-right: 10px; /* Añade margen a la derecha del primer botón */
+}
+
+button:hover {
+    background-color: #777;
+}
+.botones{
+    display: flex;
+}
