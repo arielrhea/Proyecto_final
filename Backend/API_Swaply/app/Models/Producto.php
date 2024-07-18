@@ -18,11 +18,7 @@ class Producto extends Model{
 
     public static function consulta($id) {
        if($id){
-         $producto = Producto::where('ID', $id)->get();
-         foreach($producto as $p){
-            $p->usuario;
-         }
-         return $producto;
+         return Producto::where('ID', $id)->with('usuario:ID,NombreUsuario,Ciudad,FotoPerfil')->get();
        }
        return Producto::all();
     }
