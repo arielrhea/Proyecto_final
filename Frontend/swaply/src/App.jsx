@@ -9,8 +9,6 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import ErrorMessage from './components/ErrorMessage';
 
-
-
 function App() {
   return (
     <div className='App'>

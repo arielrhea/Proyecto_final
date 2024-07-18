@@ -4,11 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ContextoProvider } from './context/Context';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-
-// Agregar iconos a la biblioteca de FontAwesome
-library.add(faBars);
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
