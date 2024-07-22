@@ -20,12 +20,11 @@ Funciones adicionales
 - Centro de ayuda/FAQ
 
 Rutas API
-	PRODUCTOS
+	PRODUCTOS:
 	- (GET)  api/productos?busqueda=&&categoria=&&ubicacion=&&estado= | (esto es para la consulta de todos los productos)
 	- (GET)  api/producto/id  | (consulta de un solo producto)
  	- (POST) api/producto | (alta de producto)
-
-  	CATEGORIAS
+  	CATEGORIAS:
    	- (GET) api/categorias | (consulta de categorias)
 
 .-Base de Datos
