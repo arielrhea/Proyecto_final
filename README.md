@@ -1,4 +1,4 @@
-Principales características
+Principales características //
 
 - Regístrese
 - inicie sesión 
