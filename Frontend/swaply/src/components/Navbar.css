@@ -1,0 +1,142 @@
+/* NavBar.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #333;
+    
+    padding: 10px 20px;
+    color: white;
+    box-shadow: 0 2px 4px rgba(226, 224, 224, 0.8);
+}
+
+.contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribuye el espacio uniformemente entre elementos */
+    width: 100%;
+    
+}
+
+.toggle-desplegable {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: beige;
+    padding: 10px 20px;
+    background-color: #555;
+    border-radius: 25px; /* Bordes redondeados */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Tamaño igual a los otros botones */
+    flex: 1;
+    min-width: 160px; /* Asegura un tamaño mínimo para el botón */
+    text-align: center; /* Centrar el texto */
+    height: 40px; /* Igualar la altura con los otros botones */
+    display: flex; /* Utilizar flexbox para centrar el contenido verticalmente */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+}
+
+.toggle-desplegable:hover {
+    background-color: #777;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.nav-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-evenly; /* Distribuye el espacio uniformemente entre botones */
+    width: calc(100% - 200px); /* Ajusta el ancho para dejar espacio para el menú desplegable */
+}
+
+.nav-button {
+    background-color: #555;
+    border: none;
+    border-radius: 25px; /* Bordes redondeados */
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1; /* Permite que los botones crezcan y se reduzcan de tamaño según el espacio disponible */
+    min-width: 160px; /* Asegura un tamaño mínimo para los botones */
+    height: 40px; /* Igualar la altura con el botón desplegable */
+    display: flex; /* Utilizar flexbox para centrar el contenido verticalmente */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+}
+
+.nav-button a {
+    text-decoration: none;
+    color: beige;
+    display: block;
+}
+
+.nav-button:hover {
+    background-color: #777;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.desplegable {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-desplegable {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    border: 1px solid #555; /* Borde oscuro para el menú desplegable */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 8px; /* Bordes redondeados */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px); /* Mejor efecto de deslizamiento */
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+    overflow: hidden; /* Asegura que no haya bordes visibles fuera del área */
+}
+
+.desplegable.abierto .menu-desplegable {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.menu-desplegable li {
+    padding: 0;
+}
+
+.menu-desplegable li a {
+    display: block;
+    color: beige;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #555;
+    transition: background-color 0.3s ease;
+}
+
+.menu-desplegable li a:hover {
+    background-color: #777;
+}
+
+.menu-desplegable li:last-child a {
+    border-bottom: none;
+}
+
+.divisor-desplegable {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 0.5rem 0;
+}

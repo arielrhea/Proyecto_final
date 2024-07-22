@@ -1,38 +1,54 @@
+/* App.css */
+
+/* Estilos globales para la página */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Evitar el desplazamiento horizontal */
+  box-sizing: border-box;
+  background-color: #777777; /* Color de fondo para evitar áreas blancas */
+}
+
+/* Estilos para la barra de desplazamiento en navegadores Webkit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 12px; /* Ancho de la barra de desplazamiento vertical */
+  height: 12px; /* Altura de la barra de desplazamiento horizontal */
+}
+
+::-webkit-scrollbar-track {
+  background: #777777; /* Fondo del área de la barra de desplazamiento */
+  border-radius: 10px; /* Bordes redondeados del área de la barra de desplazamiento */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f5f5d6; /* Color del thumb de la barra de desplazamiento */
+  border-radius: 10px; /* Bordes redondeados del thumb */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra para darle un efecto de profundidad */
+  transition: background 0.3s ease; /* Transición suave para el color del thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f44336; /* Color del thumb cuando se pasa el mouse sobre él */
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #d32f2f; /* Color del thumb cuando está activo (clicado) */
+}
+
+::-webkit-scrollbar-corner {
+  background: #777777; /* Color de la esquina donde se cruzan las barras de desplazamiento */
+}
+
+/* Estilos adicionales para el contenedor principal */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh; /* Asegura que el contenedor principal tenga al menos el 100% del alto de la ventana */
+  background-color: #777777; /* Color de fondo para el contenedor principal */
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Contenido principal */
+main {
+  flex: 1; /* Hace que el contenido principal ocupe el espacio restante */
+  background-color: #777777; /* Asegura que el fondo sea consistente */
 }

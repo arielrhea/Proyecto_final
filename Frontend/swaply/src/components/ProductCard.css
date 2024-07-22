@@ -1,0 +1,80 @@
+/* ProductCard.css */
+.product-card {
+    background-color: #777777;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    margin: 20px;
+    width: 300px; /* Ancho ajustado para una visualización más espaciosa */
+    height: 375px; /* Altura ajustada para un tamaño uniforme */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    
+    border: 1px solid #777777; /* Borde sutil para una definición adicional */
+}
+
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    border-color: #ddd; /* Color de borde en hover */
+}
+
+.product-image {
+    width: 100%;
+    height: 250px; /* Altura de la imagen incrementada */
+    object-fit: cover;
+    border-bottom: 4px solid #ddd; /* Borde más grueso para la separación */
+    position: relative;
+    transition: opacity 0.3s ease; /* Transición para efectos de hover */
+}
+
+.product-card:hover .product-image {
+    opacity: 0.9; /* Efecto de desvanecimiento en hover */
+}
+
+.reserved-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #f44336; /* Rojo para reservado */
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    width: auto;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra para mejorar visibilidad */
+}
+
+.product-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #777777; /* Fondo sólido para una apariencia limpia */
+    margin-left: 10px;
+}
+
+.product-title {
+    font-size: 20px;
+    margin: 0 0 10px;
+    color: #F5F5D6;
+    font-weight: 700;
+    line-height: 1.3; /* Mejora la legibilidad */
+}
+
+.product-status {
+    display: inline-block;
+    font-size: 16px;
+    color: #F5F5D6;
+    text-transform: capitalize; /* Asegura que solo la primera letra esté en mayúsculas */
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+
