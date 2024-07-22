@@ -1,0 +1,130 @@
+/* ProductDetail.css */
+.product-detail-wrapper {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.product-detail-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-detail-description {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.product-detail-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.product-detail-image-container {
+    flex: 1 1 calc(33.333% - 20px);
+    cursor: pointer;
+}
+
+.product-detail-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-detail-image-container:hover .product-detail-image {
+    transform: scale(1.05);
+}
+
+.product-detail-expanded-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.product-detail-expanded-image {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 12px;
+}
+
+.expanded-close-button,
+.expanded-prev-button,
+.expanded-next-button {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.expanded-close-button {
+    top: 20px;
+    right: 20px;
+}
+
+.expanded-prev-button {
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.expanded-next-button {
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.product-detail-user-info {
+    margin-top: 20px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-detail-user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.product-detail-user-profile-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.product-detail-user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-detail-user-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.product-detail-user-city {
+    font-size: 14px;
+    color: #666;
+}
