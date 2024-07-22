@@ -1,4 +1,4 @@
-Principales características
+Principales características //
 
 - Regístrese
 - inicie sesión 
@@ -98,7 +98,7 @@ Favoritos:
 				- modificar perfil //
 		- Productocontroller:
 				- consulta de productos (con y sin filtros) (retorna Array de objetos [{}]) (nombres de los filtros: categoria,estado,busqueda,ubicacion)
-    	                        - consulta de producto (retorna Array de objeto [{}])
+    	                        - consulta de producto (retorna Array de objeto [{}]) en caso de no existir retorna []
 				- alta de producto
 				- modificar producto
 				- baja de producto
