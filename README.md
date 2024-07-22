@@ -22,7 +22,7 @@ Funciones adicionales
 Rutas API
 	
    PRODUCTOS:
-	- (GET)  api/productos?busqueda=&&categoria=&&ubicacion=&&estado= | (esto es para la consulta de todos los productos)
+	- (GET)  api/productos?busqueda=&&categoria=&&ubicacion=&&estado=&&recientes=(true) | (esto es para la consulta de todos los productos)
 	- (GET)  api/producto/id  | (consulta de un solo producto)
  	- (POST) api/producto | (alta de producto)
   	

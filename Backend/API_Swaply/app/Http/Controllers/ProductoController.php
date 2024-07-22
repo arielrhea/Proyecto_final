@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ProductoController extends Controller
 {
@@ -14,21 +15,47 @@ class ProductoController extends Controller
         $ubicacion = $request->ubicacion ?? null;
         $estado    = $request->estado ?? null;
         $busqueda  = $request->busqueda ?? null;
-
-        return Producto::consulta($id, $categoria, $ubicacion, $estado, $busqueda);
+        $recientes = $request->recientes ?? false;
+ 
+        return Producto::consulta($id, $categoria, $ubicacion, $estado, $busqueda, $recientes);
     }
 
-    public function altaProducto(Request $request)
-    {
-        $producto = new Producto();
-        $producto->UsuarioID = $request->UsuarioID;
-        $producto->CategoriaID = $request->CategoriaID;
-        $producto->Titulo = $request->Titulo;
-        $producto->EstadoProducto = $request->EstadoProducto;
-        $producto->Descripcion = $request->Descripcion;
-        $producto->Imagenes = json_encode($request->Imagenes);
-        $producto->ProductoReservado = $request->ProductoReservado;
-        $producto->save();
+    public function altaProducto(Request $request){
+
+        $reglasValidacion = [
+            'categoria'     => 'required|numeric',
+            'titulo'        => 'required|max:100',
+            'estado'        => 'required',
+            'descripcion'   => 'required|max:500'
+        ];
+
+        $mensajes = [
+            'categoria.required'    => 'Categoria es obligatoria',
+            'categoria.numeric'     => 'Categoria debe ser numerico',
+            'titulo.required'       => 'Titulo es obligatorio',
+            'titulo.max'            => 'Titulo no puede exceder los 100 caracteres',
+            'estado.required'       => 'Estado es obligatorio',
+            'descripcion.required'  => 'Descripcion es obligatoria',
+            'descripcion.max'       => 'Descripcion no puede exceder los 500 caracteres'
+        ];
+
+        $validator = Validator::make($request->all(), $reglasValidacion, $mensajes);
+        if($validator->fails()) {
+            $errores = $validator->getMessageBag()->all();
+            return response()->json($errores, 400);
+        }
+
+        $imagenes = [];
+        if($request->hasfile('imagenes')) {
+            foreach($request->file('imagenes') as $imagen) {
+                $nombreImagen = time().'-'.$imagen->getClientOriginalName();
+                $imagen->move(public_path('assets/img'), $nombreImagen); // Guarda la imagen en el servidor
+                $imagenes[] = $nombreImagen;
+            }
+        }
+
+        $producto = Producto::alta($request, $imagenes);
+
         return response()->json($producto, 201);
     }
 
