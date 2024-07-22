@@ -18,10 +18,10 @@ Route::get('/usuarios/{id}', [UsuarioController::class, 'show']);
 //RUTAS DE PRODUCTOS
 Route::get('/inicio', [ProductoController::class, 'index']);
 Route::get('/productos', [ProductoController::class, 'consultaProductos']);
-Route::post('/producto', [ProductoController::class, 'alta']);
+Route::post('/producto', [ProductoController::class, 'altaProducto']);
 Route::get('/producto/{id}', [ProductoController::class, 'consultaProductos']);
-Route::put('/producto/{id}', [ProductoController::class, 'update']);
-Route::delete('/productos/{id}', [ProductoController::class, 'destroy']);
+Route::put('/producto/{id}', [ProductoController::class, 'modificacionProducto']);
+Route::delete('/productos/{id}', [ProductoController::class, 'bajaProducto']);
 
 //RUTAS DE CATEGORIAS
 Route::get('/categorias', [CategoriaController::class, 'consultaCategorias']);

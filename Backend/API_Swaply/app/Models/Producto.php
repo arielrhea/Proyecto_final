@@ -12,11 +12,21 @@ class Producto extends Model{
 
     protected $primaryKey = "ID";
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'UsuarioID',
+        'CategoriaID',
+        'Titulo',
+        'EstadoProducto',
+        'Descripcion'
+    ];
+
     public function usuario() {
         return $this->belongsTo(Usuario::class, 'UsuarioID', 'ID');
     }
 
-    public static function consulta($id, $categoria, $ubicacion, $estado, $busqueda) {
+    public static function consulta($id, $categoria, $ubicacion, $estado, $busqueda, $recientes) {
       $consulta = Producto::query();
 
        if($id){
@@ -41,10 +51,20 @@ class Producto extends Model{
         return $q->where('Titulo', 'like', "%$busqueda%");
       });
 
-      return $consulta->get();
+      if ($recientes){
+        $consulta->orderBy('FechaPublicacion' , 'desc');
+      }
+
+      return $consulta->select('ID','Titulo','EstadoProducto', 'Imagenes','ProductoReservado')->get();
     }
 
-    public static function alta() {
-      
+    public static function alta($datos) {
+        return Producto::create([
+          'UsuarioID' => $datos->usuario,
+          'CategoriaID' => $datos->categoria,
+          'Titulo' => $datos->titulo,
+          'EstadoProducto' => $datos->estado,
+          'Descripcion' => $datos->descripcion
+        ]);
     }
 }
