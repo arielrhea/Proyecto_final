@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Categoria extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'ID';
+    
+    public $timestamps = false;
+
+    public static function consulta() {
+        return Categoria::orderBy('Nombre')->get();
+    }
 }

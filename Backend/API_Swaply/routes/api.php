@@ -24,5 +24,5 @@ Route::put('/producto/{id}', [ProductoController::class, 'update']);
 Route::delete('/productos/{id}', [ProductoController::class, 'destroy']);
 
 //RUTAS DE CATEGORIAS
-Route::get('/categorias', [CategoriaController::class, 'index']);
+Route::get('/categorias', [CategoriaController::class, 'consultaCategorias']);
 

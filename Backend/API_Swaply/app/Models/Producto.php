@@ -43,4 +43,8 @@ class Producto extends Model{
 
       return $consulta->get();
     }
+
+    public static function alta() {
+      
+    }
 }
