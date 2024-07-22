@@ -48,7 +48,7 @@ class ProductoController extends Controller
         $imagenes = [];
         if($request->hasfile('imagenes')) {
             foreach($request->file('imagenes') as $imagen) {
-                $nombreImagen = $imagen->getClientOriginalName();
+                $nombreImagen = time().'-'.$imagen->getClientOriginalName();
                 $imagen->move(public_path('assets/img'), $nombreImagen); // Guarda la imagen en el servidor
                 $imagenes[] = $nombreImagen;
             }
