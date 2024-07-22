@@ -19,7 +19,15 @@ Funciones adicionales
 - Calificaciones y reseñas
 - Centro de ayuda/FAQ
 
-
+Rutas API
+	
+   PRODUCTOS:
+	- (GET)  api/productos?busqueda=&&categoria=&&ubicacion=&&estado= | (esto es para la consulta de todos los productos)
+	- (GET)  api/producto/id  | (consulta de un solo producto)
+ 	- (POST) api/producto | (alta de producto)
+  	
+   CATEGORIAS:
+   	- (GET) api/categorias | (consulta de categorias)
 
 .-Base de Datos
 
