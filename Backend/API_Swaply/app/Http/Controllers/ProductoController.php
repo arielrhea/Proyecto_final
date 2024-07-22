@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ProductoController extends Controller
@@ -44,11 +45,18 @@ class ProductoController extends Controller
             return response()->json($errores, 400);
         }
 
-        return($request->hasfile('imagenes'));
+        $imagenes = [];
+        if($request->hasfile('imagenes')) {
+            foreach($request->file('imagenes') as $imagen) {
+                $nombreImagen = $imagen->getClientOriginalName();
+                $imagen->move(public_path('assets/img'), $nombreImagen); // Guarda la imagen en el servidor
+                $imagenes[] = $nombreImagen;
+            }
+        }
 
-        //$producto = Producto::alta($request);
+        $producto = Producto::alta($request, $imagenes);
 
-        //return response()->json($producto, 201);
+        return response()->json($producto, 201);
     }
 
     public function show($id)

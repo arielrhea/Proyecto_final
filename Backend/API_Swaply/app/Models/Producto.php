@@ -19,7 +19,8 @@ class Producto extends Model{
         'CategoriaID',
         'Titulo',
         'EstadoProducto',
-        'Descripcion'
+        'Descripcion',
+        'Imagenes'
     ];
 
     public function usuario() {
@@ -58,13 +59,14 @@ class Producto extends Model{
       return $consulta->select('ID','Titulo','EstadoProducto', 'Imagenes','ProductoReservado')->get();
     }
 
-    public static function alta($datos) {
+    public static function alta($datos, $imagenes) {
         return Producto::create([
           'UsuarioID' => $datos->usuario,
           'CategoriaID' => $datos->categoria,
           'Titulo' => $datos->titulo,
           'EstadoProducto' => $datos->estado,
-          'Descripcion' => $datos->descripcion
+          'Descripcion' => $datos->descripcion,
+          'Imagenes' => json_encode($imagenes)
         ]);
     }
 }
