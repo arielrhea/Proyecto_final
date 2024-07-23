@@ -27,11 +27,15 @@ class Producto extends Model{
         return $this->belongsTo(Usuario::class, 'UsuarioID', 'ID');
     }
 
+    public function categoria() {
+        return $this->belongsTo(Categoria::class, 'CategoriaID', 'ID');
+    }
+
     public static function consulta($id, $categoria, $ubicacion, $estado, $busqueda, $recientes) {
       $consulta = Producto::query();
 
        if($id){
-         return $consulta->where('ID', $id)->with('usuario:ID,NombreUsuario,Ciudad,FotoPerfil')->get();
+         return $consulta->where('ID', $id)->with('usuario:ID,NombreUsuario,Ciudad,FotoPerfil')->with('categoria:ID,Nombre')->get();
        }
       
       $consulta->when($categoria, function($q, $categoria){
