@@ -1,4 +1,3 @@
-// ProductDetailPage.js
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -24,16 +23,18 @@ const ProductDetailPage = () => {
     }, [id]);
 
     if (loading) {
-        return <div>Cargando...</div>;
+        return <div className="loading-message">Cargando...</div>;
     }
 
     if (error) {
-        return <div>Error al cargar los detalles del producto.</div>;
+        return <div className="error-message">Error al cargar los detalles del producto.</div>;
     }
 
     return (
         <div className="product-detail-page">
-            {product ? <ProductDetail product={product} /> : <div>Producto no encontrado.</div>}
+            <div className="product-detail-container">
+                {product ? <ProductDetail product={product} /> : <div>Producto no encontrado.</div>}
+            </div>
         </div>
     );
 };
