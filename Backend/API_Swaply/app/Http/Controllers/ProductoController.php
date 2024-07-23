@@ -50,7 +50,7 @@ class ProductoController extends Controller
         if($request->hasfile('imagenes')) {
             foreach($request->file('imagenes') as $imagen) {
                 $nombreImagen = time().'-'.$imagen->getClientOriginalName();
-                $imagen->move(public_path('assets/img'), $nombreImagen); // Guarda la imagen en el servidor
+                $imagen->move(public_path('assets/img/productos'), $nombreImagen); // Guarda la imagen en el servidor
                 $imagenes[] = $nombreImagen;
             }
         }
@@ -85,11 +85,11 @@ class ProductoController extends Controller
 
         if (is_array($imagenes)) {
             foreach ($imagenes as $imagen) {
-                Storage::delete("", $imagen);
+                Storage::disk('local')->delete('productos/' . $imagen);
             }
         }
 
-        $producto->delete();
+        //$producto->delete();
 
         return response()->json(['Producto eliminado'], 200);
     }
