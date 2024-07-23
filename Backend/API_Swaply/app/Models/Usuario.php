@@ -26,15 +26,15 @@ class Usuario extends Authenticatable
 
     public function generarToken()
     {
-        $this->token = bin2hex(random_bytes(32));
+        $this->Token = bin2hex(random_bytes(32));
         $this->save();
 
-        return $this->token;
+        return $this->Token;
     }
 
     public function revocarToken()
     {
-        $this->token = null;
+        $this->Token = null;
         $this->save();
     }
 }
