@@ -40,7 +40,7 @@ class AuthSessionController extends Controller
 
         if ($password == $usuario->Password) {
             $token = $usuario->generarToken();
-            return response()->json(['token' => $token], 200);
+            return response()->json(['Token' => $token], 200);
         }
 
         return response()->json(['No Autorizado'], 401);
@@ -51,7 +51,7 @@ class AuthSessionController extends Controller
 
        if(!$token) return response()->json(['Token no recibido o nulo'], 401);
 
-       $usuario = Usuario::where('token', $token)->first();
+       $usuario = Usuario::where('Token', $token)->first();
 
        if(!$usuario) return response()->json(['Token no pertenece a ningun usuario'], 401);
 
