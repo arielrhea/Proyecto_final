@@ -1,8 +1,19 @@
 import React from 'react';
-import './SearchBar.css'
+import { useContexto } from '../context/Context'; // Asegúrate de usar la ruta correcta
+import './SearchBar.css';
+
 const SearchBar = () => {
+    const { busqueda, handleBusquedaChange } = useContexto();
+
     return (
-        <input type="text" placeholder="Buscar..." />
+        <form action="get">
+            <input
+                type="text"
+                placeholder="Buscar..."
+                value={busqueda}
+                onChange={handleBusquedaChange}
+            />
+        </form>
     );
 };
 

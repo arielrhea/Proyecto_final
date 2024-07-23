@@ -9,11 +9,13 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import ErrorMessage from './components/ErrorMessage';
 import './App.css'; 
+import { ContextoProvider } from './context/Context';
 
 
 function App() {
   return (
     <div className='App'>
+      <ContextoProvider>
       <main>
         <BrowserRouter>
           <Header />
@@ -30,6 +32,7 @@ function App() {
           <Footer />
         </BrowserRouter>
       </main>
+      </ContextoProvider>
     </div>
   );
 };
