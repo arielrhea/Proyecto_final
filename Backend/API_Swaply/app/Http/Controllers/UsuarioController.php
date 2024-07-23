@@ -58,4 +58,51 @@ class UsuarioController extends Controller{
 
         return response()->json($usuario, 201);
     }
+
+    public function modificacionUsuario($id, Request $request) {
+        $usuario = Usuario::find($id);
+        $imagen = $request->file('img');
+
+        $reglas = [
+            'username' => 'max:15',
+            'img' => 'image',
+        ];
+
+        $mensajes = [
+            'username.max' => 'El nombre de usuario no puede exceder los 15 caracteres',
+            'img.image' => 'El formato del archivo debe ser imagen' 
+        ];
+
+        $validator = Validator::make($request->all(), $reglas, $mensajes);
+        if($validator->fails()) {
+            $errores = $validator->getMessageBag()->all();
+            return response()->json($errores, 400);
+        }
+
+        if($imagen){
+            $nombreImagen = $imagen->getClientOriginalName();
+
+            if ($usuario->FotoPerfil != $nombreImagen) {
+                Storage::disk('local')->delete('usuarios/' . $usuario->FotoPerfil);
+            }
+    
+            Storage::putFileAs('/usuarios', $imagen, $nombreImagen);
+            $usuario->FotoPerfil = $nombreImagen;
+        }
+
+        if($request->username) {
+            $usuario->NombreUsuario = $request->username;
+        }
+        if($request->ubicacion) {
+            $usuario->Ciudad = $request->ubicacion;
+        }
+        if($request->password) {
+            $usuario->Password = bcrypt($request->password);
+        }
+
+        $usuario->save();
+
+        return response()->json($usuario, 200);
+
+     }
 }

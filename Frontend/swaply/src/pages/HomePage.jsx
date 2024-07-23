@@ -19,7 +19,7 @@ const HomePage = () => {
         console.log(`ID Categoría: ${idCategoria}, Busqueda: ${busqueda}`);
 
         // Construir la URL de la solicitud
-        const fetchUrl = `http://localhost:8000/api/productos?busqueda=${encodeURIComponent(busqueda)}&categoria=${encodeURIComponent(idCategoria)}`;
+        const fetchUrl = `http://localhost:8000/api/productos?busqueda=${busqueda}&categoria=${idCategoria}`;
 
         // Realizar la solicitud a la API
         axios.get(fetchUrl)
