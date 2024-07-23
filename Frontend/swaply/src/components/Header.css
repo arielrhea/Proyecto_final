@@ -14,6 +14,9 @@ header {
     color: red;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+.logoLink{
+    text-decoration: none;
+}
 
 .barra {
 
@@ -21,7 +24,7 @@ header {
     margin: 0 20px; /* Añade un margen a la barra de búsqueda */
 }
 
-button {
+.buttonHeader {
     color: beige; /*Color letra del botón*/
     background-color: #555; /*color del background boton*/
     padding: 10px 20px;

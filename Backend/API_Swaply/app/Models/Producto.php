@@ -23,6 +23,10 @@ class Producto extends Model{
         'Imagenes'
     ];
 
+    protected $casts = [
+      'Imagenes' => 'array', 
+    ];
+
     public function usuario() {
         return $this->belongsTo(Usuario::class, 'UsuarioID', 'ID');
     }
@@ -72,5 +76,9 @@ class Producto extends Model{
           'Descripcion' => $datos->descripcion,
           'Imagenes' => json_encode($imagenes)
         ]);
+    }
+
+    public static function modificacion($datos) {
+
     }
 }

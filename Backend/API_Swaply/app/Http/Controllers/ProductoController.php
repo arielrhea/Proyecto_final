@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -59,32 +60,37 @@ class ProductoController extends Controller
         return response()->json($producto, 201);
     }
 
-    public function show($id)
-    {
-        $producto = Producto::find($id);
-        if (!$producto) {
-            return response()->json(['message' => 'Producto no encontrado'], 404);
-        }
-        return response()->json($producto, 200);
-    }
+    public function modificacionProducto(Request $request, $id){
 
-    public function update(Request $request, $id)
-    {
         $producto = Producto::find($id);
+
         if (!$producto) {
-            return response()->json(['message' => 'Producto no encontrado'], 404);
+            return response()->json(['Producto no encontrado'], 404);
         }
+
         $producto->update($request->all());
+        
         return response()->json($producto, 200);
     }
 
-    public function destroy($id)
+    public function bajaProducto($id)
     {
         $producto = Producto::find($id);
+
         if (!$producto) {
-            return response()->json(['message' => 'Producto no encontrado'], 404);
+            return response()->json(['Producto no encontrado'], 404);
         }
+
+        $imagenes = json_decode($producto->Imagenes, true);
+
+        if (is_array($imagenes)) {
+            foreach ($imagenes as $imagen) {
+                Storage::delete("", $imagen);
+            }
+        }
+
         $producto->delete();
-        return response()->json(['message' => 'Producto eliminado'], 200);
+
+        return response()->json(['Producto eliminado'], 200);
     }
 }
