@@ -20,11 +20,11 @@ class Usuario extends Authenticatable
 
     protected $hidden = ['Password', 'Token'];
 
-    public static function consulta($id){
+    public static function consulta($id) {
         return Usuario::where('ID', $id)->get();
     }
 
-    public static function alta($datos){
+    public static function alta($datos) {
         return Usuario::create([
             'correoelectronico' => $datos['email'],
             'NombreUsuario' => $datos['username'],
@@ -34,16 +34,14 @@ class Usuario extends Authenticatable
         ]);
     }
 
-    public function generarToken()
-    {
+    public function generarToken() {
         $this->Token = bin2hex(random_bytes(32));
         $this->save();
 
         return $this->Token;
     }
 
-    public function revocarToken()
-    {
+    public function revocarToken() {
         $this->Token = null;
         $this->save();
     }
