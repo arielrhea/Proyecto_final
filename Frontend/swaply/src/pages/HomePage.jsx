@@ -2,31 +2,27 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import './HomePage.css'; // Añadimos un archivo CSS para HomePage
+import { useContexto } from '../context/Context';
 
 const HomePage = () => {
     const [products, setProducts] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
     const [loading, setLoading] = useState(true);
+
+    const { busqueda } = useContexto();
 
     useEffect(() => {
         setLoading(true); // Mostrar loading antes de la solicitud
-        axios.get(`http://localhost:8000/api/productos`)
+        axios.get(`http://localhost:8000/api/productos?busqueda=${busqueda}`)
             .then(response => {
-                // Asume que los datos se encuentran en response.data.items y totalPages en response.data.totalPages
+                // Asume que los datos se encuentran en response.data
                 setProducts(response.data);
-                setTotalPages(response.data.totalPages || 1);
                 setLoading(false);
             })
             .catch(error => {
                 console.error(error);
                 setLoading(false);
             });
-    }, [currentPage]);
-
-    const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    };
+    }, [busqueda]); // Añadimos busqueda a las dependencias
 
     return (
         <div className="home-page">
@@ -34,25 +30,14 @@ const HomePage = () => {
                 <p>Loading...</p>
             ) : (
                 <>
-                    <div className="product-grid">
+                    <div className="product-flex ">
                         {products.length > 0 ? (
                             products.map(product => (
-                                <ProductCard key={product.ID} product={product} />
+                                <ProductCard className="product-item" key={product.ID} product={product} />
                             ))
                         ) : (
                             <p>No products available.</p>
                         )}
-                    </div>
-                    <div className="pagination">
-                        {Array.from({ length: totalPages }, (_, index) => (
-                            <button 
-                                key={index + 1} 
-                                onClick={() => handlePageChange(index + 1)}
-                                className={`pagination-button ${currentPage === index + 1 ? 'active' : ''}`}
-                            >
-                                {index + 1}
-                            </button>
-                        ))}
                     </div>
                 </>
             )}
