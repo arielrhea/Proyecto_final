@@ -31,8 +31,14 @@ class AuthSessionController extends Controller
         $usuario = Usuario::where('correoelectronico', $credenciales['email'])->first();
  
         if (!$usuario) return response()->json(['Usuario no autorizado'], 401);
+
  
-        if (!password_verify($credenciales['password'], $usuario->password)) {
+        $password = crypt($credenciales['password'], $usuario->password);
+
+        dd($password);
+        
+
+        if($password != $usuario->password) {
             return response()->json(['Password no autorizada'], 401);
         }
        
