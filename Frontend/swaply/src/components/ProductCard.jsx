@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
@@ -13,8 +13,16 @@ const ProductCard = ({ product }) => {
     // Verificar si ProductoReservado es 1
     const isReserved = ProductoReservado === 1;
 
+    //  // Generar una rotación diagonal aleatoria
+    //  const generateRandomDiagonalRotation = () => {
+    //     const angle = Math.floor(Math.random() * 20) - 15; // Ángulo entre -15 y 15 grados
+    //     return `rotateX(${angle}deg) rotateY(${angle}deg)`; // Rotación diagonal
+    // };
+
+    // const rotationStyle = useMemo(() => generateRandomDiagonalRotation(), []);
     return (
-        <div className="product-card">
+        <div className="product-card"  > 
+        {/* style={{ '--rotation-style': rotationStyle }} */}
             {isReserved && <div className="reserved-tag">Reservado</div>}
             <img 
                 src={Imagen || "https://upload.wikimedia.org/wikipedia/commons/b/b9/No_Cover.jpg?20090511140841"} 

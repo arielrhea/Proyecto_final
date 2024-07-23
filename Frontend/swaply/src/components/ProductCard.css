@@ -11,13 +11,14 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    
     border: 1px solid #777777; /* Borde sutil para una definición adicional */
+    transform-style: preserve-3d; /* Habilita transformaciones 3D */
+    perspective: 500px; /* Aumenta la perspectiva para efecto 3D más pronunciado */
+    --rotation-style: rotateX(0deg) rotateY(0deg); /* Variable CSS para rotación */
 }
 
-
 .product-card:hover {
-    transform: scale(1.05);
+   /* transform: perspective(500px) var(--rotation-style) scale(1.05);  Efecto 3D en hover con rotación aleatoria */
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
     border-color: #ddd; /* Color de borde en hover */
 }
@@ -76,5 +77,3 @@
     font-weight: 600;
     margin-top: 10px;
 }
-
-
