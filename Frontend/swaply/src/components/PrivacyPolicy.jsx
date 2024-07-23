@@ -39,4 +39,4 @@ const PrivacyPolicy = () => {
     );
 };
 
-export default TermsAndConditions;
+export default PrivacyPolicy;
