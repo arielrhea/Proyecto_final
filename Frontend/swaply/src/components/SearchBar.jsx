@@ -7,7 +7,7 @@ const SearchBar = () => {
 
     return (
         <form action="get">
-            <input
+            <input className='searchBar'
                 type="text"
                 placeholder="Buscar..."
                 value={busqueda}
