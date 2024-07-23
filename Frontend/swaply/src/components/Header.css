@@ -14,6 +14,9 @@ header {
     color: red;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+.logoLink{
+    text-decoration: none;
+}
 
 .barra {
 
