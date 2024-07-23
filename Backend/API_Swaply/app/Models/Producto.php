@@ -77,4 +77,8 @@ class Producto extends Model{
           'Imagenes' => json_encode($imagenes)
         ]);
     }
+
+    public static function modificacion($datos) {
+
+    }
 }
