@@ -30,10 +30,10 @@ const HomePage = () => {
                 <p>Loading...</p>
             ) : (
                 <>
-                    <div className="product-grid">
+                    <div className="product-flex ">
                         {products.length > 0 ? (
                             products.map(product => (
-                                <ProductCard key={product.ID} product={product} />
+                                <ProductCard className="product-item" key={product.ID} product={product} />
                             ))
                         ) : (
                             <p>No products available.</p>
