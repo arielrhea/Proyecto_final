@@ -23,6 +23,10 @@ class Producto extends Model{
         'Imagenes'
     ];
 
+    protected $casts = [
+      'Imagenes' => 'array', 
+    ];
+
     public function usuario() {
         return $this->belongsTo(Usuario::class, 'UsuarioID', 'ID');
     }

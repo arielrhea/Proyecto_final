@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -72,10 +73,21 @@ class ProductoController extends Controller
     public function bajaProducto($id)
     {
         $producto = Producto::find($id);
+
         if (!$producto) {
             return response()->json(['Producto no encontrado'], 404);
         }
+
+        $imagenes = json_decode($producto->Imagenes, true);
+
+        if (is_array($imagenes)) {
+            foreach ($imagenes as $imagen) {
+                Storage::delete("", $imagen);
+            }
+        }
+
         $producto->delete();
+
         return response()->json(['Producto eliminado'], 200);
     }
 }
