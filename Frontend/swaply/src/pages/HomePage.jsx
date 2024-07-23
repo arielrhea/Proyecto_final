@@ -38,7 +38,6 @@ const HomePage = () => {
             {loading ? (
                 <LoadingScreen/>
             ) : (
-<<<<<<< Updated upstream
                 <div className="product-flex">
                     {products.length > 0 ? (
                         products.map(product => (
@@ -48,19 +47,6 @@ const HomePage = () => {
                         <p>No products available.</p>
                     )}
                 </div>
-=======
-                <>
-                    <div className="product-flex">
-                        {products.length > 0 ? (
-                            products.map(product => (
-                                <ProductCard className="product-item" key={product.ID} product={product} />
-                            ))
-                        ) : (
-                            <p>No products available.</p>
-                        )}
-                    </div>
-                </>
->>>>>>> Stashed changes
             )}
         </div>
     );
