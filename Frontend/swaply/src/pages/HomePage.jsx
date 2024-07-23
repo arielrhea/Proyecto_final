@@ -3,6 +3,7 @@ import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import './HomePage.css'; // Añadimos un archivo CSS para HomePage
 import { useContexto } from '../context/Context';
+import LoadingScreen from '../components/LoadingScreen';
 
 const HomePage = () => {
     const [products, setProducts] = useState([]);
@@ -14,7 +15,6 @@ const HomePage = () => {
         setLoading(true); // Mostrar loading antes de la solicitud
         axios.get(`http://localhost:8000/api/productos?busqueda=${busqueda}`)
             .then(response => {
-                // Asume que los datos se encuentran en response.data
                 setProducts(response.data);
                 setLoading(false);
             })
@@ -27,19 +27,17 @@ const HomePage = () => {
     return (
         <div className="home-page">
             {loading ? (
-                <p>Loading...</p>
+                <LoadingScreen/>
             ) : (
-                <>
-                    <div className="product-flex ">
-                        {products.length > 0 ? (
-                            products.map(product => (
-                                <ProductCard className="product-item" key={product.ID} product={product} />
-                            ))
-                        ) : (
-                            <p>No products available.</p>
-                        )}
-                    </div>
-                </>
+                <div className="product-flex">
+                    {products.length > 0 ? (
+                        products.map(product => (
+                            <ProductCard className="product-item" key={product.ID} product={product} />
+                        ))
+                    ) : (
+                        <p>No products available.</p>
+                    )}
+                </div>
             )}
         </div>
     );
