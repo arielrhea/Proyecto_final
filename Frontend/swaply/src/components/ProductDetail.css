@@ -1,45 +1,87 @@
 /* ProductDetail.css */
+
 .product-detail-wrapper {
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: #f0f0f0;
     border-radius: 12px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
     position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-detail-wrapper:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.reserved-tag {
+    position: absolute;
+    top: 20px;
+    left: 1040px;
+    background-color: #f44336; /* Rojo para reservado */
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    width: auto;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra para mejorar visibilidad */
 }
 
 .product-detail-title {
-    font-size: 24px;
+    font-size: 32px;
     color: #333;
     margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .product-detail-description {
-    font-size: 16px;
+    font-size: 18px;
     color: #555;
     margin-bottom: 20px;
+    line-height: 1.6;
+    text-align: justify;
 }
 
 .product-detail-images {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
+    justify-content: center;
+    position: relative;
 }
 
 .product-detail-image-container {
-    flex: 1 1 calc(33.333% - 20px);
+    flex: 1 1 calc(25% - 20px);
     cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.product-detail-image-container::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
 }
 
 .product-detail-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
     border-radius: 8px;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
 
 .product-detail-image-container:hover .product-detail-image {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .product-detail-expanded-overlay {
@@ -57,22 +99,35 @@
 }
 
 .product-detail-expanded-image {
-    max-width: 80%;
-    max-height: 80%;
+    max-width: 90%;
+    max-height: 90%;
     border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.product-detail-expanded-image:hover {
+    transform: scale(1.02);
 }
 
 .expanded-close-button,
 .expanded-prev-button,
 .expanded-next-button {
     position: absolute;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     border: none;
     color: #fff;
     font-size: 24px;
     cursor: pointer;
     border-radius: 50%;
     padding: 10px;
+    transition: background 0.3s ease;
+}
+
+.expanded-close-button:hover,
+.expanded-prev-button:hover,
+.expanded-next-button:hover {
+    background: rgba(0, 0, 0, 0.9);
 }
 
 .expanded-close-button {
@@ -92,12 +147,35 @@
     transform: translateY(-50%);
 }
 
-.product-detail-user-info {
-    margin-top: 20px;
+.product-detail-info {
+    margin-top: 30px;
     background: #fff;
-    padding: 15px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: background 0.3s ease;
+}
+
+.product-detail-info:hover {
+    background: #f9f9f9;
+}
+.product-detail-user-info {
+    margin-top: 30px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: background 0.3s ease;
+}
+
+.product-detail-user-info:hover {
+    background: #f9f9f9;
 }
 
 .product-detail-user-profile {
@@ -107,24 +185,42 @@
 }
 
 .product-detail-user-profile-image {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-detail-user-profile-image:hover {
+    transform: scale(1.1);
 }
 
 .product-detail-user-details {
     display: flex;
     flex-direction: column;
+    gap: 5px;
 }
 
 .product-detail-user-name {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     color: #333;
 }
 
 .product-detail-user-city {
-    font-size: 14px;
-    color: #666;
+    font-size: 16px;
+    color: #777;
+}
+.product-additional-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.product-additional-info > p {
+    font-size: 16px;
+    color: #555;
+    margin: 0;
 }

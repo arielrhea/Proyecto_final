@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import './Navbar.css';
+import { useContexto } from '../context/Context';
 
 function NavBar() {
     const [estaDesplegableAbierto, setEstaDesplegableAbierto] = useState(false);
@@ -16,6 +17,8 @@ function NavBar() {
             setEstaDesplegableAbierto(false);
         }
     };
+
+    const { handleIdCategoriaChange } = useContexto();
 
     useEffect(() => {
         document.addEventListener('mousedown', manejarClickFuera);
@@ -46,7 +49,7 @@ function NavBar() {
                     <ul className="menu-desplegable">
                         {categorias.map((categoria) => (
                             <li key={categoria.ID}>
-                                <a href={`#${categoria.ID}`}>{categoria.Nombre}</a>
+                                <a  onClick={() => handleIdCategoriaChange(categoria.ID)} >{categoria.Nombre}</a>
                             </li>
                         ))}
                     </ul>
