@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthSessionController extends Controller
@@ -15,13 +16,18 @@ class AuthSessionController extends Controller
         $credenciales['email'] = $datos['email'][0] ?? null;
         $credenciales['password'] = $datos['password'][0] ?? null;
 
-
         $reglas = [
             'email' => 'required|email',
             'password' => 'required',
         ];
+
+        $mensajes = [
+            'email.required' => 'Email es obligatorio',
+            'email.email' => 'Formato incorrecto del email',
+            'password' => 'Contraseña es obligatoria',
+        ];
         
-        $validator = Validator::make($credenciales, $reglas);
+        $validator = Validator::make($credenciales, $reglas, $mensajes);
 
         if($validator->fails()){
             $errores = $validator->getMessageBag()->all();
@@ -29,31 +35,28 @@ class AuthSessionController extends Controller
         }
 
         $usuario = Usuario::where('correoelectronico', $credenciales['email'])->first();
- 
-        if (!$usuario) return response()->json(['Usuario no autorizado'], 401);
 
- 
-        $password = crypt($credenciales['password'], $usuario->password);
+        $password = crypt($credenciales['password'],$usuario->Password);
 
-        dd($password);
-        
-
-        if($password != $usuario->password) {
-            return response()->json(['Password no autorizada'], 401);
+        if ($password == $usuario->Password) {
+            $token = $usuario->generarToken();
+            return response()->json(['token' => $token], 200);
         }
-       
-        $usuario->token = bin2hex(random_bytes(32));
-        $usuario->save();
 
-        return response()->json([
-            'token' => $usuario->token
-        ], 200);
-        
+        return response()->json(['No Autorizado'], 401);
     }
 
-    public function logout(Request $request)
-    {
-        $request->user()->tokens()->delete();
-        return response()->json(['message' => 'Logged out'], 200);
+    public function logout(Request $request){
+       $token = $request->header()['token'][0] ?? null;
+
+       if(!$token) return response()->json(['Token no recibido o nulo'], 401);
+
+       $usuario = Usuario::where('token', $token)->first();
+
+       if(!$usuario) return response()->json(['Token no pertenece a ningun usuario'], 401);
+
+       $usuario->revocarToken();
+
+       return response()->json([], 200);
     }
 }
