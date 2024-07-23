@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 //RUTAS DE USUARIO
 Route::post('/login', [AuthSessionController::class, 'login']);
 Route::post('/logout', [AuthSessionController::class, 'logout']);//->middleware(VerificacionToken::class);
-Route::post('/registro', [UsuarioController::class, 'registro']);
+Route::post('/registro', [UsuarioController::class, 'registroUsuario']);
 Route::get('/usuario/{id}', [UsuarioController::class, 'consultaUsuario']);
 Route::put('/usuario/{id}', [UsuarioController::class, 'modificacionUsuario']);//->middleware(VerificacionToken::class);
 

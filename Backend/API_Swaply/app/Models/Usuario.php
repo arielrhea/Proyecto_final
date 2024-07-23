@@ -16,12 +16,22 @@ class Usuario extends Authenticatable
 
     public $timestamps = false;
 
-    protected $fillable = ['NombreUsuario','Password', 'Token'];
+    protected $fillable = ['correoelectronico','NombreUsuario', 'Ciudad', 'Password', 'Token', 'FotoPerfil'];
 
     protected $hidden = ['Password', 'Token'];
 
     public static function consulta($id){
         return Usuario::where('ID', $id)->get();
+    }
+
+    public static function alta($datos){
+        return Usuario::create([
+            'correoelectronico' => $datos['email'],
+            'NombreUsuario' => $datos['username'],
+            'Ciudad' => $datos['ubicacion'],
+            'Password' => bcrypt($datos['password']),
+            'FotoPerfil' => $datos['img']
+        ]);
     }
 
     public function generarToken()
