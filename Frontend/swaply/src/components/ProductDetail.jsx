@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProductDetail.css';
 
 const mockImages = [
@@ -11,6 +11,37 @@ const mockImages = [
 const ProductDetail = ({ product }) => {
     const [expandedImageIndex, setExpandedImageIndex] = useState(0);
     const [isImageExpanded, setIsImageExpanded] = useState(false);
+    const [formattedDate, setFormattedDate] = useState('');
+    const { ProductoReservado } = product;
+
+    const isReserved = ProductoReservado === 1;
+    useEffect(() => {
+        // Función para calcular la fecha de publicación relativa
+        const calculateTimeAgo = (dateString) => {
+            const fecha = new Date(dateString);
+            const ahora = new Date();
+            const diferencia = ahora - fecha;
+
+            const minutos = Math.floor(diferencia / 1000 / 60);
+            const horas = Math.floor(minutos / 60);
+            const dias = Math.floor(horas / 24);
+            const semanas = Math.floor(dias / 7);
+
+            if (minutos < 60) {
+                return `hace ${minutos} minuto${minutos > 1 ? 's' : ''}`;
+            } else if (horas < 24) {
+                return `hace ${horas} hora${horas > 1 ? 's' : ''}`;
+            } else if (dias < 7) {
+                return `hace ${dias} día${dias > 1 ? 's' : ''}`;
+            } else {
+                return `hace ${semanas} semana${semanas > 1 ? 's' : ''}`;
+            }
+        };
+
+        if (product.FechaPublicacion) {
+            setFormattedDate(calculateTimeAgo(product.FechaPublicacion));
+        }
+    }, [product.FechaPublicacion]);
 
     const handleImageClick = (index) => {
         setExpandedImageIndex(index);
@@ -35,9 +66,9 @@ const ProductDetail = ({ product }) => {
 
     return (
         <div className="product-detail-wrapper">
-            {product.isReserved && <div className="reserved-tag">Reservado</div>}
+            {isReserved && <div className="reserved-tag">Reservado</div>}
             <h1 className="product-detail-title">{product.Titulo}</h1>
-            
+           
             <div className="product-detail-images">
                 {mockImages.map((img, index) => (
                     <div
@@ -69,7 +100,7 @@ const ProductDetail = ({ product }) => {
                 <div className="product-additional-info">
                     <p><strong>Categoría:</strong> {product.categoria.Nombre}</p>
                     <p><strong>Estado del Producto:</strong> {product.EstadoProducto}</p>
-                    <p><strong>Fecha de Publicación:</strong> {product.FechaPublicacion}</p>
+                    <p><strong>Fecha de Publicación:</strong> <span>{formattedDate}</span></p>
                 </div>
             </div>
 
