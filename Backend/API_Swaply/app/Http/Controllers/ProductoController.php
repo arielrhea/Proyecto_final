@@ -59,32 +59,23 @@ class ProductoController extends Controller
         return response()->json($producto, 201);
     }
 
-    public function show($id)
-    {
-        $producto = Producto::find($id);
-        if (!$producto) {
-            return response()->json(['message' => 'Producto no encontrado'], 404);
-        }
-        return response()->json($producto, 200);
-    }
-
     public function update(Request $request, $id)
     {
         $producto = Producto::find($id);
         if (!$producto) {
-            return response()->json(['message' => 'Producto no encontrado'], 404);
+            return response()->json(['Producto no encontrado'], 404);
         }
         $producto->update($request->all());
         return response()->json($producto, 200);
     }
 
-    public function destroy($id)
+    public function bajaProducto($id)
     {
         $producto = Producto::find($id);
         if (!$producto) {
-            return response()->json(['message' => 'Producto no encontrado'], 404);
+            return response()->json(['Producto no encontrado'], 404);
         }
         $producto->delete();
-        return response()->json(['message' => 'Producto eliminado'], 200);
+        return response()->json(['Producto eliminado'], 200);
     }
 }
