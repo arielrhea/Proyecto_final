@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthSessionController::class, 'login']);
 Route::post('/logout', [AuthSessionController::class, 'logout']);
 Route::post('/registro', [UsuarioController::class, 'registro']);
-Route::get('/usuarios/{id}', [UsuarioController::class, 'consultaUsuario']);
+Route::get('/usuario/{id}', [UsuarioController::class, 'consultaUsuario']);
+Route::put('/usuario/{id}', [UsuarioController::class, 'modificacionUsuario']);
 
 //RUTAS DE PRODUCTOS
 Route::get('/inicio', [ProductoController::class, 'index']);

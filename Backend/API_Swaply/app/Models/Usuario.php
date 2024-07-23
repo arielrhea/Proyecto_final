@@ -16,9 +16,13 @@ class Usuario extends Authenticatable
 
     public $timestamps = false;
 
-    protected $fillable = ['name', 'email', 'password', 'token'];
+    protected $fillable = ['NombreUsuario','Password', 'Token'];
 
-    protected $hidden = ['password', 'token'];
+    protected $hidden = ['Password', 'Token'];
+
+    public static function consulta($id){
+        return Usuario::where('ID', $id)->get();
+    }
 
     public function generarToken()
     {
