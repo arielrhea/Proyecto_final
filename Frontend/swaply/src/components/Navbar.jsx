@@ -44,7 +44,7 @@ function NavBar() {
 
     // Función para deseleccionar la categoría
     const deseleccionarCategoria = () => {
-        handleIdCategoriaChange(0, ''); // Pasar null o una cadena vacía para deseleccionar
+        handleIdCategoriaChange(0, ''); // Pasar 0 (idcategoria) i un texto (nombrecategoria) vacía para deseleccionar
     };
 
     return (
@@ -56,7 +56,7 @@ function NavBar() {
                         {nombreCategoria && (
                            <span className="deselect-btn" onClick={() => {
                             deseleccionarCategoria();
-                            alternarDesplegable();
+                            
                         }}>
                              ❌
                         </span>

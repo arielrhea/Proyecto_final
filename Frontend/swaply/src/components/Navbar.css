@@ -1,4 +1,19 @@
 /* NavBar.css */
+.toggle-desplegable {
+    position: relative;
+    /* Otros estilos para el botón */
+}
+
+.deselect-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px; /* Tamaño del icono de la x */
+    color: #f00; /* Color rojo para la x */
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;

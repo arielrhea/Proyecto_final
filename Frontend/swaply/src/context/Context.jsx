@@ -11,6 +11,7 @@ export const ContextoProvider = ({ children }) => {
 
     const handleBusquedaChange = (event) => {
         setBusqueda(event.target.value);
+        
     };
 
     const handleIdCategoriaChange = (id, nombre) => {
