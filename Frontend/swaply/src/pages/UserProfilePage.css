@@ -31,3 +31,32 @@
     text-align: center;
     margin-top: 20px;
 }
+
+
+.profile-and-products {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.profile-content {
+    flex-grow: 1;
+    
+    padding: 20px;
+}
+
+.user-products-section {
+    margin-top: 50px;
+    
+}
+
+.tituloproductos{
+    margin-left: 200px;
+}
+
+.product-card-container {
+    display: flex;
+    margin-left: 180px;
+    flex-wrap: wrap;
+    gap: 1rem;
+}

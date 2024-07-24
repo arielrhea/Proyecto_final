@@ -16,6 +16,8 @@ import TermsAndConditions from './components/TermsAndConditions';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import './App.css'; 
 import { ContextoProvider } from './context/Context';
+import AccountSettingsPage from './pages/AccountSettingsPage';
+import LoginPage from './components/LoginForm';
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
               <Route path='/new-product' element={<ProductFormPage />} />
               <Route path='/quienes-somos' element={<AboutUs />} />
               <Route path='/como-funciona' element={<HowItWorks />} />
+              <Route path='/account-settings/' element={<AccountSettingsPage />} />
+              <Route path='/login' element={<LoginPage />} />
               <Route path='/faq' element={<FAQ />} />
               <Route path='/contacto' element={<Contact />} />
               <Route path='/terminos' element={<TermsAndConditions />} />

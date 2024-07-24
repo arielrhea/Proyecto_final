@@ -123,7 +123,7 @@ const ProductDetail = ({ product }) => {
                     />
                     <div className="product-detail-user-details">
                         <p className="product-detail-user-name">{product.usuario.NombreUsuario}</p>
-                        <p className="product-detail-user-city">{product.usuario.Ciudad}</p>
+                        <p className="product-detail-user-city">{product.usuario.ubicacion.Nombre}</p>
                     </div>
                 </div>
             </div>
