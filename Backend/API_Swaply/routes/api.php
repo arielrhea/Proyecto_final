@@ -16,6 +16,7 @@ Route::post('/logout', [AuthSessionController::class, 'logout']);//->middleware(
 Route::post('/registro', [UsuarioController::class, 'registroUsuario']);
 Route::get('/usuario/{id}', [UsuarioController::class, 'consultaUsuario']);
 Route::put('/usuario/{id}', [UsuarioController::class, 'modificacionUsuario']);//->middleware(VerificacionToken::class);
+Route::delete('/usuario/{id}', [UsuarioController::class, 'bajaUsuario']);//->middleware(VerificacionToken::class);
 
 //RUTAS DE PRODUCTOS
 Route::get('/inicio', [ProductoController::class, 'index']);

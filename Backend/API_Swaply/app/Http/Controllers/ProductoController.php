@@ -89,7 +89,7 @@ class ProductoController extends Controller
             }
         }
 
-        //$producto->delete();
+        $producto->delete();
 
         return response()->json(['Producto eliminado'], 200);
     }

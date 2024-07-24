@@ -105,4 +105,17 @@ class UsuarioController extends Controller{
         return response()->json($usuario, 200);
 
      }
-}
+
+     public function bajaUsuario($id) {
+        
+        $usuario = Usuario::find($id);
+
+        if($usuario) {
+            $usuario->delete();
+            return response()->json(['Usuario eliminado'], 200);
+        }
+
+        return response()->json(['Usuario no encontrado'], 400);
+
+     }
+    }
