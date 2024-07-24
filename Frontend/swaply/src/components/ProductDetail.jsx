@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 import './ProductDetail.css';
 
 const mockImages = [
@@ -13,10 +14,11 @@ const ProductDetail = ({ product }) => {
     const [isImageExpanded, setIsImageExpanded] = useState(false);
     const [formattedDate, setFormattedDate] = useState('');
     const { ProductoReservado } = product;
+    const navigate = useNavigate(); // Usa useNavigate
 
     const isReserved = ProductoReservado === 1;
+
     useEffect(() => {
-        // Función para calcular la fecha de publicación relativa
         const calculateTimeAgo = (dateString) => {
             const fecha = new Date(dateString);
             const ahora = new Date();
@@ -64,11 +66,15 @@ const ProductDetail = ({ product }) => {
         );
     };
 
+    const handleProfileClick = () => {
+        navigate(`/profile/${product.usuario.ID}`); // Navega al perfil del usuario
+    };
+
     return (
         <div className="product-detail-wrapper">
             {isReserved && <div className="reserved-tag">Reservado</div>}
             <h1 className="product-detail-title">{product.Titulo}</h1>
-           
+
             <div className="product-detail-images">
                 {mockImages.map((img, index) => (
                     <div
@@ -106,7 +112,10 @@ const ProductDetail = ({ product }) => {
 
             <div className="product-detail-user-info">
                 <h2>Publicado por:</h2>
-                <div className="product-detail-user-profile">
+                <div
+                    className="product-detail-user-profile"
+                    onClick={handleProfileClick} // Agrega el manejador de clics
+                >
                     <img
                         src="https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg"
                         alt={product.usuario.NombreUsuario}
