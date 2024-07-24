@@ -4,13 +4,22 @@ import './SearchBar.css';
 
 const SearchBar = () => {
     const { busqueda, handleBusquedaChange } = useContexto();
+    const disablEnter=(event)=>{
+        console.log(event)
+        if(event.key=='Enter')
+        {
+            console.log('eskere')
+            event.preventDefault();
+        }
+    }
 
     return (
-        <form action="get">
+        <form>
             <input className='searchBar'
                 type="text"
                 placeholder="Buscar..."
                 value={busqueda}
+                onKeyDown={disablEnter}
                 onChange={handleBusquedaChange}
             />
         </form>

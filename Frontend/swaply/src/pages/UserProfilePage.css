@@ -1,26 +1,33 @@
-/* ProductDetailPage.css */
+/* UserProfilePage.css */
 
-.product-detail-page {
+.user-profile-page {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 40px 20px;
-    background-color: #333333;
+    background-color: #f5f5f5;
     min-height: 100vh;
     box-sizing: border-box;
     position: relative; /* Posición relativa para el contenedor del producto */
 }
 
-.product-detail-container {
-    max-width: 1200px;
+.user-profile-container {
+    max-width: 800px;
     width: 100%;
     min-height: 50vh;
-    background: #333333;
+    background: #ffffff;
     border-radius: 12px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     transition: box-shadow 0.3s ease;
+    padding: 20px;
     position: relative; /* Asegura que el LoadingScreen se posicione sobre él */
-    margin: 0 auto; /* Centra el contenedor en la página */
-    padding: 20px; /* Asegura que haya espacio interno en el contenedor */
+    margin: 0 auto;
+}
+
+.error-message {
+    color: #f44336;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
 }

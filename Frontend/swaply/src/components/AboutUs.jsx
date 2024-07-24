@@ -24,7 +24,6 @@ const AboutUs = () => {
                 <div className="about-us-values">
                     <h2>Nuestros Valores</h2>
                     <ul>
-                        <li><strong>Transparencia:</strong> Queremos que cada usuario se sienta seguro y bien informado sobre el proceso de donación.</li>
                         <li><strong>Solidaridad:</strong> Promovemos el apoyo mutuo entre miembros de la comunidad.</li>
                         <li><strong>Sostenibilidad:</strong> Buscamos reducir el desperdicio y contribuir a la protección del medio ambiente.</li>
                     </ul>

@@ -1,31 +1,46 @@
 .terms-and-conditions {
     padding: 50px 20px;
-    background-color: #f4f4f4;
+    background-color: #43bf21;
+    transition: background 0.3s;
+}
+
+.terms-and-conditions:hover {
+    background-color: #2c8f10;
 }
 
 .terms-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.terms-content:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .terms-and-conditions h1 {
+    font-family: 'Montserrat', sans-serif;
     font-size: 2.5rem;
-    color: #333;
+    color: #3fa024;
     margin-bottom: 20px;
 }
 
 .terms-and-conditions h2 {
+    font-family: 'Roboto', sans-serif;
     font-size: 2rem;
-    color: #222;
-    margin-top: 20px;
+    color: #3fa024;
+    margin-bottom: 10px;
 }
 
 .terms-and-conditions p {
+    font-family: 'Roboto', sans-serif;
     font-size: 1rem;
-    line-height: 1.6;
-    color: #666;
+    line-height: 1.8;
+    color: #3fa623;
+    margin-bottom: 20px;
 }
