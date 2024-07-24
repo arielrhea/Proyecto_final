@@ -12,6 +12,17 @@ use Illuminate\Validation\Rule;
 class UsuarioController extends Controller{
 
     public function consultaUsuario($id) {
+        
+        $usuario = Usuario::consulta($id);
+
+        if (!$usuario) {
+            return response()->json(['Usuario no encontrado'], 404);
+        }
+
+        return response()->json([$usuario], 200);
+    }
+
+    public function consultaUsuarioProductos($id) {
         $usuario = Usuario::consulta($id);
         $productos = Producto::where('UsuarioID', $id)->get();
 
@@ -22,7 +33,6 @@ class UsuarioController extends Controller{
         return response()->json(['usuario' => $usuario, 'productos' => $productos], 200);
     }
     
-
     public function registroUsuario(Request $request) {
         $datos = $request->all();
         $imagen = $request->file('img');
@@ -128,4 +138,4 @@ class UsuarioController extends Controller{
 
     }
 
-    }
+}

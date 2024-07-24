@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthSessionController::class, 'login']);
 Route::post('/logout', [AuthSessionController::class, 'logout']);//->middleware(VerificacionToken::class);
 Route::post('/registro', [UsuarioController::class, 'registroUsuario']);
+Route::get('/perfil/{id}', [UsuarioController::class, 'consultaUsuarioProductos']);
 Route::get('/usuario/{id}', [UsuarioController::class, 'consultaUsuario']);
 Route::put('/usuario/{id}', [UsuarioController::class, 'modificacionUsuario']);//->middleware(VerificacionToken::class);
 Route::delete('/usuario/{id}', [UsuarioController::class, 'bajaUsuario']);//->middleware(VerificacionToken::class);
