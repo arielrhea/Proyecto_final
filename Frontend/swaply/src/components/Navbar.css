@@ -18,7 +18,7 @@ body {
     align-items: center;
     justify-content: center; /* Centrar el contenido dentro del contenedor */
     width: 100%;
-    max-width: 800px; /* Ancho máximo ajustado para botones más compactos */
+    max-width: 800px;
 }
 
 .toggle-desplegable {
@@ -55,13 +55,13 @@ body {
     width: 100%;
 }
 
-.nav-button {
-    background-color: #555;
+.nav-button,
+.button-active {
     border: none;
     border-radius: 20px; /* Bordes redondeados */
     padding: 8px 16px; /* Tamaño más pequeño del botón */
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     flex: 1; /* Permitir que los botones crezcan y se reduzcan de tamaño según el espacio disponible */
     min-width: 140px; /* Tamaño mínimo ajustado */
     height: 36px; /* Altura del botón más pequeña */
@@ -72,16 +72,29 @@ body {
     justify-content: center; /* Centrar horizontalmente */
 }
 
+/* Color de fondo específico para nav-button y button-active */
+.nav-button {
+    background-color: #555;
+}
+
+.button-active {
+    background-color: #dcdcdc;
+}
+
+/* Hover común para ambos botones */
+.nav-button:hover,
+.button-active:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Mantener el color de fondo igual al estado no hover */
+     
+}
+
+/* Enlace dentro del botón */
 .nav-button a {
     text-decoration: none;
     color: beige;
     display: block;
-}
-
-.nav-button:hover {
-    background-color: #777;
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .desplegable {

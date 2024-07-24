@@ -11,6 +11,7 @@ function NavBar() {
     const [estadoSeleccionado, setEstadoSeleccionado] = useState('');
     const [ubicacionSeleccionada, setUbicacionSeleccionada] = useState('');
     const [ubicaciones, setUbicaciones] = useState([]);
+    const [butonActive, setButtonActive]= useState(false);
     const desplegableRef = useRef(null);
     const estadosDesplegableRef = useRef(null);
     const ubicacionesDesplegableRef = useRef(null);
@@ -25,6 +26,9 @@ function NavBar() {
     const alternarDesplegableEstados = () => {
         setEstadosDesplegableAbierto(!estadosDesplegableAbierto);
     };
+    const handleActive = () => {
+        setButtonActive(!butonActive); // Cambia el estado entre true y false
+      };
 
     const alternarDesplegableUbicaciones = () => {
         setUbicacionesDesplegableAbierto(!ubicacionesDesplegableAbierto);
@@ -99,6 +103,10 @@ function NavBar() {
         { id: 2, nombre: 'Usado' },
         { id: 3, nombre: 'Muy Usado' }
     ];
+    const handleClick = () => {
+        setButtonActive();
+        handleActive();
+      };
 
     return (
         <nav className="navbar">
@@ -174,6 +182,7 @@ function NavBar() {
                                             handleNombreUbicacion(ubicacion.ID);
                                             alternarDesplegableUbicaciones();
                                             setUbicacionSeleccionada(ubicacion.Nombre);
+                                            
                                         }}
                                     >
                                         {ubicacion.Nombre}
@@ -183,7 +192,7 @@ function NavBar() {
                         </ul>
                     </div>
 
-                    <button className="nav-button" onClick={handleReciente}>Agregados Recientemente</button>
+                    <button className={`nav-button ${butonActive ? 'nav-button' : 'button-active'}`} onClick={handleClick}>Agregados Recientemente</button>
                 </div>
             </div>
         </nav>
@@ -191,3 +200,4 @@ function NavBar() {
 }
 
 export default NavBar;
+

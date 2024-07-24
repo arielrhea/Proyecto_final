@@ -37,7 +37,7 @@ button:first-child {
     margin-right: 10px; /* Añade margen a la derecha del primer botón */
 }
 
-button:hover {
+.buttonHeader:hover {
     background-color: #777;
 }
 .botones{
