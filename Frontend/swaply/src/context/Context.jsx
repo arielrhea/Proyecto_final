@@ -9,7 +9,7 @@ export const ContextoProvider = ({ children }) => {
     const [idCategoria, setIdCategoria] = useState(0);
     const [nombreCategoria, setNombreCategoria] = useState(''); // Añadido para manejar el nombre de la categoría
     const [nombreEstado , setNombreEstado]= useState('');
-    const [recientes, setRecientes]=useState(false);
+    const [recientes, setRecientes]=useState(0);
     const [ubicacion, setUbicacion]=useState(0);
 
     const handleBusquedaChange = (event) => {
@@ -32,7 +32,12 @@ export const ContextoProvider = ({ children }) => {
         
     }
     const handleReciente=()=>{
-        setRecientes(!recientes);
+        if (recientes===0){
+            setRecientes(1);
+        }
+        else{
+            setRecientes(0);
+        }
     }
 
     return (

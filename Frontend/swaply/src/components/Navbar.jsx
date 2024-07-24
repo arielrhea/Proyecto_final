@@ -11,7 +11,7 @@ function NavBar() {
     const [estadoSeleccionado, setEstadoSeleccionado] = useState('');
     const [ubicacionSeleccionada, setUbicacionSeleccionada] = useState('');
     const [ubicaciones, setUbicaciones] = useState([]);
-    const [butonActive, setButtonActive]= useState(false);
+    const [butonActive, setButtonActive]= useState(true);
     const desplegableRef = useRef(null);
     const estadosDesplegableRef = useRef(null);
     const ubicacionesDesplegableRef = useRef(null);
@@ -104,7 +104,7 @@ function NavBar() {
         { id: 3, nombre: 'Muy Usado' }
     ];
     const handleClick = () => {
-        setButtonActive();
+        handleReciente();
         handleActive();
       };
 
