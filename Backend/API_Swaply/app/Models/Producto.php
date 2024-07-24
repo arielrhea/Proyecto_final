@@ -15,7 +15,6 @@ class Producto extends Model{
     public $timestamps = false;
 
     protected $fillable = [
-        'UsuarioID',
         'CategoriaID',
         'Titulo',
         'EstadoProducto',
@@ -34,12 +33,13 @@ class Producto extends Model{
     public function categoria() {
         return $this->belongsTo(Categoria::class, 'CategoriaID', 'ID');
     }
+    
 
     public static function consulta($id, $categoria, $ubicacion, $estado, $busqueda, $recientes) {
       $consulta = Producto::query();
 
        if($id){
-         return $consulta->where('ID', $id)->with('usuario:ID,NombreUsuario,Ciudad,FotoPerfil')->with('categoria:ID,Nombre')->get();
+         return $consulta->where('ID', $id)->with('usuario:ID,NombreUsuario,FotoPerfil')->with('categoria:ID,Nombre')->with('usuario.ubicacion:ID,Nombre')->get();
        }
       
       $consulta->when($categoria, function($q, $categoria){
@@ -48,7 +48,7 @@ class Producto extends Model{
 
       $consulta->when($ubicacion, function ($q, $ubicacion) {
         return $q->whereHas('usuario', function ($q) use ($ubicacion) {
-            $q->where('Ciudad', 'like', "%$ubicacion%");
+            $q->where('UbicacionID', $ubicacion);
         });
       });
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\AuthSessionController;
+use App\Http\Controllers\UbicacionController;
 use App\Http\Middleware\VerificacionToken;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,7 @@ Route::delete('/producto/{id}', [ProductoController::class, 'bajaProducto']);//-
 
 //RUTAS DE CATEGORIAS
 Route::get('/categorias', [CategoriaController::class, 'consultaCategorias']);
+
+//RUTAS DE UBICACIONES
+Route::get('/ubicaciones', [UbicacionController::class, 'consultaUbicaciones']);
 

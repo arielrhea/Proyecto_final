@@ -16,9 +16,13 @@ class Usuario extends Authenticatable
 
     public $timestamps = false;
 
-    protected $fillable = ['correoelectronico','NombreUsuario', 'Ciudad', 'Password', 'Token', 'FotoPerfil'];
+    protected $fillable = ['correoelectronico','NombreUsuario', 'UbicacionID', 'Password', 'Token', 'FotoPerfil'];
 
     protected $hidden = ['Password', 'Token'];
+
+    public function ubicacion(){
+        return $this->belongsTo(Ubicacion::class, 'UbicacionID', 'ID');
+    }
 
     public static function consulta($id) {
         return Usuario::where('ID', $id)->get();
@@ -28,7 +32,7 @@ class Usuario extends Authenticatable
         return Usuario::create([
             'correoelectronico' => $datos['email'],
             'NombreUsuario' => $datos['username'],
-            'Ciudad' => $datos['ubicacion'],
+            'UbicacionID' => $datos['ubicacion'],
             'Password' => bcrypt($datos['password']),
             'FotoPerfil' => $datos['img']
         ]);

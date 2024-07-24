@@ -26,7 +26,7 @@ class UsuarioController extends Controller{
         $reglas = [
             'email' => ['required', 'email',Rule::unique('usuarios', 'correoelectronico')],
             'username' => 'required|max:15',
-            'ubicacion' => 'required',
+            'ubicacion' => 'required|numeric',
             'password' => 'required',
             'img' => 'image'
         ];
@@ -38,6 +38,7 @@ class UsuarioController extends Controller{
             'username.required' => 'Nombre de usuario es obligatorio',
             'username.required' => 'El nombre de usuario no puede exceder los 15 caracteres',
             'ubicacion.required' => 'Ubicacion es obligatoria',
+            'ubicacion.numeric' => 'La ubicacion es de caracter numerico',
             'password.required' => 'Contraseña es obligatoria',
             'img.image' => 'El archivo debe ser de tipo imagen'
         ];
@@ -65,11 +66,13 @@ class UsuarioController extends Controller{
 
         $reglas = [
             'username' => 'max:15',
+            'ubicacion' => 'numeric',
             'img' => 'image',
         ];
 
         $mensajes = [
             'username.max' => 'El nombre de usuario no puede exceder los 15 caracteres',
+            'ubicacion.numeric' => 'El formato de ubicacion debe ser numerico',
             'img.image' => 'El formato del archivo debe ser imagen' 
         ];
 
@@ -94,7 +97,7 @@ class UsuarioController extends Controller{
             $usuario->NombreUsuario = $request->username;
         }
         if($request->ubicacion) {
-            $usuario->Ciudad = $request->ubicacion;
+            $usuario->UbicacionID = $request->ubicacion;
         }
         if($request->password) {
             $usuario->Password = bcrypt($request->password);
@@ -104,10 +107,10 @@ class UsuarioController extends Controller{
 
         return response()->json($usuario, 200);
 
-     }
-
+    }
+ 
      public function bajaUsuario($id) {
-        
+
         $usuario = Usuario::find($id);
 
         if($usuario) {
@@ -117,5 +120,5 @@ class UsuarioController extends Controller{
 
         return response()->json(['Usuario no encontrado'], 400);
 
-     }
+    }
     }
