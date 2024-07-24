@@ -25,7 +25,7 @@ class Usuario extends Authenticatable
     }
 
     public static function consulta($id) {
-        return Usuario::where('ID', $id)->get();
+        return Usuario::where('ID', $id)->with('ubicacion:ID,Nombre')->get();
     }
 
     public static function alta($datos) {
