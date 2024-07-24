@@ -16,7 +16,6 @@ class VerificacionToken
      */
     public function handle(Request $request, Closure $next): Response
     {
-
                 $token = $request->header()['token'][0] ?? null;
 
                 if(!$token) return response()->json(['No autorizado'], 401);

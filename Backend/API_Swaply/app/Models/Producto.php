@@ -52,7 +52,7 @@ class Producto extends Model{
       });
 
       $consulta->when($estado, function($q, $estado){
-        return $q->where('EstadoProducto', 'like', "%$estado%");
+        return $q->where('EstadoProducto', 'like', "$estado");
       });
 
       $consulta->when($busqueda, function($q, $busqueda){
