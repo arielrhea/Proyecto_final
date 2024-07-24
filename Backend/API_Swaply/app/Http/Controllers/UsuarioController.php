@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Producto;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -12,12 +13,15 @@ class UsuarioController extends Controller{
 
     public function consultaUsuario($id) {
         $usuario = Usuario::consulta($id);
+        $productos = Producto::where('UsuarioID', $id)->get();
 
         if (!$usuario) {
             return response()->json(['Usuario no encontrado'], 404);
         }
-        return response()->json($usuario, 200);
+
+        return response()->json(['usuario' => $usuario, 'productos' => $productos], 200);
     }
+    
 
     public function registroUsuario(Request $request) {
         $datos = $request->all();
