@@ -118,11 +118,14 @@ class UsuarioController extends Controller{
         $usuario = Usuario::find($id);
 
         if($usuario) {
-            $usuario->delete();
+            if($usuario->delete()&& $usuario->img != "sin-portada.jpg") {
+                Storage::disk('local')->delete('usuarios/' . $usuario->FotoPerfil);
+            }
             return response()->json(['Usuario eliminado'], 200);
         }
 
         return response()->json(['Usuario no encontrado'], 400);
 
     }
+
     }

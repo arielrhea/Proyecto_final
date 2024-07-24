@@ -34,7 +34,6 @@ class Producto extends Model{
         return $this->belongsTo(Categoria::class, 'CategoriaID', 'ID');
     }
     
-
     public static function consulta($id, $categoria, $ubicacion, $estado, $busqueda, $recientes) {
       $consulta = Producto::query();
 
@@ -78,7 +77,4 @@ class Producto extends Model{
         ]);
     }
 
-    public static function modificacion($datos) {
-
-    }
 }
