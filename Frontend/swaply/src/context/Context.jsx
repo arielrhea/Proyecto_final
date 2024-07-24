@@ -9,6 +9,8 @@ export const ContextoProvider = ({ children }) => {
     const [idCategoria, setIdCategoria] = useState(0);
     const [nombreCategoria, setNombreCategoria] = useState(''); // Añadido para manejar el nombre de la categoría
     const [nombreEstado , setNombreEstado]= useState('');
+    const [recientes, setRecientes]=useState(false);
+    const [ubicacion, setUbicacion]=useState(0);
 
     const handleBusquedaChange = (event) => {
         setBusqueda(event.target.value);
@@ -20,13 +22,21 @@ export const ContextoProvider = ({ children }) => {
         setNombreCategoria(nombre); // Actualiza el nombre de la categoría
     };
 
+    const handleNombreUbicacion=(ubi)=>{
+        setUbicacion(ubi);
+        console.log('hello');
+    }
+
     const handleNombreEstado=(nombre)=>{
         setNombreEstado(nombre);
         
     }
+    const handleReciente=()=>{
+        setRecientes(!recientes);
+    }
 
     return (
-        <Context.Provider value={{ busqueda, handleBusquedaChange, idCategoria, nombreCategoria, handleIdCategoriaChange, nombreEstado, handleNombreEstado }}>
+        <Context.Provider value={{ busqueda, handleBusquedaChange, idCategoria, nombreCategoria, handleIdCategoriaChange, nombreEstado, handleNombreEstado, handleReciente, recientes, handleNombreUbicacion,ubicacion }}>
             {children}
         </Context.Provider>
     );

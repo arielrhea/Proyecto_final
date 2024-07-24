@@ -64,10 +64,11 @@ body {
 
 .nav-buttons {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: space-evenly; /* Distribuye el espacio uniformemente entre botones */
-    width: calc(100% - 200px); /* Ajusta el ancho para dejar espacio para el menú desplegable */
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+     /* Distribuye el espacio uniformemente entre botones */
+   
 }
 
 .nav-button {
@@ -80,9 +81,7 @@ body {
     flex: 1; /* Permite que los botones crezcan y se reduzcan de tamaño según el espacio disponible */
     min-width: 160px; /* Asegura un tamaño mínimo para los botones */
     height: 40px; /* Igualar la altura con el botón desplegable */
-    display: flex; /* Utilizar flexbox para centrar el contenido verticalmente */
-    align-items: center; /* Centrar verticalmente */
-    justify-content: center; /* Centrar horizontalmente */
+   
 }
 
 .nav-button a {

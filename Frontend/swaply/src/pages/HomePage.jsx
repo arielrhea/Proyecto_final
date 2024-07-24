@@ -10,16 +10,16 @@ const HomePage = () => {
     const [loading, setLoading] = useState(true);
     
     // Variables para los filtros
-    const { idCategoria, busqueda, nombreEstado } = useContexto();
+    const { idCategoria, busqueda, nombreEstado, recientes, ubicacion } = useContexto();
 
     useEffect(() => {
         setLoading(true); // Mostrar loading antes de la solicitud
       
         // Mostrar en consola los valores actuales de los filtros
-        console.log(`ID Categoría: ${idCategoria}, Busqueda: ${busqueda}, Estado: ${nombreEstado}`);
+        console.log(`ID Categoría: ${idCategoria}, Busqueda: ${busqueda}, Estado: ${nombreEstado}, recientes: ${recientes}, Ubicación: ${ubicacion}`);
 
         // Construir la URL de la solicitud
-        const fetchUrl = `http://localhost:8000/api/productos?busqueda=${busqueda}&categoria=${idCategoria}&estado=${nombreEstado}`;
+        const fetchUrl = `http://localhost:8000/api/productos?busqueda=${busqueda}&categoria=${idCategoria}&estado=${nombreEstado}&recientes=${recientes}&ubicacion=${ubicacion}`;
 
         // Realizar la solicitud a la API
         axios.get(fetchUrl)
@@ -31,7 +31,7 @@ const HomePage = () => {
                 console.error('Error al obtener productos:', error);
                 setLoading(false);
             });
-    }, [busqueda, idCategoria, nombreEstado]); // Añadimos busqueda y idCategoria a las dependencias
+    }, [busqueda, idCategoria, nombreEstado, recientes, ubicacion]); // Añadimos busqueda y idCategoria a las dependencias
 
     return (
         <div className="home-page">
