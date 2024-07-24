@@ -59,7 +59,7 @@ class Producto extends Model{
         return $q->where('Titulo', 'like', "%$busqueda%");
       });
 
-      if ($recientes){
+      if ($recientes != false){
         $consulta->orderBy('FechaPublicacion' , 'desc');
       }
 
