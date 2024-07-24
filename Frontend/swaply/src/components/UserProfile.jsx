@@ -1,9 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './UserProfile.css';
 
 const UserProfile = ({ usuario }) => {
-    // URL del mockup para la imagen de perfil
+    const navigate = useNavigate();
     const profileImageURL = "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg";
+
+    const handleSettingsClick = () => {
+        navigate('/account-settings'); // Redirige a la página de configuración
+    };
 
     return (
         <div className="user-profile-wrapper">
@@ -13,13 +18,22 @@ const UserProfile = ({ usuario }) => {
                     alt="Perfil" 
                     className="user-profile-image"
                 />
-                <h1 className="user-profile-username">{usuario.NombreUsuario}</h1>
-                <p className="user-profile-city">{usuario.Ciudad}</p>
+                <div className="user-profile-header-content">
+                    <h1 className="user-profile-username">{usuario[0].NombreUsuario}</h1>
+                    <p className="user-profile-city">{usuario[0].ubicacion.Nombre}</p>
+                    <button 
+                        className="settings-button" 
+                        onClick={handleSettingsClick}
+                        aria-label="Configuración"
+                    >
+                        ⚙️
+                    </button>
+                </div>
             </div>
             <div className="user-profile-info">
-                <p><strong>Correo Electrónico:</strong> {usuario.correoelectronico}</p>
-                <p><strong>Regalos Recibidos:</strong> {usuario.Regalos}</p>
-                <p><strong>Regalos Ofrecidos:</strong> {usuario.Recibidos}</p>
+                <p><strong>Correo Electrónico:</strong> {usuario[0].correoelectronico}</p>
+                <p><strong>Regalos Recibidos:</strong> {usuario[0].Regalos}</p>
+                <p><strong>Regalos Ofrecidos:</strong> {usuario[0].Recibidos}</p>
             </div>
         </div>
     );

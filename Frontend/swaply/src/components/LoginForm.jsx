@@ -1,42 +1,53 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+// // import { useAuth } from '../context/AuthContext'; // Importa el hook de autenticación
+// import './LoginForm.css'; // Agrega estilos según sea necesario
 
-const LoginForm = ({ onLogin }) => {
-    const [form, setForm] = useState({
-        correoelectronico: '',
-        password: '',
-    });
+// const LoginPage = () => {
+//     const [credentials, setCredentials] = useState({ email: '', password: '' });
+//     const { authenticateUser } = useAuth(); // Usa la función de autenticación
 
-    const handleChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value,
-        });
-    };
+//     const handleChange = (e) => {
+//         setCredentials({
+//             ...credentials,
+//             [e.target.name]: e.target.value
+//         });
+//     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onLogin(form);
-    };
+//     const handleSubmit = (e) => {
+//         e.preventDefault();
+//         authenticateUser(credentials);
+//     };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="email"
-                name="correoelectronico"
-                placeholder="Correo electrónico"
-                value={form.correoelectronico}
-                onChange={handleChange}
-            />
-            <input
-                type="password"
-                name="password"
-                placeholder="Contraseña"
-                value={form.password}
-                onChange={handleChange}
-            />
-            <button type="submit">Iniciar Sesión</button>
-        </form>
-    );
-};
+//     return (
+//         <div className="login-page">
+//             <h1>Iniciar sesión</h1>
+//             <form onSubmit={handleSubmit}>
+//                 <div>
+//                     <label htmlFor="email">Correo Electrónico</label>
+//                     <input
+//                         type="email"
+//                         id="email"
+//                         name="email"
+//                         value={credentials.email}
+//                         onChange={handleChange}
+//                         required
+//                     />
+//                 </div>
+//                 <div>
+//                     <label htmlFor="password">Contraseña</label>
+//                     <input
+//                         type="password"
+//                         id="password"
+//                         name="password"
+//                         value={credentials.password}
+//                         onChange={handleChange}
+//                         required
+//                     />
+//                 </div>
+//                 <button type="submit">Iniciar sesión</button>
+//             </form>
+//         </div>
+//     );
+// };
 
-export default LoginForm;
+// export default LoginPage;
