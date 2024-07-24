@@ -8,6 +8,9 @@ function NavBar() {
     const [categorias, setCategorias] = useState([]);
     const desplegableRef = useRef(null);
 
+    // Obtener funciones y valores del contexto
+    const { idCategoria, nombreCategoria, handleIdCategoriaChange } = useContexto();
+
     const alternarDesplegable = () => {
         setEstaDesplegableAbierto(!estaDesplegableAbierto);
     };
@@ -17,8 +20,6 @@ function NavBar() {
             setEstaDesplegableAbierto(false);
         }
     };
-
-    const { handleIdCategoriaChange } = useContexto();
 
     useEffect(() => {
         document.addEventListener('mousedown', manejarClickFuera);
@@ -41,15 +42,36 @@ function NavBar() {
         obtenerCategorias();
     }, []);
 
+    // Función para deseleccionar la categoría
+    const deseleccionarCategoria = () => {
+        handleIdCategoriaChange(0, ''); // Pasar 0 (idcategoria) i un texto (nombrecategoria) vacía para deseleccionar
+    };
+
     return (
         <nav className="navbar">
             <div className="contenedor">
                 <div ref={desplegableRef} className={`desplegable ${estaDesplegableAbierto ? 'abierto' : ''}`}>
-                    <button onClick={alternarDesplegable} className="toggle-desplegable">☰ Todas las categorías</button>
+                    <button onClick={alternarDesplegable} className="toggle-desplegable">
+                        {nombreCategoria || '☰ Todas las categorías'} 
+                        {nombreCategoria && (
+                           <span className="deselect-btn" onClick={() => {
+                            deseleccionarCategoria();
+                            
+                        }}>
+                             ❌
+                        </span>
+                        )}
+                    </button>
                     <ul className="menu-desplegable">
                         {categorias.map((categoria) => (
                             <li key={categoria.ID}>
-                                <a  onClick={() => handleIdCategoriaChange(categoria.ID)} >{categoria.Nombre}</a>
+                                <a 
+                                    onClick={() => {handleIdCategoriaChange(categoria.ID, categoria.Nombre);
+                                        alternarDesplegable();
+                                    }}
+                                >
+                                    {categoria.Nombre}
+                                </a>
                             </li>
                         ))}
                     </ul>
