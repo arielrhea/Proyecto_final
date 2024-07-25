@@ -91,7 +91,14 @@ class ProductoController extends Controller
 
         $validator = Validator::make($request->all(), $reglas, $mensajes);
 
-        $producto->update($request->all());
+        $producto->update([
+            'CategoriaID' => $request->categoria,
+            'Titulo' => $request->titulo,
+            'Descripcion' => $request->descripcion,
+            'EstadoProducto' => $request->estado
+        ]);
+
+        $producto->save();
         
         return response()->json($producto, 200);
     }
