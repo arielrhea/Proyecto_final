@@ -69,10 +69,13 @@ const ProductDetail = ({ product }) => {
     const handleProfileClick = () => {
         navigate(`/profile/${product.usuario.ID}`); // Navega al perfil del usuario
     };
-
+    const handleReturn =()=>{
+        navigate(-1);
+    }
     return (
         <div className="product-detail-wrapper">
             {isReserved && <div className="reserved-tag">Reservado</div>}
+            <button className='returnButton' onClick={handleReturn}>Volver atrás</button>
             <h1 className="product-detail-title">{product.Titulo}</h1>
 
             <div className="product-detail-images">
