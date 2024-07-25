@@ -199,7 +199,7 @@ function NavBar() {
                         <ul className="menu-desplegable">
                             {categorias.map((categoria) => (
                                 <li key={categoria.ID}>
-                                    <a
+                                    <a className='desplegableOpcion'
                                         onClick={() => {
                                             handleIdCategoriaChange(categoria.ID, categoria.Nombre);
                                             setEstaDesplegableAbierto(false); // Cierra el desplegable al seleccionar una categoría
@@ -234,7 +234,7 @@ function NavBar() {
                         <ul className="menu-desplegable">
                             {estados.map((estado) => (
                                 <li key={estado.id}>
-                                    <a
+                                    <a className='desplegableOpcion'
                                         onClick={() => {
                                             handleNombreEstado(estado.nombre);
                                             setEstadosDesplegableAbierto(false); // Cierra el desplegable al seleccionar un estado
@@ -270,7 +270,7 @@ function NavBar() {
                         <ul className="menu-desplegable">
                             {ubicaciones.map((ubicacion) => (
                                 <li key={ubicacion.ID}>
-                                    <a
+                                    <a className='desplegableOpcion'
                                         onClick={() => {
                                             handleNombreUbicacion(ubicacion.ID);
                                             setUbicacionesDesplegableAbierto(false); // Cierra el desplegable al seleccionar una ubicación

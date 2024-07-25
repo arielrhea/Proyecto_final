@@ -90,6 +90,10 @@ body {
      
 }
 
+.desplegableOpcion{
+    cursor: pointer;
+}
+
 /* Enlace dentro del botón */
 .nav-button a {
     text-decoration: none;
