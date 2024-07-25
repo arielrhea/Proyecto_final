@@ -80,17 +80,17 @@ class UsuarioController extends Controller{
         $imagen = $request->file('img');
 
         $reglas = [
-            'username' => 'required|max:15',
-            'ubicacion' => 'required|numeric',
+            'NombreUsuario' => 'required|max:15',
+            'ubicacionID' => 'required|numeric',
             'password' =>  'min:4',
             'img' => 'image',
         ];
 
         $mensajes = [
-            'username.required' => 'El nombre de usuario es obligatorio',
-            'username.max' => 'El nombre de usuario no puede exceder los 15 caracteres',
-            'ubicacion.required' => 'La ubicacion es obligatoria',
-            'ubicacion.numeric' => 'El formato de ubicacion debe ser numerico',
+            'NombreUsuario.required' => 'El nombre de usuario es obligatorio',
+            'NombreUsuario.max' => 'El nombre de usuario no puede exceder los 15 caracteres',
+            'ubicacionID.required' => 'La ubicacion es obligatoria',
+            'ubicacionID.numeric' => 'El formato de ubicacion debe ser numerico',
             'password.min' => 'La contraseña debe ser minimo de 4 caracteres',
             'img.image' => 'El formato del archivo debe ser imagen' 
         ];
@@ -112,11 +112,11 @@ class UsuarioController extends Controller{
             $usuario->FotoPerfil = $nombreImagen;
         }
 
-        if($request->username) {
-            $usuario->NombreUsuario = $request->username;
+        if($request->NombreUsuario) {
+            $usuario->NombreUsuario = $request->NombreUsuario;
         }
-        if($request->ubicacion) {
-            $usuario->UbicacionID = $request->ubicacion;
+        if($request->ubicacionID) {
+            $usuario->UbicacionID = $request->ubicacionID;
         }
         if($request->password) {
             $usuario->Password = bcrypt($request->password);
