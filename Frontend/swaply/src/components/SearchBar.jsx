@@ -1,13 +1,12 @@
 import React from 'react';
-import { useContexto } from '../context/Context'; // Asegúrate de usar la ruta correcta
+import { useContexto } from '../context/Context';
 import './SearchBar.css';
-import { buildQueries } from '@testing-library/react';
 import { useNavigate } from 'react-router-dom';
 
 const SearchBar = () => {
     const { busqueda, handleBusquedaChange } = useContexto();
     const navigate = useNavigate();
-    
+
     const disablEnter=(event)=>{
         console.log(event)
         if(event.key=='Enter')
