@@ -34,12 +34,19 @@
     margin-bottom: 5px;
 }
 
-.form-group input {
+.form-group input,
+.form-group select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     box-sizing: border-box;
+}
+
+.readonly-input {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+    color: #666;
 }
 
 .submit-button {
