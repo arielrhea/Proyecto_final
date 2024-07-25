@@ -40,7 +40,7 @@ class AuthSessionController extends Controller
 
         if ($password == $usuario->Password) {
             $token = $usuario->generarToken();
-            return response()->json(['Token' => $token], 200);
+            return response()->json(['ID' => $usuario->ID, 'Token' => $token], 200);
         }
 
         return response()->json(['No Autorizado'], 401);

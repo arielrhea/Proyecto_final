@@ -68,7 +68,7 @@ class ProductoController extends Controller
             return response()->json(['Producto no encontrado'], 404);
         }
 
-        $producto->update($request->all());
+        
         
         return response()->json($producto, 200);
     }
