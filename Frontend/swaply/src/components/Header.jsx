@@ -5,7 +5,7 @@ import './Header.css';
 const Header = () => {
     return (
         <header>
-            <a href="" className='logoLink'>
+            <a href="/" className='logoLink'>
             <h2 className='swaply'>Swaply</h2>
             </a>
             <SearchBar className="barra" />
