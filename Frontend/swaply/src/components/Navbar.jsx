@@ -5,33 +5,99 @@ import { useContexto } from '../context/Context';
 
 function NavBar() {
     const [estaDesplegableAbierto, setEstaDesplegableAbierto] = useState(false);
+    const [mouseSobreDesplegable, setMouseSobreDesplegable] = useState(false);
+    const [mouseSobreBoton, setMouseSobreBoton] = useState(false);
+
     const [estadosDesplegableAbierto, setEstadosDesplegableAbierto] = useState(false);
+    const [mouseSobreDesplegableEstados, setMouseSobreDesplegableEstados] = useState(false);
+    const [mouseSobreBotonEstados, setMouseSobreBotonEstados] = useState(false);
+
     const [ubicacionesDesplegableAbierto, setUbicacionesDesplegableAbierto] = useState(false);
+    const [mouseSobreDesplegableUbicaciones, setMouseSobreDesplegableUbicaciones] = useState(false);
+    const [mouseSobreBotonUbicaciones, setMouseSobreBotonUbicaciones] = useState(false);
+
     const [categorias, setCategorias] = useState([]);
     const [estadoSeleccionado, setEstadoSeleccionado] = useState('');
     const [ubicacionSeleccionada, setUbicacionSeleccionada] = useState('');
     const [ubicaciones, setUbicaciones] = useState([]);
-    const [butonActive, setButtonActive]= useState(true);
+    const [butonActive, setButtonActive] = useState(1);
+
     const desplegableRef = useRef(null);
     const estadosDesplegableRef = useRef(null);
     const ubicacionesDesplegableRef = useRef(null);
 
-    // Obtener funciones y valores del contexto
     const { idCategoria, nombreCategoria, handleIdCategoriaChange, handleNombreEstado, handleNombreUbicacion, handleReciente } = useContexto();
 
-    const alternarDesplegableCategorias = () => {
-        setEstaDesplegableAbierto(!estaDesplegableAbierto);
+    useEffect(() => {
+        if (mouseSobreDesplegable || mouseSobreBoton) {
+            setEstaDesplegableAbierto(true);
+        } else {
+            setEstaDesplegableAbierto(false);
+        }
+    }, [mouseSobreDesplegable, mouseSobreBoton]);
+
+    const handleMouseEnterBoton = () => {
+        setMouseSobreBoton(true);
     };
 
-    const alternarDesplegableEstados = () => {
-        setEstadosDesplegableAbierto(!estadosDesplegableAbierto);
+    const handleMouseLeaveBoton = () => {
+        setMouseSobreBoton(false);
     };
-    const handleActive = () => {
-        setButtonActive(!butonActive); // Cambia el estado entre true y false
-      };
 
-    const alternarDesplegableUbicaciones = () => {
-        setUbicacionesDesplegableAbierto(!ubicacionesDesplegableAbierto);
+    const handleMouseEnterDesplegable = () => {
+        setMouseSobreDesplegable(true);
+    };
+
+    const handleMouseLeaveDesplegable = () => {
+        setMouseSobreDesplegable(false);
+    };
+
+    useEffect(() => {
+        if (mouseSobreDesplegableEstados || mouseSobreBotonEstados) {
+            setEstadosDesplegableAbierto(true);
+        } else {
+            setEstadosDesplegableAbierto(false);
+        }
+    }, [mouseSobreDesplegableEstados, mouseSobreBotonEstados]);
+
+    const handleMouseEnterBotonEstados = () => {
+        setMouseSobreBotonEstados(true);
+    };
+
+    const handleMouseLeaveBotonEstados = () => {
+        setMouseSobreBotonEstados(false);
+    };
+
+    const handleMouseEnterDesplegableEstados = () => {
+        setMouseSobreDesplegableEstados(true);
+    };
+
+    const handleMouseLeaveDesplegableEstados = () => {
+        setMouseSobreDesplegableEstados(false);
+    };
+
+    useEffect(() => {
+        if (mouseSobreDesplegableUbicaciones || mouseSobreBotonUbicaciones) {
+            setUbicacionesDesplegableAbierto(true);
+        } else {
+            setUbicacionesDesplegableAbierto(false);
+        }
+    }, [mouseSobreDesplegableUbicaciones, mouseSobreBotonUbicaciones]);
+
+    const handleMouseEnterBotonUbicaciones = () => {
+        setMouseSobreBotonUbicaciones(true);
+    };
+
+    const handleMouseLeaveBotonUbicaciones = () => {
+        setMouseSobreBotonUbicaciones(false);
+    };
+
+    const handleMouseEnterDesplegableUbicaciones = () => {
+        setMouseSobreDesplegableUbicaciones(true);
+    };
+
+    const handleMouseLeaveDesplegableUbicaciones = () => {
+        setMouseSobreDesplegableUbicaciones(false);
     };
 
     const manejarClickFuera = (event) => {
@@ -54,11 +120,10 @@ function NavBar() {
     }, []);
 
     useEffect(() => {
-        // Realizar la solicitud para obtener las categorías usando axios
         const obtenerCategorias = async () => {
             try {
                 const response = await axios.get('http://localhost:8000/api/categorias');
-                setCategorias(response.data); // Suponiendo que `response.data` es una lista de categorías
+                setCategorias(response.data);
             } catch (error) {
                 console.error('Error al obtener las categorías:', error);
             }
@@ -68,11 +133,10 @@ function NavBar() {
     }, []);
 
     useEffect(() => {
-        // Realizar la solicitud para obtener las ubicaciones usando axios
         const obtenerUbicaciones = async () => {
             try {
                 const response = await axios.get('http://localhost:8000/api/ubicaciones');
-                setUbicaciones(response.data); // Suponiendo que `response.data` es una lista de ubicaciones
+                setUbicaciones(response.data);
             } catch (error) {
                 console.error('Error al obtener las ubicaciones:', error);
             }
@@ -81,18 +145,15 @@ function NavBar() {
         obtenerUbicaciones();
     }, []);
 
-    // Función para deseleccionar la categoría
     const deseleccionarCategoria = () => {
-        handleIdCategoriaChange(0, ''); // Pasar 0 (idcategoria) y un texto (nombrecategoria) vacío para deseleccionar
+        handleIdCategoriaChange(0, '');
     };
 
-    // Función para deseleccionar el estado
     const deseleccionarEstado = () => {
         setEstadoSeleccionado('');
         handleNombreEstado('');
     };
 
-    // Función para deseleccionar la ubicación
     const deseleccionarUbicacion = () => {
         setUbicacionSeleccionada('');
         handleNombreUbicacion('');
@@ -103,17 +164,31 @@ function NavBar() {
         { id: 2, nombre: 'Usado' },
         { id: 3, nombre: 'Muy Usado' }
     ];
+
     const handleClick = () => {
         handleReciente();
         handleActive();
-      };
+    };
+
+    const handleActive = () => {
+        setButtonActive(!butonActive); // Cambia el estado entre true y false
+    };
 
     return (
         <nav className="navbar">
             <div className="nav-buttons">
                 <div className="contenedor">
-                    <div ref={desplegableRef} className={`desplegable ${estaDesplegableAbierto ? 'abierto' : ''}`}>
-                        <button onMouseEnter={alternarDesplegableCategorias} onMouseLeave={alternarDesplegableCategorias} className="toggle-desplegable">
+                    <div
+                        ref={desplegableRef}
+                        className={`desplegable ${estaDesplegableAbierto ? 'abierto' : ''}`}
+                        onMouseEnter={handleMouseEnterDesplegable}
+                        onMouseLeave={handleMouseLeaveDesplegable}
+                    >
+                        <button
+                            onMouseEnter={handleMouseEnterBoton}
+                            onMouseLeave={handleMouseLeaveBoton}
+                            className="toggle-desplegable"
+                        >
                             {nombreCategoria || '☰ Todas las categorías'}
                             {nombreCategoria && (
                                 <span className="deselect-btn" onClick={() => deseleccionarCategoria()}>
@@ -121,13 +196,13 @@ function NavBar() {
                                 </span>
                             )}
                         </button>
-                        <ul className="menu-desplegable" onMouseLeave={alternarDesplegableCategorias}>
+                        <ul className="menu-desplegable">
                             {categorias.map((categoria) => (
                                 <li key={categoria.ID}>
                                     <a
                                         onClick={() => {
                                             handleIdCategoriaChange(categoria.ID, categoria.Nombre);
-                                            alternarDesplegableCategorias();
+                                            setEstaDesplegableAbierto(false); // Cierra el desplegable al seleccionar una categoría
                                         }}
                                     >
                                         {categoria.Nombre}
@@ -138,8 +213,17 @@ function NavBar() {
                     </div>
 
                     {/* Desplegable de Estados */}
-                    <div ref={estadosDesplegableRef} className={`desplegable ${estadosDesplegableAbierto ? 'abierto' : ''}`}>
-                        <button onMouseEnter={alternarDesplegableEstados} onMouseLeave={alternarDesplegableEstados} className="toggle-desplegable">
+                    <div
+                        ref={estadosDesplegableRef}
+                        className={`desplegable ${estadosDesplegableAbierto ? 'abierto' : ''}`}
+                        onMouseEnter={handleMouseEnterDesplegableEstados}
+                        onMouseLeave={handleMouseLeaveDesplegableEstados}
+                    >
+                        <button
+                            onMouseEnter={handleMouseEnterBotonEstados}
+                            onMouseLeave={handleMouseLeaveBotonEstados}
+                            className="toggle-desplegable"
+                        >
                             {estadoSeleccionado || '☰ Estado del producto'}
                             {estadoSeleccionado && (
                                 <span className="deselect-btn" onClick={() => deseleccionarEstado()}>
@@ -147,13 +231,13 @@ function NavBar() {
                                 </span>
                             )}
                         </button>
-                        <ul className="menu-desplegable" onMouseLeave={alternarDesplegableEstados}>
+                        <ul className="menu-desplegable">
                             {estados.map((estado) => (
                                 <li key={estado.id}>
                                     <a
                                         onClick={() => {
                                             handleNombreEstado(estado.nombre);
-                                            alternarDesplegableEstados();
+                                            setEstadosDesplegableAbierto(false); // Cierra el desplegable al seleccionar un estado
                                             setEstadoSeleccionado(estado.nombre);
                                         }}
                                     >
@@ -165,8 +249,17 @@ function NavBar() {
                     </div>
 
                     {/* Desplegable de Ubicaciones */}
-                    <div ref={ubicacionesDesplegableRef} className={`desplegable ${ubicacionesDesplegableAbierto ? 'abierto' : ''}`}>
-                        <button onMouseEnter={alternarDesplegableUbicaciones} onMouseLeave={alternarDesplegableUbicaciones} className="toggle-desplegable">
+                    <div
+                        ref={ubicacionesDesplegableRef}
+                        className={`desplegable ${ubicacionesDesplegableAbierto ? 'abierto' : ''}`}
+                        onMouseEnter={handleMouseEnterDesplegableUbicaciones}
+                        onMouseLeave={handleMouseLeaveDesplegableUbicaciones}
+                    >
+                        <button
+                            onMouseEnter={handleMouseEnterBotonUbicaciones}
+                            onMouseLeave={handleMouseLeaveBotonUbicaciones}
+                            className="toggle-desplegable"
+                        >
                             {ubicacionSeleccionada || '☰ Todas las ubicaciones'}
                             {ubicacionSeleccionada && (
                                 <span className="deselect-btn" onClick={() => deseleccionarUbicacion()}>
@@ -174,15 +267,14 @@ function NavBar() {
                                 </span>
                             )}
                         </button>
-                        <ul className="menu-desplegable" onMouseLeave={alternarDesplegableUbicaciones}>
+                        <ul className="menu-desplegable">
                             {ubicaciones.map((ubicacion) => (
                                 <li key={ubicacion.ID}>
                                     <a
                                         onClick={() => {
                                             handleNombreUbicacion(ubicacion.ID);
-                                            alternarDesplegableUbicaciones();
+                                            setUbicacionesDesplegableAbierto(false); // Cierra el desplegable al seleccionar una ubicación
                                             setUbicacionSeleccionada(ubicacion.Nombre);
-                                            
                                         }}
                                     >
                                         {ubicacion.Nombre}
@@ -192,7 +284,9 @@ function NavBar() {
                         </ul>
                     </div>
 
-                    <button className={`nav-button ${butonActive ? 'nav-button' : 'button-active'}`} onClick={handleClick}>Agregados Recientemente</button>
+                    <button className={`nav-button ${butonActive ? 'nav-button' : 'button-active'}`} onClick={handleClick}>
+                        Agregados Recientemente
+                    </button>
                 </div>
             </div>
         </nav>
@@ -200,4 +294,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
