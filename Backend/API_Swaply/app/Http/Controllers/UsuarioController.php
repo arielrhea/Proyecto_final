@@ -41,7 +41,7 @@ class UsuarioController extends Controller{
             'email' => ['required', 'email',Rule::unique('usuarios', 'correoelectronico')],
             'username' => 'required|max:15',
             'ubicacion' => 'required|numeric',
-            'password' => 'required',
+            'password' => 'required|min:4',
             'img' => 'image'
         ];
         
@@ -54,6 +54,7 @@ class UsuarioController extends Controller{
             'ubicacion.required' => 'Ubicacion es obligatoria',
             'ubicacion.numeric' => 'La ubicacion es de caracter numerico',
             'password.required' => 'Contraseña es obligatoria',
+            'password.min' => 'La contraseña debe ser minimo de 4 caracteres',
             'img.image' => 'El archivo debe ser de tipo imagen'
         ];
 
@@ -79,14 +80,18 @@ class UsuarioController extends Controller{
         $imagen = $request->file('img');
 
         $reglas = [
-            'username' => 'max:15',
-            'ubicacion' => 'numeric',
+            'username' => 'required|max:15',
+            'ubicacion' => 'required|numeric',
+            'password' =>  'min:4',
             'img' => 'image',
         ];
 
         $mensajes = [
+            'username.required' => 'El nombre de usuario es obligatorio',
             'username.max' => 'El nombre de usuario no puede exceder los 15 caracteres',
+            'ubicacion.required' => 'La ubicacion es obligatoria',
             'ubicacion.numeric' => 'El formato de ubicacion debe ser numerico',
+            'password.min' => 'La contraseña debe ser minimo de 4 caracteres',
             'img.image' => 'El formato del archivo debe ser imagen' 
         ];
 
