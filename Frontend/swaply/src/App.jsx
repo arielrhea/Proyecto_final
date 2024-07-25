@@ -18,6 +18,7 @@ import './App.css';
 import { ContextoProvider } from './context/Context';
 import AccountSettingsPage from './pages/AccountSettingsPage';
 import LoginPage from './components/LoginForm';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -35,13 +36,13 @@ function App() {
               <Route path='/new-product' element={<ProductFormPage />} />
               <Route path='/quienes-somos' element={<AboutUs />} />
               <Route path='/como-funciona' element={<HowItWorks />} />
-              <Route path='/account-settings/' element={<AccountSettingsPage />} />
-              <Route path='/login' element={<LoginPage />} />
               <Route path='/faq' element={<FAQ />} />
               <Route path='/contacto' element={<Contact />} />
-              <Route path='/terminos' element={<TermsAndConditions />} />
-              <Route path='/privacidad' element={<PrivacyPolicy />} />
-              <Route path='/*' element={<ErrorMessage />} />
+              <Route path='/terminos-condiciones' element={<TermsAndConditions />} />
+              <Route path='/politica-privacidad' element={<PrivacyPolicy />} />
+              <Route path='/account-settings' element={<PrivateRoute component={AccountSettingsPage} />} />
+              <Route path='/login' element={<LoginPage />} />
+              <Route path='*' element={<ErrorMessage message='404: Página no encontrada' />} />
             </Routes>
 
             <Footer />
@@ -53,4 +54,3 @@ function App() {
 }
 
 export default App;
-
