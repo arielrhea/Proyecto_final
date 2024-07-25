@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import './Navbar.css';
 import { useContexto } from '../context/Context';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function NavBar() {
     const [estaDesplegableAbierto, setEstaDesplegableAbierto] = useState(false);
@@ -25,6 +26,8 @@ function NavBar() {
     const desplegableRef = useRef(null);
     const estadosDesplegableRef = useRef(null);
     const ubicacionesDesplegableRef = useRef(null);
+
+    const navigate = useNavigate();
 
     const { idCategoria, nombreCategoria, handleIdCategoriaChange, handleNombreEstado, handleNombreUbicacion, handleReciente } = useContexto();
 
@@ -203,6 +206,7 @@ function NavBar() {
                                         onClick={() => {
                                             handleIdCategoriaChange(categoria.ID, categoria.Nombre);
                                             setEstaDesplegableAbierto(false); // Cierra el desplegable al seleccionar una categoría
+                                            navigate('/', { state: { search: categoria.nombre } });
                                         }}
                                     >
                                         {categoria.Nombre}
@@ -239,6 +243,7 @@ function NavBar() {
                                             handleNombreEstado(estado.nombre);
                                             setEstadosDesplegableAbierto(false); // Cierra el desplegable al seleccionar un estado
                                             setEstadoSeleccionado(estado.nombre);
+                                            navigate('/', { state: { search: estado.nombre } });
                                         }}
                                     >
                                         {estado.nombre}
@@ -275,6 +280,7 @@ function NavBar() {
                                             handleNombreUbicacion(ubicacion.ID);
                                             setUbicacionesDesplegableAbierto(false); // Cierra el desplegable al seleccionar una ubicación
                                             setUbicacionSeleccionada(ubicacion.Nombre);
+                                            navigate('/', { state: { search: ubicacion.Nombre } });
                                         }}
                                     >
                                         {ubicacion.Nombre}
