@@ -27,6 +27,7 @@ class ProductoController extends Controller
             'categoria'     => 'required|numeric',
             'titulo'        => 'required|max:100',
             'estado'        => 'required',
+            'imagenes'      => 'required|array|min:1|max:6',
             'descripcion'   => 'required|max:500'
         ];
 
@@ -36,6 +37,9 @@ class ProductoController extends Controller
             'titulo.required'       => 'Titulo es obligatorio',
             'titulo.max'            => 'Titulo no puede exceder los 100 caracteres',
             'estado.required'       => 'Estado es obligatorio',
+            'imagenes.required'     => 'Imagen es obligatoria',
+            'imagenes.min'          => 'Minimo se require 1 imagen',
+            'imagenes.max'          => 'El maximo son 6 imagenes',
             'descripcion.required'  => 'Descripcion es obligatoria',
             'descripcion.max'       => 'Descripcion no puede exceder los 500 caracteres'
         ];
@@ -50,7 +54,7 @@ class ProductoController extends Controller
         if($request->hasfile('imagenes')) {
             foreach($request->file('imagenes') as $imagen) {
                 $nombreImagen = time().'-'.$imagen->getClientOriginalName();
-                $imagen->move(public_path('assets/img/productos'), $nombreImagen); // Guarda la imagen en el servidor
+                $imagen->move(public_path('assets/img/productos'), $nombreImagen);
                 $imagenes[] = $nombreImagen;
             }
         }
@@ -68,7 +72,7 @@ class ProductoController extends Controller
             return response()->json(['Producto no encontrado'], 404);
         }
 
-        
+
         
         return response()->json($producto, 200);
     }
@@ -89,7 +93,7 @@ class ProductoController extends Controller
             }
         }
 
-        //$producto->delete();
+        $producto->delete();
 
         return response()->json(['Producto eliminado'], 200);
     }
