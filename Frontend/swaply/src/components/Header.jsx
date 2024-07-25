@@ -57,9 +57,9 @@ const Header = () => {
                 {isAuthenticated ? (
                     <>
                         {!loading && (
-                            <div className='user-info' onClick={handleProfileClick}>
-                                <img src={userData.img} alt={userData.username} className='user-profile-image' />
-                                {userData.username && <p className='username'>{userData.username}</p>}
+                            <div className='user-info-header' onClick={handleProfileClick}>
+                                <img src={userData.img} alt={userData.username} className='user-profile-image-header' />
+                                {userData.username && <p className='username-header'>{userData.username}</p>}
                             </div>
                         )}
                         <button className='buttonHeader' onClick={handleLogout}>

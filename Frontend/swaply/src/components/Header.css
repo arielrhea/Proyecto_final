@@ -44,20 +44,20 @@ header {
     align-items: center;
 }
 
-.user-info {
+.user-info-header {
     display: flex;
     align-items: center;
     margin-right: 20px;
 }
 
-.user-profile-image {
+.user-profile-image-header {
     border-radius: 50%; /* Imagen circular */
     width: 40px; /* Tamaño de la imagen */
     height: 40px; /* Tamaño de la imagen */
     margin-right: 10px; /* Separación entre imagen y nombre de usuario */
 }
 
-.username {
+.username-header {
     color: white;
     margin: 0;
     font-weight: bold;

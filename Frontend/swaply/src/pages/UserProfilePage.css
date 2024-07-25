@@ -1,11 +1,9 @@
-/* UserProfilePage.css */
-
 .user-profile-page {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 40px 20px;
-    background-color: #f5f5f5;
+    background-color: #333;
     min-height: 100vh;
     box-sizing: border-box;
     position: relative; /* Posición relativa para el contenedor del producto */
@@ -32,31 +30,41 @@
     margin-top: 20px;
 }
 
-
 .profile-and-products {
     display: flex;
-    flex-direction: row;
+    flex-direction: column; /* Cambiado a columna para centrar todo */
+    align-items: center; /* Centra el contenido */
     flex-grow: 1;
+    width: 100%;
 }
 
 .profile-content {
-    flex-grow: 1;
-    
+    width: 100%;
     padding: 20px;
+    display: flex;
+    flex-direction: column; /* Cambiado a columna para centrar el contenido */
+    align-items: center; /* Centra el contenido */
 }
 
 .user-products-section {
     margin-top: 50px;
-    
+    width: 100%;
+    text-align: center; /* Centra el texto */
 }
 
-.tituloproductos{
-    margin-left: 200px;
+.tituloproductos {
+    margin: 0; /* Elimina el margen de izquierda */
+    color: beige;
 }
 
 .product-card-container {
     display: flex;
-    margin-left: 180px;
     flex-wrap: wrap;
+    justify-content: center; /* Centra los productos */
     gap: 1rem;
+}
+
+.no-products-message {
+    font-size: 18px;
+    color: #757575;
 }
