@@ -18,7 +18,7 @@ const LoginPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         authenticateUser(credentials).then(() => {
-            navigate('/account-settings');
+            navigate('/');
         });
     };
 

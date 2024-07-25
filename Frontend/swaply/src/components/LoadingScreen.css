@@ -23,7 +23,7 @@
     height: 80%; /* Ocupa el 100% de la altura del contenedor padre */
     width: 80%;  /* Ocupa el 100% de la anchura del contenedor padre */
     background: #333333; /* Fondo blanco para el contenedor del spinner y el texto */
-    border-radius: 12px; /* Borde redondeado para un acabado más suave */
+    border-radius:0px; /* Borde redondeado para un acabado más suave */
     padding: 20px; /* Espacio interno */
 }
 
