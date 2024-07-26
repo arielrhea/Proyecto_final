@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
-    const { Imagen, Titulo, EstadoProducto, ProductoReservado, ID } = product;
+    const { Imagenes, Titulo, EstadoProducto, ProductoReservado, ID } = product;
     const navigate = useNavigate();
 
     // Función para capitalizar la primera letra
@@ -17,7 +17,6 @@ const ProductCard = ({ product }) => {
 
     // Función para manejar el clic en la tarjeta
     const handleClick = () => {
-        console.log("Product ID:", ID); // Verifica que id esté definido
         if (ID) {
             navigate(`/product/${ID}`);
         } else {
@@ -25,11 +24,24 @@ const ProductCard = ({ product }) => {
         }
     };
 
+    // Manejo de la imagen
+    let imageSrc = "https://upload.wikimedia.org/wikipedia/commons/b/b9/No_Cover.jpg?20090511140841"; // Imagen de mockup por defecto
+
+    // Parsear la cadena JSON de imágenes
+    try {
+        const imagesArray = JSON.parse(Imagenes);
+        if (Array.isArray(imagesArray) && imagesArray.length > 0) {
+            imageSrc = `http://localhost:8000/assets/img/productos/${imagesArray[0]}`;
+        }
+    } catch (error) {
+        console.error('Error al parsear la cadena JSON de imágenes:', error);
+    }
+
     return (
         <div className="product-card" onClick={handleClick}>
             {isReserved && <div className="reserved-tag-product">Reservado</div>}
             <img 
-                src={Imagen || "https://upload.wikimedia.org/wikipedia/commons/b/b9/No_Cover.jpg?20090511140841"} 
+                src={imageSrc} 
                 alt={Titulo} 
                 className="product-image" 
             />
