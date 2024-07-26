@@ -33,6 +33,7 @@ export const AuthProvider = ({ children }) => {
                 localStorage.setItem('userId', ID);
                 localStorage.setItem('username', username);
                 localStorage.setItem('img', img);
+                console.log(userId)
             }
         } catch (error) {
             console.error('Error de autenticación:', error);
