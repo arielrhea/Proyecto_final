@@ -17,6 +17,7 @@
 .product-item {
     flex: 1 1 calc(20% - 20px); /* Ajusta el tamaño para 5 columnas */
     box-sizing: border-box; /* Asegura que el padding y el border no afectan el ancho total */
+    cursor: pointer;
 }
 
 .pagination {
