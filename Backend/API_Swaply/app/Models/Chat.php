@@ -27,10 +27,18 @@ class Chat extends Model
         return $this->belongsTo(Producto::class, 'ProductoID', 'ID');
     }
 
+    public function mensaje(){
+        return $this->hasMany(Mensaje::class, 'ChatID', 'ID');
+    }
+
     public static function consulta($id) {
-        return Chat::where('usuario1_id', $id)
-                     ->orWhere('usuario2_id', $id)
-                     //->with(['usuario1:ID,NombreUsuario', 'usuario2:ID,NombreUsuario'])
-                     ->get();
+        return Chat::with(['usuario1:ID,NombreUsuario,FotoPerfil', 'usuario2:ID,NombreUsuario,FotoPerfil', 'mensaje' => function ($query) {
+            $query->orderBy('Fecha', 'desc')->limit(1);
+        }])
+        ->where(function ($query) use ($id) {
+            $query->where('Usuario1_ID', $id)
+                  ->orWhere('Usuario2_ID', $id);
+        })
+        ->get();
     }
 }

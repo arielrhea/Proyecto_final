@@ -12,7 +12,10 @@ class ChatController extends Controller{
 
 
     public function consultaMisChats($id){
-        return Chat::consulta($id);
+
+        return Chat::consulta($id);   
+
+        
     }
     
     public function verificacionChat(Request $request){

@@ -21,6 +21,14 @@ class Mensaje extends Model
         return Mensaje::where('ChatID', $id)->get();
     }
 
+    public function chat(){
+        return $this->belongsTo(Chat::class, 'ChatID', 'ID');
+    }
+
+    public function usuario(){
+        return $this->belongsTo(Usuario::class, 'UsuarioID', 'ID');
+    }
+
     public static function crearMensaje($datos) {
         return Mensaje::create([
             'ChatID' => $datos['chat'],
