@@ -1,18 +1,49 @@
 import React from 'react';
 import ProductForm from '../components/ProductForm';
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext'; // Importa el contexto de autenticación
+import './ProductFormPage.css';
 
 const ProductFormPage = () => {
+    const { userId } = useAuth(); // Obtén el ID del usuario del contexto
+
     const handleFormSubmit = (form) => {
-        axios.post('/api/productos', form)
-            .then(response => console.log(response))
-            .catch(error => console.error(error));
+        if (!userId) {
+            console.error('User ID is not available');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('usuario', userId); // Asegúrate de pasar userId directamente
+        formData.append('categoria', form.CategoriaID);
+        formData.append('titulo', form.Titulo);
+        formData.append('estado', form.EstadoProducto);
+        formData.append('descripcion', form.Descripcion);
+
+        form.Imagenes.forEach((imagen, index) => {
+            if (imagen) {
+                formData.append(`imagenes[${index}]`, imagen);
+            }
+        });
+
+        axios.post('http://localhost:8000/api/producto', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+        .then(response => console.log(response))
+        .catch(error => {
+            console.error('Error al enviar el formulario:', error);
+            console.log('Error response data:', error.response?.data);
+        });
     };
 
     return (
-        <div>
-            <h1>Publicar un nuevo producto</h1>
-            <ProductForm onSubmit={handleFormSubmit} />
+        <div className="product-form-page">
+            <h1 className="product-form-page__title">Publicar un nuevo producto</h1>
+            <div className="product-form-page__container">
+                <ProductForm onSubmit={handleFormSubmit} userId={userId} />
+            </div>
         </div>
     );
 };

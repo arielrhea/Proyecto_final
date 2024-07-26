@@ -13,7 +13,8 @@ const UserProfilePage = () => {
     const [productos, setProductos] = useState([]); // Nuevo estado para los productos
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const { userId } = useAuth(); // Obtén el ID del usuario autenticado
+    const { userId, isAuthenticated } = useAuth();
+
 
     useEffect(() => {
         // Obtener datos del usuario y productos ofrecidos
@@ -22,12 +23,17 @@ const UserProfilePage = () => {
                 setUser(response.data.usuario);
                 setProductos(response.data.productos); // Asumiendo que la API retorna un objeto con 'usuario' y 'productos'
                 setLoading(false);
+               // console.log(`Autenticated ${isAuthenticated}, productos 0 ${productos[0]} userID ${userId} `)
             })
             .catch(error => {
                 setError(error);
                 setLoading(false);
             });
     }, [id]);
+
+    const isOwner = (producto) => {
+        return producto.UsuarioID == userId;
+    };
 
     return (
         <div className="user-profile-page">
@@ -43,7 +49,14 @@ const UserProfilePage = () => {
                                 <div className="product-card-container">
                                     {productos.length > 0 ? (
                                         productos.map(producto => (
-                                            <ProductCard key={producto.ID} product={producto} />
+                                            <div key={producto.ID}>
+
+                                                <ProductCard  product={producto} />
+                                                {isAuthenticated && isOwner(producto) && (
+                                                    <button className='buttonModificar'>Modificar producto</button>
+                                                )}
+
+                                            </div>
                                         ))
                                     ) : (
                                         <p className="no-products-message">Este usuario no ha ofrecido productos.</p>

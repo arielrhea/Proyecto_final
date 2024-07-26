@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 import './ProductDetail.css';
+import { useAuth } from '../context/AuthContext';
 
 const mockImages = [
     'https://upload.wikimedia.org/wikipedia/commons/b/b9/No_Cover.jpg?20090511140841',
@@ -17,6 +18,8 @@ const ProductDetail = ({ product }) => {
     const navigate = useNavigate(); // Usa useNavigate
 
     const isReserved = ProductoReservado === 1;
+
+    const { userId, isAuthenticated } = useAuth();
 
     useEffect(() => {
         const calculateTimeAgo = (dateString) => {
@@ -72,10 +75,18 @@ const ProductDetail = ({ product }) => {
     const handleReturn =()=>{
         navigate(-1);
     }
+    const isOwner = (producto) => {
+        return producto.UsuarioID == userId;
+    };
     return (
         <div className="product-detail-wrapper">
             {isReserved && <div className="reserved-tag">Reservado</div>}
+            <div className='buttonsFlex'>
             <button className='returnButton' onClick={handleReturn}>Volver atrás</button>
+            {isAuthenticated && isOwner(product)&&(
+            <button className='returnButton'>Modificar Producto</button>
+            )}
+            </div>
             <h1 className="product-detail-title">{product.Titulo}</h1>
 
             <div className="product-detail-images">
