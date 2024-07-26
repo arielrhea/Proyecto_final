@@ -63,7 +63,7 @@ const AccountSettingsPage = () => {
         // Enviar datos del formulario
         axios.post(`http://localhost:8000/api/usuario/${userId}`, formData, {
             headers: { 'Content-Type': 'application/json' },
-            params: { method: 'PUT' }
+            params: { _method: 'PUT' }
         })
             .then(response => {
                 alert('Datos actualizados con éxito.');

@@ -224,3 +224,12 @@
     color: #555;
     margin: 0;
 }
+
+.returnButton{
+    color: beige; /*Color letra del botón*/
+    background-color: #555; /*color del background boton*/
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+}

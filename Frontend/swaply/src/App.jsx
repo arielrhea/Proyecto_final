@@ -19,6 +19,7 @@ import { ContextoProvider } from './context/Context';
 import AccountSettingsPage from './pages/AccountSettingsPage';
 import LoginPage from './components/LoginForm';
 import PrivateRoute from './components/PrivateRoute';
+import RegisterForm from './components/RegisterForm';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
               <Route path='/new-product' element={<ProductFormPage />} />
               <Route path='/quienes-somos' element={<AboutUs />} />
               <Route path='/como-funciona' element={<HowItWorks />} />
+              <Route path='/register' element={<RegisterForm />} />
               <Route path='/faq' element={<FAQ />} />
               <Route path='/contacto' element={<Contact />} />
               <Route path='/terminos-condiciones' element={<TermsAndConditions />} />

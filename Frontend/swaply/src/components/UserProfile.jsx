@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './UserProfile.css';
 
-const UserProfile = ({ usuario }) => {
+const UserProfile = ({ usuario, authenticatedUserId }) => {
     const navigate = useNavigate();
     const profileImageURL = "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg";
 
@@ -21,13 +21,16 @@ const UserProfile = ({ usuario }) => {
                 <div className="user-profile-header-content">
                     <h1 className="user-profile-username">{usuario[0].NombreUsuario}</h1>
                     <p className="user-profile-city">{usuario[0].ubicacion.Nombre}</p>
-                    <button 
-                        className="settings-button" 
-                        onClick={handleSettingsClick}
-                        aria-label="Configuración"
-                    >
-                        ⚙️
-                    </button>
+                    {/* Mostrar el botón de configuración solo si el ID del usuario es el mismo que el del perfil */}
+                    {authenticatedUserId == usuario[0].ID && (
+                        <button 
+                            className="settings-button" 
+                            onClick={handleSettingsClick}
+                            aria-label="Configuración"
+                        >
+                            ⚙️
+                        </button>
+                    )}
                 </div>
             </div>
             <div className="user-profile-info">

@@ -4,42 +4,75 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #333 /*bacground del header*/;
+    background-color: #333; /* Background del header */
     color: white;
 }
 
 .swaply {
-    /* esto se va a sustituir por un icono de tipo texto+ un icono dibujado */
-
     color: red;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.logoLink{
+
+.logoLink {
     text-decoration: none;
 }
 
 .barra {
-
     flex: 1; /* Ocupa todo el espacio restante */
     margin: 0 20px; /* Añade un margen a la barra de búsqueda */
 }
 
 .buttonHeader {
-    color: beige; /*Color letra del botón*/
-    background-color: #555; /*color del background boton*/
+    color: beige; /* Color de letra del botón */
+    background-color: #555; /* Color del background botón */
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 25px; /* Ajustado a 25px */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    display: inline-block; /* Para que el padding y el tamaño funcionen */
+    margin-left: 10px; /* Separación entre botones */
+    text-align: center; /* Centra el texto dentro del enlace */
 }
-
-button:first-child {
-    margin-right: 10px; /* Añade margen a la derecha del primer botón */
+.buttonAltaProducto{
+    color: beige; /* Color de letra del botón */
+    background-color: #FF0000; /* Color del background botón */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px; /* Ajustado a 25px */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    display: inline-block; /* Para que el padding y el tamaño funcionen */
+    margin-left: 10px; /* Separación entre botones */
+    margin-right: 10px; /* Separación entre botones */
+    text-align: center; /* Centra el texto dentro del enlace */
 }
 
 .buttonHeader:hover {
     background-color: #777;
 }
-.botones{
+
+.botones {
     display: flex;
+    align-items: center;
+}
+
+.user-info-header {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.user-profile-image-header {
+    border-radius: 50%; /* Imagen circular */
+    width: 40px; /* Tamaño de la imagen */
+    height: 40px; /* Tamaño de la imagen */
+    margin-right: 10px; /* Separación entre imagen y nombre de usuario */
+}
+
+.username-header {
+    color: white;
+    margin: 0;
+    font-weight: bold;
 }

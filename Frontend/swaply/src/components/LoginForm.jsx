@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext'; // Importa el hook de autenticación
-import './LoginForm.css'; // Agrega estilos según sea necesario
 import { useNavigate } from 'react-router-dom';
+import './LoginForm.css'; // Agrega estilos según sea necesario
 
 const LoginPage = () => {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
@@ -18,15 +18,19 @@ const LoginPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         authenticateUser(credentials).then(() => {
-            navigate('/account-settings');
+            navigate('/');
         });
+    };
+
+    const handleRegister = () => {
+        navigate('/register'); // Asumiendo que tienes una ruta '/register' para el formulario de registro
     };
 
     return (
         <div className="login-page">
-            <h1>Iniciar sesión</h1>
             <form onSubmit={handleSubmit}>
                 <div>
+                    <h1 className='titulo-account'>Iniciar sesión</h1>
                     <label htmlFor="email">Correo Electrónico</label>
                     <input
                         type="email"
@@ -49,6 +53,7 @@ const LoginPage = () => {
                     />
                 </div>
                 <button type="submit">Iniciar sesión</button>
+                <button type="button" onClick={handleRegister}>Registrarme</button>
             </form>
         </div>
     );

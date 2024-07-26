@@ -1,0 +1,78 @@
+/* Contenedor principal para la página de registro */
+.register-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    background-color: #777777;
+    padding: 1rem;
+}
+
+/* Título de la página */
+.register-page h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: black;
+    text-align: center;
+}
+
+/* Estilo para el formulario */
+.register-page form {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Asegura que el padding no se sume al ancho total */
+}
+
+/* Estilo para cada campo del formulario */
+.register-page form input,
+.register-page form select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 1rem;
+    box-sizing: border-box; /* Asegura que el padding no se sume al ancho total */
+}
+
+/* Estilo para el campo de selección (select) */
+.register-page form select {
+    appearance: none; /* Elimina el estilo predeterminado del navegador */
+    background-color: #ffffff;
+    background-image: linear-gradient(45deg, transparent 50%, #ddd 50%), linear-gradient(135deg, #ddd 50%, transparent 50%);
+    background-repeat: no-repeat, no-repeat;
+    background-position: right 0.7rem center, right 0.7rem center;
+    background-size: 0.75rem auto, 0.75rem auto;
+    cursor: pointer;
+}
+
+/* Estilo para el botón de envío del formulario */
+.register-page form button {
+    width: 48%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: #555;
+    color: beige;
+    transition: background-color 0.3s ease;
+}
+
+/* Cambia el color de fondo del botón al pasar el ratón sobre él */
+.register-page form button:hover {
+    background-color: #777;
+}
+
+/* Mensajes de error (si los hay) */
+.error-message {
+    color: red;
+    margin-top: 1rem;
+}

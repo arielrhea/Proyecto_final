@@ -4,7 +4,8 @@ import UserProfile from '../components/UserProfile';
 import ProductCard from '../components/ProductCard'; // Usar ProductCard
 import './UserProfilePage.css';
 import LoadingScreen from '../components/LoadingScreen';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // Importa useAuth
 
 const UserProfilePage = () => {
     const { id } = useParams();
@@ -12,11 +13,7 @@ const UserProfilePage = () => {
     const [productos, setProductos] = useState([]); // Nuevo estado para los productos
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isOwnProfile, setIsOwnProfile] = useState(false); // Estado para verificar si es el perfil propio
-    const navigate = useNavigate();
-
-    // Obtener el ID del usuario autenticado
-    const authenticatedUserId = 1; // Aquí deberías obtener el ID del usuario autenticado de tu contexto o estado global
+    const { userId } = useAuth(); // Obtén el ID del usuario autenticado
 
     useEffect(() => {
         // Obtener datos del usuario y productos ofrecidos
@@ -25,17 +22,12 @@ const UserProfilePage = () => {
                 setUser(response.data.usuario);
                 setProductos(response.data.productos); // Asumiendo que la API retorna un objeto con 'usuario' y 'productos'
                 setLoading(false);
-
-                // Verificar si el perfil es el del usuario autenticado
-                if (authenticatedUserId === parseInt(id)) {
-                    setIsOwnProfile(true);
-                }
             })
             .catch(error => {
                 setError(error);
                 setLoading(false);
             });
-    }, [id, authenticatedUserId]);
+    }, [id]);
 
     return (
         <div className="user-profile-page">
@@ -45,7 +37,7 @@ const UserProfilePage = () => {
                     {error && <div className="error-message">Error al cargar el perfil del usuario.</div>}
                     {usuario ? (
                         <>
-                            <UserProfile usuario={usuario} />
+                            <UserProfile usuario={usuario} authenticatedUserId={userId} />
                             <div className="user-products-section">
                                 <h2 className='tituloproductos'>Productos Ofrecidos</h2>
                                 <div className="product-card-container">
@@ -54,7 +46,7 @@ const UserProfilePage = () => {
                                             <ProductCard key={producto.ID} product={producto} />
                                         ))
                                     ) : (
-                                        <p>Este usuario no ha ofrecido productos.</p>
+                                        <p className="no-products-message">Este usuario no ha ofrecido productos.</p>
                                     )}
                                 </div>
                             </div>

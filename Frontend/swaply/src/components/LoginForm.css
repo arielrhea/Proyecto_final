@@ -1,0 +1,82 @@
+/* Contenedor principal para la página de inicio de sesión */
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    background-color: #777777;
+    padding: 1rem;
+}
+
+/* Título de la página */
+.login-page h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: black;
+    text-align: center;
+}
+
+/* Estilo para el formulario */
+.login-page form {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para cada campo del formulario */
+.login-page form div {
+    margin-bottom: 1rem;
+}
+
+/* Etiquetas de los campos */
+.login-page form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Campos de entrada */
+.login-page form input {
+    width: 93%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Contenedor para los botones */
+.login-page form .button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Botón de envío del formulario */
+.login-page form button {
+    width: 48%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: #555;
+    color: beige;
+    transition: background-color 0.3s ease;
+}
+
+/* Cambia el color de fondo del botón al pasar el ratón sobre él */
+.login-page form button:hover {
+    background-color: #777;
+}
+
+/* Mensajes de error (si los hay) */
+.error-message {
+    color: red;
+    margin-top: 1rem;
+}
