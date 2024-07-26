@@ -56,12 +56,15 @@ const Header = () => {
             <div className='botones'>
                 {isAuthenticated ? (
                     <>
+                      <button className='buttonAltaProducto' onClick={()=>navigate('/new-product')}>Haz un regalo</button>
                         {!loading && (
+                            
                             <div className='user-info-header' onClick={handleProfileClick}>
                                 <img src={userData.img} alt={userData.username} className='user-profile-image-header' />
                                 {userData.username && <p className='username-header'>{userData.username}</p>}
                             </div>
                         )}
+                      
                         <button className='buttonHeader' onClick={handleLogout}>
                             Logout
                         </button>

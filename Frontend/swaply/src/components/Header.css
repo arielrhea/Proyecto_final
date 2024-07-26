@@ -34,6 +34,19 @@ header {
     margin-left: 10px; /* Separación entre botones */
     text-align: center; /* Centra el texto dentro del enlace */
 }
+.buttonAltaProducto{
+    color: beige; /* Color de letra del botón */
+    background-color: #FF0000; /* Color del background botón */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px; /* Ajustado a 25px */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    display: inline-block; /* Para que el padding y el tamaño funcionen */
+    margin-left: 10px; /* Separación entre botones */
+    margin-right: 10px; /* Separación entre botones */
+    text-align: center; /* Centra el texto dentro del enlace */
+}
 
 .buttonHeader:hover {
     background-color: #777;
