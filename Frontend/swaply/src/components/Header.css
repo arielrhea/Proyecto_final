@@ -48,6 +48,7 @@ header {
     display: flex;
     align-items: center;
     margin-right: 20px;
+    cursor: pointer;
 }
 
 .user-profile-image-header {
