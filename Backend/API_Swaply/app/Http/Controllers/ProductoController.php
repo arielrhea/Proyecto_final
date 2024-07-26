@@ -23,6 +23,7 @@ class ProductoController extends Controller
 
     public function altaProducto(Request $request){
 
+
         $reglasValidacion = [
             'usuario'       => 'required|numeric',
             'categoria'     => 'required|numeric',

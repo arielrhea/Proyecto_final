@@ -15,6 +15,7 @@ class Producto extends Model{
     public $timestamps = false;
 
     protected $fillable = [
+        'UsuarioID',
         'CategoriaID',
         'Titulo',
         'EstadoProducto',
