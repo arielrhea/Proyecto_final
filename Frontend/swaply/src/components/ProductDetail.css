@@ -158,7 +158,10 @@
     gap: 15px;
     transition: background 0.3s ease;
 }
-
+.buttonsFlex{
+    display: flex;
+    justify-content: space-between;
+}
 .product-detail-info:hover {
     background: #f9f9f9;
 }
