@@ -24,6 +24,7 @@ class ProductoController extends Controller
     public function altaProducto(Request $request){
 
         $reglasValidacion = [
+            'usuario'       => 'min:1',
             'categoria'     => 'required|numeric',
             'titulo'        => 'required|max:100',
             'estado'        => 'required',
@@ -32,6 +33,7 @@ class ProductoController extends Controller
         ];
 
         $mensajes = [
+            'usuario.min'          => 'Usuario requiere minimo 1 caracter',
             'categoria.required'    => 'Categoria es obligatoria',
             'categoria.numeric'     => 'Categoria debe ser numerico',
             'titulo.required'       => 'Titulo es obligatorio',
