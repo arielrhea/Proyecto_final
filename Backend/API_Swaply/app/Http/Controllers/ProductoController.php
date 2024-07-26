@@ -77,7 +77,7 @@ class ProductoController extends Controller
             'titulo'      => 'required',
             'descripcion' => 'required|max:500',
             'estado' => 'required',
-            'imagenes' => 'array|max:6'
+            'imagenes' => 'required|array|max:6'
         ];
 
         $mensajes = [
@@ -87,16 +87,37 @@ class ProductoController extends Controller
             'descripcion.required' => 'La descripcion es obligatoria',
             'descripcion.max'      => 'La descripcion no puede exceder los 500 caracteres',
             'estado.required'      => 'El estado del producto es obligatorio',
+            'imagenes.required'    => 'La imagen es obligatoria',
             'imagenes.max'         => 'Maximo es posible 6 imagenes'
         ];
 
         $validator = Validator::make($request->all(), $reglas, $mensajes);
 
+        $imagenesActuales = json_decode($producto->Imagenes) ?? [];
+        $imagenesNuevas = $request->imagenes;
+
+        foreach ($imagenesActuales as $imagen) {
+            $path = 'productos/' . $imagen;
+            if (Storage::disk('local')->exists($path)) {
+                Storage::disk('local')->delete($path);       
+            }
+        }
+
+        $imagenes = [];
+        if($imagenesNuevas){
+                foreach($imagenesNuevas as $imagen) {
+                    $nombreImagen = time().'-'.$imagen->getClientOriginalName();
+                    $imagen->move(public_path('assets/img/productos'), $nombreImagen);
+                    $imagenes[] = $nombreImagen;
+                }
+        }
+
         $producto->update([
             'CategoriaID' => $request->categoria,
             'Titulo' => $request->titulo,
             'Descripcion' => $request->descripcion,
-            'EstadoProducto' => $request->estado
+            'EstadoProducto' => $request->estado,
+            'Imagenes' => json_encode($imagenes)
         ]);
 
         $producto->save();
