@@ -4,8 +4,10 @@ import UserProfile from '../components/UserProfile';
 import ProductCard from '../components/ProductCard'; // Usar ProductCard
 import './UserProfilePage.css';
 import LoadingScreen from '../components/LoadingScreen';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'; // Importa useAuth
+import { Context, useContexto } from '../context/Context';
+
 
 const UserProfilePage = () => {
     const { id } = useParams();
@@ -14,6 +16,9 @@ const UserProfilePage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { userId, isAuthenticated } = useAuth();
+    const navigate = useNavigate();
+    const { handleProductoChange}=useContexto();
+
 
 
     useEffect(() => {
@@ -53,7 +58,10 @@ const UserProfilePage = () => {
 
                                                 <ProductCard  product={producto} />
                                                 {isAuthenticated && isOwner(producto) && (
-                                                    <button className='buttonModificar'>Modificar producto</button>
+                                                    <button className='buttonModificar'   onClick={() => {
+                                                       
+                                                        navigate(`/mto/${producto.ID}`);
+                                                    }}>Modificar producto</button>
                                                 )}
 
                                             </div>
