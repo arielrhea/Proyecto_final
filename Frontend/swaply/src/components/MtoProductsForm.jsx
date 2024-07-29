@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext'; 
 import './MtoProductsForm.css';
@@ -12,6 +12,7 @@ const MtoProductsForm = () => {
     const [error, setError] = useState(null);
     const [imagePreviews, setImagePreviews] = useState([]);
     const [images, setImages] = useState([]);
+    const [imagesToRemove, setImagesToRemove] = useState([]);
     const { userId } = useAuth();
 
     const [form, setForm] = useState({
@@ -24,7 +25,6 @@ const MtoProductsForm = () => {
     });
 
     useEffect(() => {
-        // Solicitar el producto a la API usando la ID
         axios.get(`http://localhost:8000/api/producto/${id}`)
             .then((response) => {
                 const productoData = response.data[0];
@@ -57,13 +57,20 @@ const MtoProductsForm = () => {
     }, [id]);
 
     useEffect(() => {
-        // Solicitar las categorías a la API
         axios.get('http://localhost:8000/api/categorias')
             .then(response => setCategorias(response.data))
             .catch(error => console.error('Error al cargar las categorías:', error));
     }, []);
 
     const handleImageRemove = (index) => {
+        const imageToRemove = form.Imagenes[index];
+        
+        // Añadir la imagen al estado de imágenes a eliminar
+        if (typeof imageToRemove === 'string') {
+            setImagesToRemove([...imagesToRemove, imageToRemove]);
+        }
+
+        // Actualizar el estado del formulario y la previsualización
         const newImages = form.Imagenes.filter((_, i) => i !== index);
         setForm({ ...form, Imagenes: newImages });
 
@@ -99,15 +106,21 @@ const MtoProductsForm = () => {
         formData.append('estado', form.EstadoProducto);
         formData.append('usuario', form.UsuarioID);
 
+        // Agregar las imágenes nuevas
         form.Imagenes.forEach((image, index) => {
             if (typeof image === 'string') {
-                // Si la imagen es una ruta, solo enviar el nombre del archivo
+                // Si la imagen es una URL, solo enviar el nombre del archivo
                 const imageName = image.split('/').pop();
-                formData.append(`imagenesExistentes[]`, imageName);
+                formData.append('imagenesExistentes[]', imageName);
             } else {
                 // Si la imagen es un Blob (archivo seleccionado), enviar el archivo
-                formData.append(`imagenes[]`, image);
+                formData.append('imagenes[]', image);
             }
+        });
+
+        // Agregar las imágenes a eliminar
+        imagesToRemove.forEach(image => {
+            formData.append('imagenesAEliminar[]', image);
         });
 
         axios.post(`http://localhost:8000/api/producto/${producto.ID}`, formData, {
@@ -119,7 +132,7 @@ const MtoProductsForm = () => {
         })
         .then(response => {
             console.log('Producto actualizado:', response.data);
-            // Navigate(`/profile/${producto.UsuarioID}`)
+            // Navegar a otra página o mostrar un mensaje de éxito
         })
         .catch(error => {
             console.error('Error al actualizar el producto:', error);
@@ -155,7 +168,7 @@ const MtoProductsForm = () => {
                     required
                     onChange={handleInputChange}
                 />
-                <label htmlFor="">Categoria</label>
+                <label htmlFor="">Categoría</label>
                 <select
                     name="CategoriaID"
                     value={form.CategoriaID}
