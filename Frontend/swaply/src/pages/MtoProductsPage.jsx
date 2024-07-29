@@ -6,8 +6,9 @@ const MtoProductsPage = () => {
     return (
         <div className="mto-products-page">
               
-            <h1 className="product-form-page__title">Mantenimiento del producto</h1>
+            
             <div className="product-form-page__container">
+            <h1 className="mto-product-form-page__title">Mantenimiento del producto</h1>
                 <MtoProductsForm />
             </div>
         </div>
