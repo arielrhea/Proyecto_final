@@ -46,7 +46,7 @@ const ProductFormPage = () => {
         })
         .catch(error => {
             console.error('Error al enviar el formulario:', error);
-            setNotification('Error al enviar el formulario. Inténtalo de nuevo.');
+            setNotification('Error al enviar el formulario. Rellene todos los campos.');
             console.log('Error response data:', error.response?.data);
             setTimeout(() => setNotification(''), 3000); // Oculta la notificación después de 3 segundos
         });

@@ -241,7 +241,7 @@ const MtoProductsForm = () => {
           ))}
         </div>
 
-        <button type="submit" className="product-form__button">Publicar</button>
+        <button type="submit" className="product-form__button">Modificar el producto</button>
       </form>
     </div>
   );
