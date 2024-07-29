@@ -20,7 +20,7 @@ const MtoProductsForm = () => {
         EstadoProducto: '',
         Imagenes: [],
     });
-
+  
     useEffect(() => {
         // Solicitar el producto a la API usando la ID
         axios.get(`http://localhost:8000/api/producto/${id}`)
@@ -49,7 +49,9 @@ const MtoProductsForm = () => {
             .then(response => setCategorias(response.data))
             .catch(error => console.error('Error al cargar las categorías:', error));
     }, []);
-
+    if(!producto){
+        return <p>No existe este producto</p>
+    }
     const handleImageRemove = (index) => {
         const newImages = form.Imagenes.filter((_, i) => i !== index);
         setForm({ ...form, Imagenes: newImages });
@@ -86,6 +88,8 @@ const MtoProductsForm = () => {
         formData.append('EstadoProducto', form.EstadoProducto);
         formData.append('UsuarioID', userId);
 
+
+        
         form.Imagenes.forEach((image, index) => {
             formData.append(`Imagenes[${index}]`, image);
         });
@@ -110,6 +114,7 @@ const MtoProductsForm = () => {
     if (producto && userId != producto.UsuarioID) {
         return <p>No tienes permiso para modificar este producto.</p>;
     }
+   
 
     return (
         <div className="mto-products-form">

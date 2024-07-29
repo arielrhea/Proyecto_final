@@ -123,7 +123,10 @@ const ProductDetail = ({ product }) => {
             <div className='buttonsFlex'>
                 <button className='returnButton' onClick={handleReturn}>Volver atrás</button>
                 {isAuthenticated && isOwner(product) && (
-                    <button className='returnButton'>Modificar Producto</button>
+                    <button className='returnButton'  onClick={() => {
+                                                       
+                        navigate(`/mto/${product.ID}`);
+                    }}>Modificar Producto</button>
                 )}
             </div>
             <h1 className="product-detail-title">{product?.Titulo}</h1>
