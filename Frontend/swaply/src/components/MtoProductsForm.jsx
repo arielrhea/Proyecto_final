@@ -45,7 +45,7 @@ const MtoProductsForm = () => {
                     const previews = parsedImages.map((image) => {
                         if (typeof image === 'string') {
                             // Si `image` es una URL, usarlo directamente
-                            return image;
+                            return `http://localhost:8000/assets/img/productos/${image}`;
                         } else if (image instanceof Blob) {
                             // Si `image` es un Blob, crear una URL para ello
                             return URL.createObjectURL(image);
@@ -191,7 +191,7 @@ console.log(producto)
                         <div key={index} className="product-form__image-container">
                             {imagePreviews[index] ? (
                                 <div className="product-form__image-preview">
-                                    <img src={`http://localhost:8000/assets/img/productos/${imagePreviews[index]}`} alt={`Imagen ${index + 1}`} />
+                                    <img src={imagePreviews[index]} alt={`Imagen ${index + 1}`} />
                                     <button type="button" onClick={() => handleImageRemove(index)} className="product-form__remove-button">
                                         &times;
                                     </button>
