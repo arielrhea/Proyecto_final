@@ -12,7 +12,7 @@
     background-color: #333333; /* Fondo semitransparente para mayor contraste */
     backdrop-filter: blur(8px); /* Desenfoque del fondo */
     z-index: 1000; /* Asegúrate de que esté sobre otros elementos */
-    border-radius: 12px; /* Opcional: borde redondeado para un acabado más suave */
+   
 }
 
 .loading-screen {

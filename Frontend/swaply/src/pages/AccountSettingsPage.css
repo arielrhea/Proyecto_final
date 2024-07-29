@@ -5,9 +5,11 @@
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
+    position: relative;
 }
 
 .account-settings-page {
+    
     padding: 20px;
     background-color: #ffffff;
     border-radius: 12px;
@@ -15,7 +17,7 @@
     max-width: 600px;
     width: 100%; /* Asegura que el contenedor use todo el ancho disponible */
     margin: 0 auto;
-    /* Aquí no es necesario usar align-items porque el contenedor ya está centrado */
+   height: 60vh;
 }
 
 .account-settings-page h1 {
@@ -62,4 +64,13 @@
 
 .submit-button:hover {
     background-color: #777;
+}
+
+
+
+.error-message {
+    color: red;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
 }

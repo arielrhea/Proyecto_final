@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext'; // Importa el hook de autenticación
 import './AccountSettingsPage.css';
+import { useNavigate } from 'react-router-dom';
+import LoadingScreen from '../components/LoadingScreen'; // Asegúrate de tener el componente LoadingScreen
 
 const AccountSettingsPage = () => {
     const { userId, token } = useAuth(); // Obtén el ID del contexto
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         NombreUsuario: '',
         correoelectronico: '',
@@ -66,6 +69,7 @@ const AccountSettingsPage = () => {
             params: { _method: 'PUT' }
         })
             .then(response => {
+                navigate('/');
                 alert('Datos actualizados con éxito.');
             })
             .catch(error => {
@@ -74,65 +78,68 @@ const AccountSettingsPage = () => {
             });
     };
 
-    if (loading) return <div>Cargando...</div>;
-    if (error) return <div>Error al cargar los datos.</div>;
-
     return (
         <div className='account'>
             <div className="account-settings-page">
-                <h1>Configuración de Cuenta</h1>
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="correoelectronico">Correo Electrónico</label>
-                        <input
-                            type="email"
-                            id="correoelectronico"
-                            name="correoelectronico"
-                            value={formData.correoelectronico}
-                            readOnly
-                            className="readonly-input" // Agregado para el estilo especial
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="NombreUsuario">Nombre de Usuario</label>
-                        <input
-                            type="text"
-                            id="NombreUsuario"
-                            name="NombreUsuario"
-                            value={formData.NombreUsuario}
-                            onChange={handleInputChange}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Contraseña</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="ubicacion">Ubicación</label>
-                        <select
-                            id="ubicacion"
-                            name="ubicacionID"
-                            value={formData.ubicacionID}
-                            onChange={handleInputChange}
-                            required
-                        >
-                            <option value="">Seleccione una ubicación</option>
-                            {ubicaciones.map(ubicacion => (
-                                <option key={ubicacion.ID} value={ubicacion.ID}>
-                                    {ubicacion.Nombre}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <button type="submit" className="submit-button">Guardar Cambios</button>
-                </form>
+                {loading && <LoadingScreen />}
+                {error && <div className="error-message">Error al cargar los datos.</div>}
+                {!loading && !error && (
+                    <>
+                        <h1>Configuración de Cuenta</h1>
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="correoelectronico">Correo Electrónico</label>
+                                <input
+                                    type="email"
+                                    id="correoelectronico"
+                                    name="correoelectronico"
+                                    value={formData.correoelectronico}
+                                    readOnly
+                                    className="readonly-input" // Agregado para el estilo especial
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="NombreUsuario">Nombre de Usuario</label>
+                                <input
+                                    type="text"
+                                    id="NombreUsuario"
+                                    name="NombreUsuario"
+                                    value={formData.NombreUsuario}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="password">Contraseña</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="ubicacion">Ubicación</label>
+                                <select
+                                    id="ubicacion"
+                                    name="ubicacionID"
+                                    value={formData.ubicacionID}
+                                    onChange={handleInputChange}
+                                    required
+                                >
+                                    <option value="">Seleccione una ubicación</option>
+                                    {ubicaciones.map(ubicacion => (
+                                        <option key={ubicacion.ID} value={ubicacion.ID}>
+                                            {ubicacion.Nombre}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <button type="submit" className="submit-button">Guardar Cambios</button>
+                        </form>
+                    </>
+                )}
             </div>
         </div>
     );
