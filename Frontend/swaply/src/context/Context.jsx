@@ -11,7 +11,7 @@ export const ContextoProvider = ({ children }) => {
     const [nombreEstado , setNombreEstado]= useState('');
     const [recientes, setRecientes]=useState(0);
     const [ubicacion, setUbicacion]=useState(0);
-
+    
     const handleBusquedaChange = (event) => {
         setBusqueda(event.target.value);
         
@@ -41,7 +41,7 @@ export const ContextoProvider = ({ children }) => {
     }
 
     return (
-        <Context.Provider value={{ busqueda, handleBusquedaChange, idCategoria, nombreCategoria, handleIdCategoriaChange, nombreEstado, handleNombreEstado, handleReciente, recientes, handleNombreUbicacion,ubicacion }}>
+        <Context.Provider value={{ busqueda, handleBusquedaChange, idCategoria, nombreCategoria, handleIdCategoriaChange, nombreEstado, handleNombreEstado, handleReciente, recientes, handleNombreUbicacion,ubicacion}}>
             {children}
         </Context.Provider>
     );

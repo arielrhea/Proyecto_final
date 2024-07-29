@@ -20,6 +20,7 @@ import AccountSettingsPage from './pages/AccountSettingsPage';
 import LoginPage from './components/LoginForm';
 import PrivateRoute from './components/PrivateRoute';
 import RegisterForm from './components/RegisterForm';
+import MtoProductsPage from './pages/MtoProductsPage';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
               <Route path='/politica-privacidad' element={<PrivacyPolicy />} />
               <Route path='/account-settings' element={<PrivateRoute component={AccountSettingsPage} />} />
               <Route path='/login' element={<LoginPage />} />
+              <Route path='/mto/:id' element={<MtoProductsPage/>}/>
               <Route path='*' element={<ErrorMessage message='404: Página no encontrada' />} />
             </Routes>
 
