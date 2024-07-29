@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext'; 
+import './MtoProductsForm.css';
+
 
 const MtoProductsForm = () => {
     const { id } = useParams(); // Obtener la ID de la URL
@@ -11,7 +13,7 @@ const MtoProductsForm = () => {
     const [error, setError] = useState(null);
     const [imagePreviews, setImagePreviews] = useState([]);
     const [images, setImages] = useState([]);
-    const { userId, isAuthenticated } = useAuth();
+    const { userId} = useAuth();
 
     const [form, setForm] = useState({
         Titulo: '',

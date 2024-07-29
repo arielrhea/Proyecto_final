@@ -1,5 +1,6 @@
 import React from 'react';
 import MtoProductsForm from '../components/MtoProductsForm';
+import './MtoProductPage.css';
 
 const MtoProductsPage = () => {
     return (
@@ -7,7 +8,7 @@ const MtoProductsPage = () => {
               
             <h1 className="product-form-page__title">Mantenimiento del producto</h1>
             <div className="product-form-page__container">
-                <MtoProductsForm/>
+                <MtoProductsForm />
             </div>
         </div>
       
