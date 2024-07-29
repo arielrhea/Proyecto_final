@@ -80,6 +80,7 @@ body {
 
 .button-active {
     background-color: #dcdcdc;
+    color: #555;
 }
 
 /* Hover común para ambos botones */
