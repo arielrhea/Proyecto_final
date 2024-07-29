@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Importar axios
 import './ProductDetail.css';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext'; // Importar useAuth
 
 const BASE_PRODUCT_IMAGE_URL = 'http://localhost:8000/assets/img/productos/';
 const BASE_USER_IMAGE_URL = 'http://localhost:8000/assets/img/usuarios/';
@@ -13,9 +14,10 @@ const ProductDetail = ({ product }) => {
     const [formattedDate, setFormattedDate] = useState('');
     const [images, setImages] = useState([]);
     const navigate = useNavigate();
-    const { userId, isAuthenticated } = useAuth();
+    const { userId, isAuthenticated, token } = useAuth(); // Obtener token de autenticación
 
     const isReserved = product?.ProductoReservado === 1;
+    const hasMultipleImages = images.length > 1;
 
     useEffect(() => {
         if (product?.Imagenes) {
@@ -117,36 +119,54 @@ const ProductDetail = ({ product }) => {
         return producto?.UsuarioID == userId;
     };
 
+    // Función para eliminar un producto
+    const handleDeleteProduct = async () => {
+        try {
+            await axios.delete(`http://localhost:8000/api/producto/${product.ID}`, {
+                headers: { token } // Incluye el token en el encabezado
+            });
+            alert('Producto eliminado con éxito.');
+            navigate(-1); // Volver a la página anterior después de eliminar el producto
+        } catch (error) {
+            console.error('Error al eliminar el producto:', error);
+            alert('Error al eliminar el producto.');
+        }
+    };
+
     return (
         <div className="product-detail-wrapper">
             {isReserved && <div className="reserved-tag">Reservado</div>}
             <div className='buttonsFlex'>
                 <button className='returnButton' onClick={handleReturn}>Volver atrás</button>
                 {isAuthenticated && isOwner(product) && (
-                    <button className='returnButton'  onClick={() => {
-                                                       
-                        navigate(`/mto/${product.ID}`);
-                    }}>Modificar Producto</button>
+                    <div>
+                        <button className='returnButton' onClick={() => navigate(`/mto/${product.ID}`)}>Modificar Producto</button>
+                        <button className='deleteButton' onClick={handleDeleteProduct}>Eliminar Producto</button>
+                    </div>
                 )}
             </div>
             <h1 className="product-detail-title">{product?.Titulo}</h1>
 
-            <div className="product-detail-images">
+            <div className={`product-detail-images ${hasMultipleImages ? 'more-than-one-image' : ''}`}>
                 {images.length > 0 && (
                     <div
-                        className="product-detail-image-container"
+                        className={`product-detail-image-container ${hasMultipleImages ? 'more-than-one-image' : ''}`}
                         onClick={() => handleImageClick(0)}
                         onMouseEnter={() => setIsHoveringImage(true)}
                         onMouseLeave={() => setIsHoveringImage(false)}
                     >
-                        <button className="main-image-prev-button" onClick={handlePreviousMainImage}>‹</button>
+                        {hasMultipleImages && (
+                            <>
+                                <button className="main-image-prev-button" onClick={handlePreviousMainImage}>‹</button>
+                                <button className="main-image-next-button" onClick={handleNextMainImage}>›</button>
+                            </>
+                        )}
                         <img
                             src={images[expandedImageIndex] || images[0]}
                             alt="Imagen principal"
                             className="product-detail-image"
                         />
-                        <button className="main-image-next-button" onClick={handleNextMainImage}>›</button>
-                        {isHoveringImage && images.length > 1 && (
+                        {isHoveringImage && hasMultipleImages && (
                             <div className="image-indicators">
                                 {images.map((_, index) => (
                                     <span
@@ -161,17 +181,21 @@ const ProductDetail = ({ product }) => {
             </div>
 
             {isImageExpanded && (
-                <div className="product-detail-expanded-overlay" onClick={closeExpandedImage}>
+                <div className={`product-detail-expanded-overlay ${hasMultipleImages ? 'more-than-one-image' : ''}`} onClick={closeExpandedImage}>
                     <button className="expanded-close-button" onClick={closeExpandedImage}>✕</button>
-                    <button className="expanded-prev-button" onClick={(e) => { e.stopPropagation(); handlePreviousImageInExpandedView(); }}>‹</button>
+                    {hasMultipleImages && (
+                        <>
+                            <button className="expanded-prev-button" onClick={(e) => { e.stopPropagation(); handlePreviousImageInExpandedView(); }}>‹</button>
+                            <button className="expanded-next-button" onClick={(e) => { e.stopPropagation(); handleNextImageInExpandedView(); }}>›</button>
+                        </>
+                    )}
                     <img
                         src={images[expandedImageIndex] || ''}
                         alt={`Imagen expandida ${expandedImageIndex + 1}`}
                         className="product-detail-expanded-image"
                     />
-                    <button className="expanded-next-button" onClick={(e) => { e.stopPropagation(); handleNextImageInExpandedView(); }}>›</button>
-                    <div className="expanded-carousel">
-                        {images.length > 1 && (
+                    {hasMultipleImages && (
+                        <div className="expanded-carousel">
                             <div className="expanded-carousel-images">
                                 {images.map((img, index) => (
                                     <div
@@ -187,8 +211,8 @@ const ProductDetail = ({ product }) => {
                                     </div>
                                 ))}
                             </div>
-                        )}
-                    </div>
+                        </div>
+                    )}
                 </div>
             )}
 

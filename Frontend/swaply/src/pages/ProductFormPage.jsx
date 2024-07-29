@@ -3,9 +3,11 @@ import ProductForm from '../components/ProductForm';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext'; // Importa el contexto de autenticación
 import './ProductFormPage.css';
+import { useNavigate } from 'react-router-dom';
 
 const ProductFormPage = () => {
-    const { userId } = useAuth(); // Obtén el ID del usuario del contexto
+    const { userId, token } = useAuth(); // Obtén el ID del usuario del contexto
+    const navigate = useNavigate();
 
     const handleFormSubmit = (form) => {
         if (!userId) {
@@ -28,10 +30,14 @@ const ProductFormPage = () => {
 
         axios.post('http://localhost:8000/api/producto', formData, {
             headers: {
-                'Content-Type': 'multipart/form-data',
+                'Content-Type': 'multipart/form-data', token 
             },
         })
-        .then(response => console.log(response))
+        .then(response => {
+            console.log(response);
+            window.alert('alta de producto exitosa');
+            navigate(`/profile/${userId}`);
+        } )
         .catch(error => {
             console.error('Error al enviar el formulario:', error);
             console.log('Error response data:', error.response?.data);

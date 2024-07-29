@@ -6,8 +6,6 @@ import './UserProfilePage.css';
 import LoadingScreen from '../components/LoadingScreen';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'; // Importa useAuth
-import { Context, useContexto } from '../context/Context';
-
 
 const UserProfilePage = () => {
     const { id } = useParams();
@@ -15,11 +13,8 @@ const UserProfilePage = () => {
     const [productos, setProductos] = useState([]); // Nuevo estado para los productos
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const { userId, isAuthenticated } = useAuth();
+    const { userId, isAuthenticated, token } = useAuth(); // Obtener token de autenticación
     const navigate = useNavigate();
-    const { handleProductoChange}=useContexto();
-
-
 
     useEffect(() => {
         // Obtener datos del usuario y productos ofrecidos
@@ -28,7 +23,6 @@ const UserProfilePage = () => {
                 setUser(response.data.usuario);
                 setProductos(response.data.productos); // Asumiendo que la API retorna un objeto con 'usuario' y 'productos'
                 setLoading(false);
-               // console.log(`Autenticated ${isAuthenticated}, productos 0 ${productos[0]} userID ${userId} `)
             })
             .catch(error => {
                 setError(error);
@@ -38,6 +32,21 @@ const UserProfilePage = () => {
 
     const isOwner = (producto) => {
         return producto.UsuarioID == userId;
+    };
+
+    // Función para eliminar un producto
+    const handleDeleteProduct = async (productId) => {
+        try {
+            await axios.delete(`http://localhost:8000/api/producto/${productId}`, {
+                headers: { token } // Incluye el token en el encabezado
+            });
+            // Filtrar el producto eliminado del estado
+            setProductos(productos.filter(producto => producto.ID !== productId));
+            alert('Producto eliminado con éxito.');
+        } catch (error) {
+            console.error('Error al eliminar el producto:', error);
+            alert('Error al eliminar el producto.');
+        }
     };
 
     return (
@@ -55,15 +64,15 @@ const UserProfilePage = () => {
                                     {productos.length > 0 ? (
                                         productos.map(producto => (
                                             <div key={producto.ID}>
-
-                                                <ProductCard  product={producto} />
+                                                <ProductCard product={producto} />
                                                 {isAuthenticated && isOwner(producto) && (
-                                                    <button className='buttonModificar'   onClick={() => {
-                                                       
-                                                        navigate(`/mto/${producto.ID}`);
-                                                    }}>Modificar producto</button>
+                                                    <>
+                                                        <button className='buttonModificar' onClick={() => {
+                                                            navigate(`/mto/${producto.ID}`);
+                                                        }}>Modificar producto</button>
+                                                        <button className='buttonEliminar' onClick={() => handleDeleteProduct(producto.ID)}>Eliminar</button>
+                                                    </>
                                                 )}
-
                                             </div>
                                         ))
                                     ) : (
@@ -82,3 +91,4 @@ const UserProfilePage = () => {
 };
 
 export default UserProfilePage;
+

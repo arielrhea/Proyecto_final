@@ -194,8 +194,13 @@
 }
 
 .buttonsFlex {
+    position: absolute;
+    top: 20px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .product-detail-info:hover {
@@ -275,10 +280,21 @@
     border-radius: 25px;
 }
 
+.deleteButton {
+    color: beige;
+    background-color: red;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 .reserved-tag {
     position: absolute;
     top: 15px;
-    left: 1050px;
+    left: 15px;
     background-color: #f44336; /* Rojo para reservado */
     color: #fff;
     padding: 10px 15px;
