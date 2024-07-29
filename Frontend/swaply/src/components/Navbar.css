@@ -75,10 +75,12 @@ body {
 /* Color de fondo específico para nav-button y button-active */
 .nav-button {
     background-color: #555;
+    color: beige;
 }
 
 .button-active {
     background-color: #dcdcdc;
+    color: #555;
 }
 
 /* Hover común para ambos botones */
@@ -122,7 +124,7 @@ body {
     visibility: hidden;
     transform: translateY(-20px); /* Mejor efecto de deslizamiento */
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-    z-index: 1000;
+    z-index: 9999;
     overflow: hidden; /* Asegura que no haya bordes visibles fuera del área */
 }
 
