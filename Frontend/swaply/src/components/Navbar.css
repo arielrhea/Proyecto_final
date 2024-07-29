@@ -75,6 +75,7 @@ body {
 /* Color de fondo específico para nav-button y button-active */
 .nav-button {
     background-color: #555;
+    color: beige;
 }
 
 .button-active {
