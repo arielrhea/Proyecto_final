@@ -95,13 +95,6 @@ class ProductoController extends Controller
         $imagenesActuales = json_decode($producto->Imagenes) ?? [];
         $imagenesNuevas = $request->imagenes;
 
-        foreach ($imagenesActuales as $imagen) {
-            $path = 'productos/' . $imagen;
-            if (Storage::disk('local')->exists($path)) {
-                Storage::disk('local')->delete($path);       
-            }
-        }
-
         $imagenes = [];
         if($imagenesNuevas){
                 foreach($imagenesNuevas as $imagen) {
