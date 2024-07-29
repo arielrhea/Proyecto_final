@@ -77,7 +77,7 @@ class ProductoController extends Controller
             'titulo'      => 'required',
             'descripcion' => 'required|max:500',
             'estado' => 'required',
-            'imagenes' => 'nullable||array|max:6'
+            'imagenes' => 'nullable|array|max:6'
         ];
 
         $mensajes = [
