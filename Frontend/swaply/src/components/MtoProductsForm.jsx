@@ -11,7 +11,7 @@ const MtoProductsForm = () => {
     const [error, setError] = useState(null);
     const [imagePreviews, setImagePreviews] = useState([]);
     const [images, setImages] = useState([]);
-    const { userId } = useAuth();
+    const { userId, isAuthenticated } = useAuth();
 
     const [form, setForm] = useState({
         Titulo: '',
@@ -19,20 +19,41 @@ const MtoProductsForm = () => {
         CategoriaID: '',
         EstadoProducto: '',
         Imagenes: [],
+        UsuarioID: ''
     });
-  
+    
     useEffect(() => {
         // Solicitar el producto a la API usando la ID
         axios.get(`http://localhost:8000/api/producto/${id}`)
             .then((response) => {
                 const productoData = response.data[0];
                 setProducto(productoData);
-                
-                // Si hay imágenes, conviértelas a un array
-                if (productoData.Imagenes) {
+
+                setForm({
+                    Titulo: productoData.Titulo,
+                    Descripcion: productoData.Descripcion,
+                    CategoriaID: productoData.CategoriaID,
+                    EstadoProducto: productoData.EstadoProducto,
+                    Imagenes: productoData.Imagenes ? JSON.parse(productoData.Imagenes) : [],
+                    UsuarioID: productoData.UsuarioID
+                });
+
+                if (productoData?.Imagenes) {
                     const parsedImages = JSON.parse(productoData.Imagenes);
                     setImages(parsedImages);
-                    setImagePreviews(parsedImages.map(image => URL.createObjectURL(image)));
+                    const previews = parsedImages.map((image) => {
+                        if (typeof image === 'string') {
+                            // Si `image` es una URL, usarlo directamente
+                            return image;
+                        } else if (image instanceof Blob) {
+                            // Si `image` es un Blob, crear una URL para ello
+                            return URL.createObjectURL(image);
+                        }
+                        // Si no es ni una URL ni un Blob, manejar el error o loggear
+                        console.error("Invalid image format:", image);
+                        return null;
+                    }).filter(preview => preview !== null); // Filtrar los valores nulos
+                    setImagePreviews(previews);
                 }
 
                 setLoading(false);
@@ -42,16 +63,15 @@ const MtoProductsForm = () => {
                 setLoading(false);
             });
     }, [id]);
-
+    
+console.log(producto)
     useEffect(() => {
         // Solicitar las categorías a la API
         axios.get('http://localhost:8000/api/categorias')
             .then(response => setCategorias(response.data))
             .catch(error => console.error('Error al cargar las categorías:', error));
     }, []);
-    if(!producto){
-        return <p>No existe este producto</p>
-    }
+
     const handleImageRemove = (index) => {
         const newImages = form.Imagenes.filter((_, i) => i !== index);
         setForm({ ...form, Imagenes: newImages });
@@ -82,22 +102,22 @@ const MtoProductsForm = () => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append('Titulo', form.Titulo);
-        formData.append('Descripcion', form.Descripcion);
-        formData.append('CategoriaID', form.CategoriaID);
-        formData.append('EstadoProducto', form.EstadoProducto);
-        formData.append('UsuarioID', userId);
+        formData.append('titulo', form.Titulo);
+        formData.append('descripcion', form.Descripcion);
+        formData.append('categoria', form.CategoriaID);
+        formData.append('estado', form.EstadoProducto);
+        formData.append('usuario', form.UsuarioID);
 
-
-        
         form.Imagenes.forEach((image, index) => {
-            formData.append(`Imagenes[${index}]`, image);
+            formData.append(`imagenes[${index}]`, image);
         });
 
-        axios.post('http://localhost:8000/api/producto', formData, {
+        axios.post(`http://localhost:8000/api/producto/${producto.ID}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
+                'token': localStorage.getItem('token'),
             },
+            params: { _method: 'PUT' }
         })
         .then(response => {
             console.log('Producto actualizado:', response.data);
@@ -107,13 +127,10 @@ const MtoProductsForm = () => {
             console.error('Error al actualizar el producto:', error);
         });
     };
-
+    if (!producto) return <p>No existe este producto</p>;
     if (loading) return <p>Cargando...</p>;
     if (error) return <p>Error: {error.message}</p>;
-
-    if (producto && userId != producto.UsuarioID) {
-        return <p>No tienes permiso para modificar este producto.</p>;
-    }
+    if (producto && userId != producto.UsuarioID) return <p>No tienes permiso para modificar este producto.</p>;
    
 
     return (
@@ -123,7 +140,7 @@ const MtoProductsForm = () => {
                     type="text"
                     name="Titulo"
                     placeholder="Título"
-                    defaultValue={producto.Titulo}
+                    value={form.Titulo}
                     className="product-form__input"
                     maxLength="100"
                     required
@@ -132,7 +149,7 @@ const MtoProductsForm = () => {
                 <textarea
                     name="Descripcion"
                     placeholder="Descripción"
-                    defaultValue={producto.Descripcion}
+                    value={form.Descripcion}
                     className="product-form__textarea"
                     maxLength="500"
                     required
@@ -140,7 +157,7 @@ const MtoProductsForm = () => {
                 />
                 <select
                     name="CategoriaID"
-                    defaultValue={producto.CategoriaID}
+                    value={form.CategoriaID}
                     className="product-form__select"
                     required
                     onChange={handleInputChange}
@@ -153,7 +170,7 @@ const MtoProductsForm = () => {
                 </select>
                 <select
                     name="EstadoProducto"
-                    defaultValue={producto.EstadoProducto}
+                    value={form.EstadoProducto}
                     className="product-form__select"
                     required
                     onChange={handleInputChange}
@@ -164,6 +181,7 @@ const MtoProductsForm = () => {
                 <input
                     type="hidden"
                     name="UsuarioID"
+                    value={form.UsuarioID}
                 />
                 <div className="product-form__images">
                     {Array.from({ length: 6 }).map((_, index) => (
