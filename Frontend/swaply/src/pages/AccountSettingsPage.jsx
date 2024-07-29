@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext'; // Importa el hook de autentic
 import './AccountSettingsPage.css';
 
 const AccountSettingsPage = () => {
-    const { userId } = useAuth(); // Obtén el ID del contexto
+    const { userId, token } = useAuth(); // Obtén el ID del contexto
     const [formData, setFormData] = useState({
         NombreUsuario: '',
         correoelectronico: '',
@@ -62,7 +62,7 @@ const AccountSettingsPage = () => {
         e.preventDefault();
         // Enviar datos del formulario
         axios.post(`http://localhost:8000/api/usuario/${userId}`, formData, {
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', token },
             params: { _method: 'PUT' }
         })
             .then(response => {

@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
     const [username, setUsername] = useState(localStorage.getItem('username') || null);
     const [img, setImg] = useState(localStorage.getItem('img') || null);
     const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
+    const [token, setToken] = useState(localStorage.getItem('token') || null);
 
     // Función para autenticar al usuario
     const authenticateUser = async (credentials) => {
@@ -53,7 +54,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ userId, username, img, isAuthenticated, authenticateUser, logout }}>
+        <AuthContext.Provider value={{ userId, username, img, isAuthenticated,token, authenticateUser, logout }}>
             {children}
         </AuthContext.Provider>
     );
