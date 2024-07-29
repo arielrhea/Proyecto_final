@@ -30,7 +30,8 @@ const ProductFormPage = () => {
 
         axios.post('http://localhost:8000/api/producto', formData, {
             headers: {
-                'Content-Type': 'multipart/form-data', token 
+                'Content-Type': 'multipart/form-data', 
+                'token': localStorage.getItem('token'), 
             },
         })
         .then(response => {
