@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext'; 
 import './MtoProductsForm.css';
-
 
 const MtoProductsForm = () => {
     const { id } = useParams(); // Obtener la ID de la URL
@@ -13,7 +12,7 @@ const MtoProductsForm = () => {
     const [error, setError] = useState(null);
     const [imagePreviews, setImagePreviews] = useState([]);
     const [images, setImages] = useState([]);
-    const { userId} = useAuth();
+    const { userId } = useAuth();
 
     const [form, setForm] = useState({
         Titulo: '',
@@ -23,8 +22,7 @@ const MtoProductsForm = () => {
         Imagenes: [],
         UsuarioID: ''
     });
-    //assets/img/productos/[nombre]
-    console.log(imagePreviews)
+
     useEffect(() => {
         // Solicitar el producto a la API usando la ID
         axios.get(`http://localhost:8000/api/producto/${id}`)
@@ -45,17 +43,8 @@ const MtoProductsForm = () => {
                     const parsedImages = JSON.parse(productoData.Imagenes);
                     setImages(parsedImages);
                     const previews = parsedImages.map((image) => {
-                        if (typeof image === 'string') {
-                            // Si `image` es una URL, usarlo directamente
-                            return `http://localhost:8000/assets/img/productos/${image}`;
-                        } else if (image instanceof Blob) {
-                            // Si `image` es un Blob, crear una URL para ello
-                            return URL.createObjectURL(image);
-                        }
-                        // Si no es ni una URL ni un Blob, manejar el error o loggear
-                        console.error("Invalid image format:", image);
-                        return null;
-                    }).filter(preview => preview !== null); // Filtrar los valores nulos
+                        return `http://localhost:8000/assets/img/productos/${image}`;
+                    });
                     setImagePreviews(previews);
                 }
 
@@ -66,8 +55,7 @@ const MtoProductsForm = () => {
                 setLoading(false);
             });
     }, [id]);
-    
-console.log(producto)
+
     useEffect(() => {
         // Solicitar las categorías a la API
         axios.get('http://localhost:8000/api/categorias')
@@ -112,7 +100,14 @@ console.log(producto)
         formData.append('usuario', form.UsuarioID);
 
         form.Imagenes.forEach((image, index) => {
-            formData.append(`imagenes[${index}]`, image);
+            if (typeof image === 'string') {
+                // Si la imagen es una ruta, solo enviar el nombre del archivo
+                const imageName = image.split('/').pop();
+                formData.append(`imagenesExistentes[]`, imageName);
+            } else {
+                // Si la imagen es un Blob (archivo seleccionado), enviar el archivo
+                formData.append(`imagenes[]`, image);
+            }
         });
 
         axios.post(`http://localhost:8000/api/producto/${producto.ID}`, formData, {
@@ -124,23 +119,22 @@ console.log(producto)
         })
         .then(response => {
             console.log('Producto actualizado:', response.data);
-            // Aquí puedes agregar la lógica para redirigir al usuario o mostrar un mensaje de éxito
+            // Navigate(`/profile/${producto.UsuarioID}`)
         })
         .catch(error => {
             console.error('Error al actualizar el producto:', error);
         });
     };
 
-
-    if (!producto&&!loading) return <p>No existe este producto</p>;
+    if (!producto && !loading) return <p>No existe este producto</p>;
     if (loading) return <p>Cargando...</p>;
     if (error) return <p>Error: {error.message}</p>;
     if (producto && userId != producto.UsuarioID) return <p>No tienes permiso para modificar este producto.</p>;
-   
 
     return (
         <div className="mto-products-form">
             <form className="product-form" onSubmit={handleSubmit}>
+                <label htmlFor="">Título</label>
                 <input
                     type="text"
                     name="Titulo"
@@ -151,6 +145,7 @@ console.log(producto)
                     required
                     onChange={handleInputChange}
                 />
+                <label htmlFor="">Descripción</label>
                 <textarea
                     name="Descripcion"
                     placeholder="Descripción"
@@ -160,6 +155,7 @@ console.log(producto)
                     required
                     onChange={handleInputChange}
                 />
+                <label htmlFor="">Categoria</label>
                 <select
                     name="CategoriaID"
                     value={form.CategoriaID}
@@ -173,6 +169,7 @@ console.log(producto)
                         </option>
                     ))}
                 </select>
+                <label htmlFor="">Estado del Producto</label>
                 <select
                     name="EstadoProducto"
                     value={form.EstadoProducto}
@@ -188,6 +185,7 @@ console.log(producto)
                     name="UsuarioID"
                     value={form.UsuarioID}
                 />
+                <label htmlFor="">Imágenes</label>
                 <div className="product-form__images">
                     {Array.from({ length: 6 }).map((_, index) => (
                         <div key={index} className="product-form__image-container">
