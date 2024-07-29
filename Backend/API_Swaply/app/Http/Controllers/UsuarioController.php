@@ -42,7 +42,7 @@ class UsuarioController extends Controller{
             'username' => 'required|max:15',
             'ubicacion' => 'required|numeric',
             'password' => 'required|min:4',
-            'img' => 'image'
+            'img' => 'nullable|image'
         ];
         
         $mensajes = [
@@ -82,8 +82,8 @@ class UsuarioController extends Controller{
         $reglas = [
             'NombreUsuario' => 'required|max:15',
             'ubicacionID' => 'required|numeric',
-            'password' =>  'min:4',
-            'img' => 'image',
+            'password' =>  'nullable|min:4',
+            'img' => 'nullable|image',
         ];
 
         $mensajes = [

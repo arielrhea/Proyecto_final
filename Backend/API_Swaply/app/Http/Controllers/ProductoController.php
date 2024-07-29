@@ -77,7 +77,7 @@ class ProductoController extends Controller
             'titulo'      => 'required',
             'descripcion' => 'required|max:500',
             'estado' => 'required',
-            'imagenes' => 'required|array|max:6'
+            'imagenes' => 'nullable||array|max:6'
         ];
 
         $mensajes = [
@@ -87,7 +87,6 @@ class ProductoController extends Controller
             'descripcion.required' => 'La descripcion es obligatoria',
             'descripcion.max'      => 'La descripcion no puede exceder los 500 caracteres',
             'estado.required'      => 'El estado del producto es obligatorio',
-            'imagenes.required'    => 'La imagen es obligatoria',
             'imagenes.max'         => 'Maximo es posible 6 imagenes'
         ];
 
