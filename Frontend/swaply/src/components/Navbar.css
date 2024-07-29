@@ -124,7 +124,7 @@ body {
     visibility: hidden;
     transform: translateY(-20px); /* Mejor efecto de deslizamiento */
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-    z-index: 1000;
+    z-index: 9999;
     overflow: hidden; /* Asegura que no haya bordes visibles fuera del área */
 }
 
