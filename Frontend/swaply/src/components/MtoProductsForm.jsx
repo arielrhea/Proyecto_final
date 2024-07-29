@@ -21,7 +21,8 @@ const MtoProductsForm = () => {
         Imagenes: [],
         UsuarioID: ''
     });
-    
+    //assets/img/productos/[nombre]
+    console.log(imagePreviews)
     useEffect(() => {
         // Solicitar el producto a la API usando la ID
         axios.get(`http://localhost:8000/api/producto/${id}`)
@@ -127,7 +128,9 @@ console.log(producto)
             console.error('Error al actualizar el producto:', error);
         });
     };
-    if (!producto) return <p>No existe este producto</p>;
+
+
+    if (!producto&&!loading) return <p>No existe este producto</p>;
     if (loading) return <p>Cargando...</p>;
     if (error) return <p>Error: {error.message}</p>;
     if (producto && userId != producto.UsuarioID) return <p>No tienes permiso para modificar este producto.</p>;
@@ -188,7 +191,7 @@ console.log(producto)
                         <div key={index} className="product-form__image-container">
                             {imagePreviews[index] ? (
                                 <div className="product-form__image-preview">
-                                    <img src={imagePreviews[index]} alt={`Imagen ${index + 1}`} />
+                                    <img src={`http://localhost:8000/assets/img/productos/${imagePreviews[index]}`} alt={`Imagen ${index + 1}`} />
                                     <button type="button" onClick={() => handleImageRemove(index)} className="product-form__remove-button">
                                         &times;
                                     </button>
