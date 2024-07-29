@@ -2,9 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext'; 
+import { useNavigate } from 'react-router-dom';
 import './MtoProductsForm.css';
 
+
+
 const MtoProductsForm = () => {
+    const navigate=useNavigate();
     const { id } = useParams(); // Obtener la ID de la URL
     const [producto, setProducto] = useState(null);
     const [categorias, setCategorias] = useState([]);
@@ -14,7 +18,6 @@ const MtoProductsForm = () => {
     const [images, setImages] = useState([]);
     const [imagesToRemove, setImagesToRemove] = useState([]);
     const { userId } = useAuth();
-
     const [form, setForm] = useState({
         Titulo: '',
         Descripcion: '',
@@ -132,13 +135,17 @@ const MtoProductsForm = () => {
         })
         .then(response => {
             console.log('Producto actualizado:', response.data);
-            // Navegar a otra página o mostrar un mensaje de éxito
+            window.alert('El producto se ha modificado con éxito')
+            returnProfile()
+           
         })
         .catch(error => {
             console.error('Error al actualizar el producto:', error);
         });
     };
-
+        const returnProfile=()=>{
+            navigate(`/profile/${userId}`)
+        }
     if (!producto && !loading) return <p>No existe este producto</p>;
     if (loading) return <p>Cargando...</p>;
     if (error) return <p>Error: {error.message}</p>;
