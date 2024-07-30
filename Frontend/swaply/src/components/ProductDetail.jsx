@@ -133,8 +133,10 @@ const ProductDetail = ({ product }) => {
             navigate(`/profile/${userId}`)
            }, 2500);
         } catch (error) {
-            console.error('Error al eliminar el producto:', error);
-            alert('Error al eliminar el producto.');
+            setNotification('Ha habido un problema al eliminar el producto')
+            setTimeout(() => {
+             setNotification('')
+            }, 5000);
         }
     };
 
