@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './ProductDetail.css';
 import { useAuth } from '../context/AuthContext';
+import Notification from './Notification';
 
 const BASE_PRODUCT_IMAGE_URL = 'http://localhost:8000/assets/img/productos/';
 const BASE_USER_IMAGE_URL = 'http://localhost:8000/assets/img/usuarios/';
@@ -19,6 +20,7 @@ const ProductDetail = ({ product }) => {
     const isReserved = product?.ProductoReservado === 1;
     const hasMultipleImages = images.length > 1;
 
+    const [notification, setNotification]=useState('');
     useEffect(() => {
         if (product?.Imagenes) {
             try {
@@ -125,8 +127,11 @@ const ProductDetail = ({ product }) => {
             await axios.delete(`http://localhost:8000/api/producto/${product.ID}`, {
                 headers: { token }
             });
-            alert('Producto eliminado con éxito.');
-            navigate(-1);
+           setNotification('Producto eliminado con éxito')
+           setTimeout(() => {
+            setNotification('')
+            navigate(`/profile/${userId}`)
+           }, 2500);
         } catch (error) {
             console.error('Error al eliminar el producto:', error);
             alert('Error al eliminar el producto.');
@@ -152,6 +157,8 @@ const ProductDetail = ({ product }) => {
 
     return (
         <div className="product-detail-wrapper">
+               <Notification message={notification} onClose={() => setNotification('')} />
+
             {isReserved && <div className="reserved-tag">Reservado</div>}
             <div className='buttonsFlex'>
                 <button className='returnButton' onClick={handleReturn}>Volver atrás</button>
