@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext'; // Importa el hook de autenticación
+import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import './LoginForm.css'; // Agrega estilos según sea necesario
+import './LoginForm.css';
+import Notification from '../components/Notification'; // Asegúrate de importar tu componente Notification
 
 const LoginPage = () => {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
-    const { authenticateUser } = useAuth(); // Usa la función de autenticación
+    const [notification, setNotification] = useState(''); // Estado para manejar la notificación
+    const { authenticateUser } = useAuth();
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -17,17 +19,30 @@ const LoginPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        authenticateUser(credentials).then(() => {
-            navigate('/');
-        });
+        setNotification('Iniciando sesión...'); // Muestra la notificación inmediatamente al enviar el formulario
+
+        authenticateUser(credentials)
+            .then(() => {
+               console.log('eskere')
+                setTimeout(() => {
+                    setNotification('');
+                    navigate('/');
+                }, 2000); // Redirige después de 2 segundos
+            })
+            .catch((error) => {
+                console.error('Error al iniciar sesión:', error);
+                setNotification('Error al iniciar sesión. Por favor, revisa tus credenciales e intenta de nuevo.');
+                setTimeout(() => setNotification(''), 5000); // Oculta la notificación después de 5 segundos
+            });
     };
 
     const handleRegister = () => {
-        navigate('/register'); // Asumiendo que tienes una ruta '/register' para el formulario de registro
+        navigate('/register');
     };
 
     return (
         <div className="login-page">
+            <Notification message={notification} onClose={() => setNotification('')} />
             <form onSubmit={handleSubmit}>
                 <div>
                     <h1 className='titulo-account'>Iniciar sesión</h1>
