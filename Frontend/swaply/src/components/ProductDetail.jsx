@@ -127,7 +127,7 @@ const ProductDetail = ({ product }) => {
             await axios.delete(`http://localhost:8000/api/producto/${product.ID}`, {
                 headers: { token }
             });
-           setNotification('Producto eliminado con éxito')
+           setNotification(`${product.Titulo} se ha eliminado con éxito`)
            setTimeout(() => {
             setNotification('')
             navigate(`/profile/${userId}`)
