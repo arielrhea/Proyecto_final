@@ -6,6 +6,7 @@ import './UserProfilePage.css';
 import LoadingScreen from '../components/LoadingScreen';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'; // Importa useAuth
+import Notification from '../components/Notification';
 
 const UserProfilePage = () => {
     const { id } = useParams();
@@ -15,6 +16,7 @@ const UserProfilePage = () => {
     const [error, setError] = useState(null);
     const { userId, isAuthenticated, token } = useAuth(); // Obtener token de autenticación
     const navigate = useNavigate();
+    const [notification, setNotification]=useState('');
 
     useEffect(() => {
         // Obtener datos del usuario y productos ofrecidos
@@ -33,16 +35,22 @@ const UserProfilePage = () => {
     const isOwner = (producto) => {
         return producto.UsuarioID == userId;
     };
+    console.log(productos)
 
     // Función para eliminar un producto
-    const handleDeleteProduct = async (productId) => {
+    const handleDeleteProduct = async (product) => {
         try {
-            await axios.delete(`http://localhost:8000/api/producto/${productId}`, {
+            await axios.delete(`http://localhost:8000/api/producto/${product.ID}`, {
                 headers: { token } // Incluye el token en el encabezado
             });
             // Filtrar el producto eliminado del estado
-            setProductos(productos.filter(producto => producto.ID !== productId));
-            alert('Producto eliminado con éxito.');
+            setNotification(`${product.Titulo} se ha eliminado correctamente`)
+            setProductos(productos.filter(producto => producto.ID !== product.ID));
+            setTimeout(() => {
+                setNotification('')
+            }, 3000);
+          
+           
         } catch (error) {
             console.error('Error al eliminar el producto:', error);
             alert('Error al eliminar el producto.');
@@ -51,6 +59,8 @@ const UserProfilePage = () => {
 
     return (
         <div className="user-profile-page">
+               <Notification message={notification} onClose={() => setNotification('')} />
+
             <div className="profile-and-products">
                 <div className="profile-content">
                     {loading && <LoadingScreen />}
@@ -70,7 +80,7 @@ const UserProfilePage = () => {
                                                         <button className='buttonModificar' onClick={() => {
                                                             navigate(`/mto/${producto.ID}`);
                                                         }}>Modificar producto</button>
-                                                        <button className='buttonEliminar' onClick={() => handleDeleteProduct(producto.ID)}>Eliminar</button>
+                                                        <button className='buttonEliminar' onClick={() => handleDeleteProduct(producto)}>Eliminar</button>
                                                     </>
                                                 )}
                                             </div>
