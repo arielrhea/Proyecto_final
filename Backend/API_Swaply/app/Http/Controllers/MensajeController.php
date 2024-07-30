@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageSent;
 use App\Models\Chat;
 use App\Models\Mensaje;
 use Illuminate\Http\Request;
@@ -20,6 +21,8 @@ class MensajeController extends Controller{
         //validaciones
 
         $mensaje = Mensaje::crearMensaje($datos);
+
+        event(new MessageSent($mensaje));
 
         return response()->json($mensaje, 201);
     }
