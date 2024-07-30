@@ -67,7 +67,7 @@ class UsuarioController extends Controller{
         if ($imagen) {
             $nombreImagen = $imagen->getClientOriginalName();
             Storage::putFileAs('/usuarios', $imagen, $nombreImagen);
-            $datos['img'] = $nombreImagen;
+            $datos['img'] = $nombreImagen ?? 'sinportada.jpg';
         }
 
         $usuario = Usuario::alta($datos);

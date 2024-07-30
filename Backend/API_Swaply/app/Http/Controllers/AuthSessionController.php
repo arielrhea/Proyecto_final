@@ -13,8 +13,8 @@ class AuthSessionController extends Controller
     public function login(Request $request){
 
         $datos = $request->header();
-        $credenciales['email'] = $datos['email'][0] ?? null;
-        $credenciales['password'] = $datos['password'][0] ?? null;
+        $credenciales['email'] = $datos['email'][0] ?? '';
+        $credenciales['password'] = $datos['password'][0] ?? '';
 
         $reglas = [
             'email' => 'required|email',
@@ -43,7 +43,7 @@ class AuthSessionController extends Controller
             return response()->json(['usuario' => ['ID' => $usuario->ID, 'username' => $usuario->NombreUsuario, 'img' => $usuario->FotoPerfil], 'Token' => $token], 200);
         }
 
-        return response()->json(['No Autorizado'], 401);
+        return response()->json(['Credenciales Incorrectas'], 401);
     }
 
     public function logout(Request $request){

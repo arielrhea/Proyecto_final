@@ -64,81 +64,81 @@ class ProductoController extends Controller
         return response()->json($producto, 201);
     }
 
-    public function modificacionProducto(Request $request, $id)
-{
-    $producto = Producto::find($id);
+    public function modificacionProducto(Request $request, $id) {
+    
+        $producto = Producto::find($id);
 
-    if (!$producto) {
-        return response()->json(['error' => 'Producto no encontrado'], 404);
-    }
+        if (!$producto) {
+            return response()->json(['error' => 'Producto no encontrado'], 404);
+        }
 
-    $reglas = [
-        'categoria' => 'required|numeric',
-        'titulo' => 'required',
-        'descripcion' => 'required|max:500',
-        'estado' => 'required',
-        'imagenes' => 'nullable|array|max:6',
-        'imagenesExistentes.*' => 'nullable|string',
-        'imagenesAEliminar.*' => 'nullable|string',
-    ];
+        $reglas = [
+            'categoria' => 'required|numeric',
+            'titulo' => 'required',
+            'descripcion' => 'required|max:500',
+            'estado' => 'required',
+            'imagenes' => 'nullable|array|max:6',
+            'imagenesExistentes.*' => 'nullable|string',
+            'imagenesAEliminar.*' => 'nullable|string',
+        ];
 
-    $mensajes = [
-        'categoria.required' => 'La categoria es obligatoria',
-        'categoria.numeric' => 'La categoria debe ser numerica',
-        'titulo.required' => 'El titulo es obligatorio',
-        'descripcion.required' => 'La descripcion es obligatoria',
-        'descripcion.max' => 'La descripcion no puede exceder los 500 caracteres',
-        'estado.required' => 'El estado del producto es obligatorio',
-        'imagenes.max' => 'Maximo es posible 6 imagenes',
-    ];
+        $mensajes = [
+            'categoria.required' => 'La categoria es obligatoria',
+            'categoria.numeric' => 'La categoria debe ser numerica',
+            'titulo.required' => 'El titulo es obligatorio',
+            'descripcion.required' => 'La descripcion es obligatoria',
+            'descripcion.max' => 'La descripcion no puede exceder los 500 caracteres',
+            'estado.required' => 'El estado del producto es obligatorio',
+            'imagenes.max' => 'Maximo es posible 6 imagenes',
+        ];
 
-    $validator = Validator::make($request->all(), $reglas, $mensajes);
+        $validator = Validator::make($request->all(), $reglas, $mensajes);
 
-    if ($validator->fails()) {
-        return response()->json($validator->errors(), 422);
-    }
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
 
-    $imagenesActuales = json_decode($producto->Imagenes) ?? [];
-    $imagenesNuevas = $request->file('imagenes', []);
-    $imagenesExistentes = $request->input('imagenesExistentes', []);
-    $imagenesAEliminar = $request->input('imagenesAEliminar', []);
+        $imagenesActuales = json_decode($producto->Imagenes) ?? [];
+        $imagenesNuevas = $request->file('imagenes', []);
+        $imagenesExistentes = $request->input('imagenesExistentes', []);
+        $imagenesAEliminar = $request->input('imagenesAEliminar', []);
 
-    // Eliminar imágenes no enviadas
-    foreach ($imagenesActuales as $imagen) {
-        if (!in_array($imagen, $imagenesExistentes) && !in_array($imagen, $imagenesNuevas)) {
-            // Eliminar la imagen del servidor
-            $path = public_path('assets/img/productos/' . $imagen);
-            if (file_exists($path)) {
-                unlink($path);
+        // Eliminar imágenes no enviadas
+        foreach ($imagenesActuales as $imagen) {
+            if (!in_array($imagen, $imagenesExistentes) && !in_array($imagen, $imagenesNuevas)) {
+                // Eliminar la imagen del servidor
+                $path = public_path('assets/img/productos/' . $imagen);
+                if (file_exists($path)) {
+                    unlink($path);
+                }
             }
         }
+
+        // Procesar nuevas imágenes
+        $imagenes = [];
+        foreach ($imagenesNuevas as $imagen) {
+            $nombreImagen = time().'-'.$imagen->getClientOriginalName();
+            $imagen->move(public_path('assets/img/productos'), $nombreImagen);
+            $imagenes[] = $nombreImagen;
+        }
+
+        // Mantener las imágenes existentes que no se eliminaron
+        $imagenesExistentes = array_diff($imagenesExistentes, $imagenesAEliminar);
+
+        $producto->update([
+            'CategoriaID' => $request->categoria,
+            'Titulo' => $request->titulo,
+            'Descripcion' => $request->descripcion,
+            'EstadoProducto' => $request->estado,
+            'Imagenes' => json_encode(array_merge($imagenesExistentes, $imagenes))
+        ]);
+
+        return response()->json($producto, 200);
     }
 
-    // Procesar nuevas imágenes
-    $imagenes = [];
-    foreach ($imagenesNuevas as $imagen) {
-        $nombreImagen = time().'-'.$imagen->getClientOriginalName();
-        $imagen->move(public_path('assets/img/productos'), $nombreImagen);
-        $imagenes[] = $nombreImagen;
-    }
 
-    // Mantener las imágenes existentes que no se eliminaron
-    $imagenesExistentes = array_diff($imagenesExistentes, $imagenesAEliminar);
-
-    $producto->update([
-        'CategoriaID' => $request->categoria,
-        'Titulo' => $request->titulo,
-        'Descripcion' => $request->descripcion,
-        'EstadoProducto' => $request->estado,
-        'Imagenes' => json_encode(array_merge($imagenesExistentes, $imagenes))
-    ]);
-
-    return response()->json($producto, 200);
-}
-
-
-    public function bajaProducto($id)
-    {
+    public function bajaProducto($id) {
+        
         $producto = Producto::find($id);
 
         if (!$producto) {
