@@ -65,7 +65,9 @@ const AccountSettingsPage = () => {
         e.preventDefault();
         // Enviar datos del formulario
         axios.post(`http://localhost:8000/api/usuario/${userId}`, formData, {
-            headers: { 'Content-Type': 'application/json', token },
+            headers: { 'Content-Type': 'application/json',
+                'token': localStorage.getItem('token')
+            },
             params: { _method: 'PUT' }
         })
             .then(response => {
