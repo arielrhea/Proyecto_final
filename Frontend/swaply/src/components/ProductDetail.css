@@ -306,3 +306,14 @@
     z-index: 10;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra para mejorar visibilidad */
 }
+
+.pedirButton{
+    color: beige;
+    background-color: red;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
+}

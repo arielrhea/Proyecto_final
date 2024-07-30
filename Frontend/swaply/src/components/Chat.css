@@ -17,13 +17,22 @@
 .message {
     padding: 8px;
     margin-bottom: 8px;
-    border-radius: 5px;
-    background-color: #f1f1f1;
-    max-width: 60%;
+    border-radius: 15px;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
-.message-list .message:nth-child(odd) {
-    background-color: #e1e1e1;
+.message.sent {
+    background-color: #007bff;
+    color: #fff;
+    align-self: flex-end;
+    text-align: right;
+}
+
+.message.received {
+    background-color: #4b9b26;
+    color: #000;
+    align-self: flex-start;
 }
 
 .message-input {

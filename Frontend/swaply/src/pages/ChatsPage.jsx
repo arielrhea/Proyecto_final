@@ -1,27 +1,32 @@
-// src/components/ChatPage.jsx
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext'; // Importa el hook de autenticación
+import { useAuth } from '../context/AuthContext';
 import './ChatsPage.css';
 import Chat from '../components/Chat';
 
 const ChatPage = () => {
     const [chats, setChats] = useState([]);
     const [selectedChatId, setSelectedChatId] = useState(null);
-    const { userId } = useAuth(); // Obtener userId del contexto
-
+    const { userId } = useAuth();
+    const location = useLocation();
+    
     useEffect(() => {
         if (userId) {
-            // Fetch the user's chats
             axios.get(`http://localhost:8000/api/mis-chats/${userId}`)
                 .then(response => {
                     setChats(response.data);
+                    const chatId = location.state?.chatId;
+                    console.log('Chat ID:', chatId); // Agregar esta línea para verificar el valor
+                    if (chatId) {
+                        setSelectedChatId(chatId);
+                    }
                 })
                 .catch(error => {
                     console.error('Error fetching chats:', error);
                 });
         }
-    }, [userId]); // Dependencia de userId para ejecutar el efecto solo cuando userId esté disponible
+    }, [userId, location]);
 
     return (
         <div className="chat-page">
