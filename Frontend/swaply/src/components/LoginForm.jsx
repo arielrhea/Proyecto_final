@@ -7,7 +7,7 @@ import Notification from '../components/Notification'; // Asegúrate de importar
 const LoginPage = () => {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [notification, setNotification] = useState(''); // Estado para manejar la notificación
-    const { authenticateUser } = useAuth();
+    const { authenticateUser, username } = useAuth();
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -23,7 +23,9 @@ const LoginPage = () => {
 
         authenticateUser(credentials)
             .then(() => {
-               console.log('eskere')
+
+               setNotification(`Bienvenido de nuevo ${localStorage.getItem('username')}!`)
+               console.log(localStorage.getItem('username'))
                 setTimeout(() => {
                     setNotification('');
                     navigate('/');
