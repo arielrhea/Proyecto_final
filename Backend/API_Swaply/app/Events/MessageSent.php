@@ -4,8 +4,6 @@ namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -21,22 +19,22 @@ class MessageSent implements ShouldBroadcast
         $this->message = $message;
     }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return array<int, \Illuminate\Broadcasting\Channel>
-     */
     public function broadcastOn()
     {
-        return new Channel('chat.' . $this->message->chat_id);
+        return new Channel('chat.' . $this->message->ChatID);
     }
 
-    public function broadcastWith(){
+    public function broadcastAs()
+    {
+        return 'message.sent';
+    }
+    
+    public function broadcastWith()
+    {
+        // Verifica el formato de los datos emitidos
+        
         return [
-            'id' => $this->message->id,
-            'chat_id' => $this->message->chat_id,
-            'usuario_id' => $this->message->usuario_id,
-            'contenido' => $this->message->contenido,
+            'message' => $this->message
         ];
     }
 }

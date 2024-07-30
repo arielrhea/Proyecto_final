@@ -14,13 +14,15 @@ const Chat = ({ chatId }) => {
         const channel = echo.channel(`chat.${chatId}`);
 
         // Escucha el evento de mensaje enviado
-        channel.listen('MessageSent', (event) => {
+        channel.listen('.message.sent', (event) => {
             setMessages(prevMessages => [...prevMessages, event.message]);
         });
+        
 
         // Fetch existing messages
         axios.get(`http://localhost:8000/api/chats/${chatId}/mensajes`)
             .then(response => {
+                console.log('Mensajes iniciales:', response.data);
                 setMessages(response.data);
             })
             .catch(error => {
@@ -29,7 +31,7 @@ const Chat = ({ chatId }) => {
 
         // Cleanup on component unmount
         return () => {
-            channel.stopListening('MessageSent');
+            channel.stopListening('.message.sent');
         };
     }, [chatId]);
 
@@ -40,6 +42,7 @@ const Chat = ({ chatId }) => {
                 contenido: newMessage
             })
             .then(response => {
+                console.log('Mensaje enviado:', response.data);
                 setNewMessage('');
             })
             .catch(error => {
@@ -60,7 +63,7 @@ const Chat = ({ chatId }) => {
                 {messages.map((msg, index) => (
                     <div 
                         key={index} 
-                        className={`message ${msg.UsuarioID === userId ? 'received' : 'sent'}`}
+                        className={`message ${msg.usuario === userId ? 'received' : 'sent'}`}
                     >
                         {msg.Contenido}
                     </div>
