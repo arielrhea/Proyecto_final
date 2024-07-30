@@ -16,6 +16,8 @@ const Header = () => {
     const [error, setError] = useState(null);
     const navigate = useNavigate(); // Obtén la función de navegación
     const [notification, setNotification]=useState('');
+    const BASE_USER_IMAGE_URL = 'http://localhost:8000/assets/img/usuarios/';
+    
 
     useEffect(() => {
         if (userId) {
@@ -26,7 +28,7 @@ const Header = () => {
 
                     setUserData({
                         username: user.NombreUsuario || '', // No tiene valor predeterminado
-                        img: 'https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg' // user.FotoPerfil ? `http://localhost:8000/images/${user.FotoPerfil}` :
+                        img: `${BASE_USER_IMAGE_URL}${user.FotoPerfil}` // user.FotoPerfil ? `http://localhost:8000/images/${user.FotoPerfil}` :
                     });
                     setLoading(false);
                 } catch (error) {

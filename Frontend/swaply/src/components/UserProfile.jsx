@@ -5,16 +5,17 @@ import './UserProfile.css';
 const UserProfile = ({ usuario, authenticatedUserId }) => {
     const navigate = useNavigate();
     const profileImageURL = "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg";
-
+    const BASE_USER_IMAGE_URL = 'http://localhost:8000/assets/img/usuarios/';
     const handleSettingsClick = () => {
         navigate('/account-settings'); // Redirige a la página de configuración
     };
+    console.log(usuario[0].FotoPerfil)
 
     return (
         <div className="user-profile-wrapper">
             <div className="user-profile-header">
                 <img 
-                    src={profileImageURL} 
+                    src={`${BASE_USER_IMAGE_URL}${usuario[0].FotoPerfil}`} 
                     alt="Perfil" 
                     className="user-profile-image"
                 />
