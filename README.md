@@ -159,9 +159,15 @@ Pendientes:
 - ancho rueda de configuracion 
 - navegacion agregados recientemente
 - post de regalar producto 
-- conponente header producto, 
+- conponente header producto
+- logo
+- css
+- favoritos 
 
 
+
+
+config pusher
 
 BROADCAST_CONNECTION=pusher
 BROADCAST_DRIVER=pusher
