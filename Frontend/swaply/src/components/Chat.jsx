@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import echo from './echo'; // Importa tu configuración de Laravel Echo
+import echo from '../echo.js'; // Importa tu configuración de Laravel Echo
 import './Chat.css';
+import { useAuth } from '../context/AuthContext';
 
 const Chat = ({ chatId }) => {
     const [messages, setMessages] = useState([]);
