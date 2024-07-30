@@ -1,8 +1,6 @@
-// src/components/Chat.jsx
 import React, { useState, useEffect } from 'react';
-import Pusher from 'pusher-js';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext'; // Importa el hook de autenticación
+import echo from './echo'; // Importa tu configuración de Laravel Echo
 import './Chat.css';
 
 const Chat = ({ chatId }) => {
@@ -11,15 +9,12 @@ const Chat = ({ chatId }) => {
     const { userId } = useAuth(); // Obtener userId del contexto
 
     useEffect(() => {
-        // Initialize Pusher
-        const pusher = new Pusher(process.env.REACT_APP_PUSHER_APP_KEY, {
-            cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER
-        });
+        // Suscríbete al canal de chat
+        const channel = echo.channel(`chat.${chatId}`);
 
-        const channel = pusher.subscribe(`chat-${chatId}`);
-
-        channel.bind('message', (data) => {
-            setMessages(prevMessages => [...prevMessages, data.message]);
+        // Escucha el evento de mensaje enviado
+        channel.listen('MessageSent', (event) => {
+            setMessages(prevMessages => [...prevMessages, event.message]);
         });
 
         // Fetch existing messages
@@ -33,14 +28,14 @@ const Chat = ({ chatId }) => {
 
         // Cleanup on component unmount
         return () => {
-            pusher.unsubscribe(`chat-${chatId}`);
+            channel.stopListening('MessageSent');
         };
     }, [chatId]);
 
     const handleSendMessage = () => {
         if (newMessage.trim()) {
             axios.post(`http://localhost:8000/api/chats/${chatId}/mensajes`, {
-                usuario: userId,  // Incluye userId en el payload
+                usuario: userId,
                 contenido: newMessage
             })
             .then(response => {
@@ -61,7 +56,6 @@ const Chat = ({ chatId }) => {
     return (
         <div className="chat">
             <div className="message-list">
-                {/* crear componente de producto en chat */}
                 {messages.map((msg, index) => (
                     <div 
                         key={index} 
