@@ -9,13 +9,15 @@ import Notification from '../components/Notification';
 const Header = () => {
     const { userId, isAuthenticated, logout } = useAuth();
     const [userData, setUserData] = useState({
-        username: '', // No tiene valor predeterminado
+        username: localStorage.getItem('username'), // No tiene valor predeterminado
         img: 'https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg' // Imagen predeterminada
     });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate(); // Obtén la función de navegación
     const [notification, setNotification]=useState('');
+    const BASE_USER_IMAGE_URL = 'http://localhost:8000/assets/img/usuarios/';
+    
 
     useEffect(() => {
         if (userId) {
@@ -26,7 +28,7 @@ const Header = () => {
 
                     setUserData({
                         username: user.NombreUsuario || '', // No tiene valor predeterminado
-                        img: 'https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg' // user.FotoPerfil ? `http://localhost:8000/images/${user.FotoPerfil}` :
+                        img: `${BASE_USER_IMAGE_URL}${user.FotoPerfil}` // user.FotoPerfil ? `http://localhost:8000/images/${user.FotoPerfil}` :
                     });
                     setLoading(false);
                 } catch (error) {
@@ -70,7 +72,7 @@ const Header = () => {
                             
                             <div className='user-info-header' onClick={handleProfileClick}>
                                 <img src={userData.img} alt={userData.username} className='user-profile-image-header' />
-                                {userData.username && <p className='username-header'>{userData.username}</p>}
+                                {userData.username && <p className='username-header'>{localStorage.getItem('username')}</p>}
                             </div>
                         )}
                       
