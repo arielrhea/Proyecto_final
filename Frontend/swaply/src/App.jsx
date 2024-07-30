@@ -22,6 +22,7 @@ import PrivateRoute from './components/PrivateRoute';
 import RegisterForm from './components/RegisterForm';
 import MtoProductsPage from './pages/MtoProductsPage';
 import ChatPage from './pages/ChatsPage';
+import Chat from './components/Chat';
 
 function App() {
   return (

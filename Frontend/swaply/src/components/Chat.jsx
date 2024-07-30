@@ -1,27 +1,25 @@
-// src/components/Chat.jsx
 import React, { useState, useEffect } from 'react';
-import Pusher from 'pusher-js';
 import axios from 'axios';
+import echo from '../echo.js'; // Importa tu configuración de Laravel Echo
 import './Chat.css';
+import { useAuth } from '../context/AuthContext';
 
 const Chat = ({ chatId }) => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
-    
+    const { userId } = useAuth(); // Obtener userId del contexto
+
     useEffect(() => {
-        // Initialize Pusher
-        const pusher = new Pusher(process.env.REACT_APP_PUSHER_APP_KEY, {
-            cluster: process.env.REACT_APP_PUSHER_APP_CLUSTER
-        });
-        
-        const channel = pusher.subscribe(`chat-${chatId}`);
-        
-        channel.bind('message', (data) => {
-            setMessages(prevMessages => [...prevMessages, data.message]);
+        // Suscríbete al canal de chat
+        const channel = echo.channel(`chat.${chatId}`);
+
+        // Escucha el evento de mensaje enviado
+        channel.listen('MessageSent', (event) => {
+            setMessages(prevMessages => [...prevMessages, event.message]);
         });
 
         // Fetch existing messages
-        axios.get(`http://localhost:8000/api/chats/52/mensajes`)
+        axios.get(`http://localhost:8000/api/chats/${chatId}/mensajes`)
             .then(response => {
                 setMessages(response.data);
             })
@@ -31,19 +29,28 @@ const Chat = ({ chatId }) => {
 
         // Cleanup on component unmount
         return () => {
-            pusher.unsubscribe(`chat-${chatId}`);
+            channel.stopListening('MessageSent');
         };
     }, [chatId]);
 
     const handleSendMessage = () => {
         if (newMessage.trim()) {
-            axios.post(`http://localhost:8000/api/chats/52/mensajes`, { content: newMessage })
-                .then(response => {
-                    setNewMessage('');
-                })
-                .catch(error => {
-                    console.error('Error sending message:', error);
-                });
+            axios.post(`http://localhost:8000/api/chats/${chatId}/mensajes`, {
+                usuario: userId,
+                contenido: newMessage
+            })
+            .then(response => {
+                setNewMessage('');
+            })
+            .catch(error => {
+                console.error('Error sending message:', error);
+            });
+        }
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleSendMessage();
         }
     };
 
@@ -51,8 +58,11 @@ const Chat = ({ chatId }) => {
         <div className="chat">
             <div className="message-list">
                 {messages.map((msg, index) => (
-                    <div key={index} className="message">
-                        {msg.content}
+                    <div 
+                        key={index} 
+                        className={`message ${msg.UsuarioID === userId ? 'received' : 'sent'}`}
+                    >
+                        {msg.Contenido}
                     </div>
                 ))}
             </div>
@@ -61,6 +71,7 @@ const Chat = ({ chatId }) => {
                     type="text" 
                     value={newMessage} 
                     onChange={e => setNewMessage(e.target.value)} 
+                    onKeyDown={handleKeyDown}
                     placeholder="Type a message" 
                 />
                 <button onClick={handleSendMessage}>Send</button>

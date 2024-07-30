@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Importar axios
+import axios from 'axios';
 import './ProductDetail.css';
-import { useAuth } from '../context/AuthContext'; // Importar useAuth
+import { useAuth } from '../context/AuthContext';
 
 const BASE_PRODUCT_IMAGE_URL = 'http://localhost:8000/assets/img/productos/';
 const BASE_USER_IMAGE_URL = 'http://localhost:8000/assets/img/usuarios/';
@@ -14,7 +14,7 @@ const ProductDetail = ({ product }) => {
     const [formattedDate, setFormattedDate] = useState('');
     const [images, setImages] = useState([]);
     const navigate = useNavigate();
-    const { userId, isAuthenticated, token } = useAuth(); // Obtener token de autenticación
+    const { userId, isAuthenticated, token } = useAuth();
 
     const isReserved = product?.ProductoReservado === 1;
     const hasMultipleImages = images.length > 1;
@@ -123,13 +123,30 @@ const ProductDetail = ({ product }) => {
     const handleDeleteProduct = async () => {
         try {
             await axios.delete(`http://localhost:8000/api/producto/${product.ID}`, {
-                headers: { token } // Incluye el token en el encabezado
+                headers: { token }
             });
             alert('Producto eliminado con éxito.');
-            navigate(-1); // Volver a la página anterior después de eliminar el producto
+            navigate(-1);
         } catch (error) {
             console.error('Error al eliminar el producto:', error);
             alert('Error al eliminar el producto.');
+        }
+    };
+
+    // Función para crear un chat y navegar a la página de chats
+    const handleCreateChat = async () => {
+        try {
+            const response = await axios.post('http://localhost:8000/api/chats', {
+                'solicitante': userId,
+                'producto': product.ID
+            });
+            const newChatId = response.data.ID;
+            console.log('New Chat ID:', newChatId); // Agregar esta línea
+            alert('Chat creado con éxito.');
+            navigate('/chats', { state: { chatId: newChatId } });
+        } catch (error) {
+            console.error('Error al crear el chat:', error);
+            alert('Error al crear el chat.');
         }
     };
 
@@ -138,11 +155,13 @@ const ProductDetail = ({ product }) => {
             {isReserved && <div className="reserved-tag">Reservado</div>}
             <div className='buttonsFlex'>
                 <button className='returnButton' onClick={handleReturn}>Volver atrás</button>
-                {isAuthenticated && isOwner(product) && (
+                {isAuthenticated && isOwner(product) ? (
                     <div>
                         <button className='returnButton' onClick={() => navigate(`/mto/${product.ID}`)}>Modificar Producto</button>
                         <button className='deleteButton' onClick={handleDeleteProduct}>Eliminar Producto</button>
                     </div>
+                ) : (
+                    <button className='pedirButton' onClick={handleCreateChat}>Pedir Producto</button>
                 )}
             </div>
             <h1 className="product-detail-title">{product?.Titulo}</h1>
