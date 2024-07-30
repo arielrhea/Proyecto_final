@@ -9,7 +9,7 @@ import Notification from '../components/Notification';
 const Header = () => {
     const { userId, isAuthenticated, logout } = useAuth();
     const [userData, setUserData] = useState({
-        username: '', // No tiene valor predeterminado
+        username: localStorage.getItem('username'), // No tiene valor predeterminado
         img: 'https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg' // Imagen predeterminada
     });
     const [loading, setLoading] = useState(true);
@@ -70,7 +70,7 @@ const Header = () => {
                             
                             <div className='user-info-header' onClick={handleProfileClick}>
                                 <img src={userData.img} alt={userData.username} className='user-profile-image-header' />
-                                {userData.username && <p className='username-header'>{userData.username}</p>}
+                                {userData.username && <p className='username-header'>{localStorage.getItem('username')}</p>}
                             </div>
                         )}
                       
