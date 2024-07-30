@@ -15,7 +15,6 @@ class ChatController extends Controller{
 
         return Chat::consulta($id);   
 
-        
     }
     
     public function verificacionChat(Request $request){
@@ -24,6 +23,10 @@ class ChatController extends Controller{
         $producto = $request->producto;
         $productoID = Producto::findorFail($request->producto);
         $usuario2 = $productoID->UsuarioID;
+
+        if($usuario1 == $usuario2) {
+            return response()->json(['No se pudo crear el chat'], 400);
+        }
 
         $reglas = [
             'solicitante' => 'required|exist:usuarios, ID',
