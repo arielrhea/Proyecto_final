@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }) => {
                 setUsername(username);
                 setImg(img);
                 setIsAuthenticated(true);
+                setToken(localStorage.getItem('token'));
                 localStorage.setItem('token', response.data.Token);
                 localStorage.setItem('userId', ID);
                 localStorage.setItem('username', username);
