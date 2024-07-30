@@ -154,3 +154,19 @@ Favoritos:
 			- Mensaje de errores (get)
 		
 
+Pendientes:
+
+- ancho rueda de configuracion 
+- navegacion agregados recientemente
+- post de regalar producto 
+- conponente header producto, 
+
+
+
+BROADCAST_CONNECTION=pusher
+BROADCAST_DRIVER=pusher
+PUSHER_APP_ID=1842236
+PUSHER_APP_KEY=204a26467256ad8cdeed
+PUSHER_APP_SECRET=a4727bd2cc88f9920dd3
+PUSHER_APP_CLUSTER=eu
+
