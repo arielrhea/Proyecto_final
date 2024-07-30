@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductForm from '../components/ProductForm';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext'; // Importa el contexto de autenticación
+import { useAuth } from '../context/AuthContext';
 import './ProductFormPage.css';
 import { useNavigate } from 'react-router-dom';
+import Notification from '../components/Notification'; // Asegúrate de importar tu componente Notification
 
 const ProductFormPage = () => {
     const { userId, token } = useAuth(); // Obtén el ID del usuario del contexto
     const navigate = useNavigate();
+    const [notification, setNotification] = useState('');
 
     const handleFormSubmit = (form) => {
         if (!userId) {
@@ -30,17 +32,23 @@ const ProductFormPage = () => {
 
         axios.post('http://localhost:8000/api/producto', formData, {
             headers: {
-                'Content-Type': 'multipart/form-data', token 
+                'Content-Type': 'multipart/form-data', 
+                'token': localStorage.getItem('token'), // Usa el token del contexto
             },
         })
         .then(response => {
             console.log(response);
-            window.alert('alta de producto exitosa');
-            navigate(`/profile/${userId}`);
-        } )
+            setNotification('Alta de producto exitosa');
+            setTimeout(() => {
+                setNotification('');
+                navigate(`/profile/${userId}`);
+            }, 3000); // Redirige después de mostrar la notificación
+        })
         .catch(error => {
             console.error('Error al enviar el formulario:', error);
+            setNotification('Error al enviar el formulario. Rellene todos los campos.');
             console.log('Error response data:', error.response?.data);
+            setTimeout(() => setNotification(''), 3000); // Oculta la notificación después de 3 segundos
         });
     };
 
@@ -50,6 +58,7 @@ const ProductFormPage = () => {
             <div className="product-form-page__container">
                 <ProductForm onSubmit={handleFormSubmit} userId={userId} />
             </div>
+            <Notification message={notification} onClose={() => setNotification('')} />
         </div>
     );
 };

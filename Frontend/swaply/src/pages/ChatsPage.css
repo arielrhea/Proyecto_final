@@ -1,0 +1,43 @@
+/* src/components/ChatPage.css */
+.chat-page {
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.chat-list {
+    width: 25%;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+}
+
+.chat-list h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.chat-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.chat-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.chat-list li:hover {
+    background-color: #ddd;
+}
+
+.chat-detail {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
