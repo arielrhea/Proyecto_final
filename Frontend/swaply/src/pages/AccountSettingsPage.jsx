@@ -76,7 +76,9 @@ const AccountSettingsPage = () => {
         })
             .then(response => {
                 setNotificacion('Datos actualizados con éxito!')
+                console.log(formData)
                 setTimeout(() => {
+                localStorage.setItem('username', formData.NombreUsuario);
                 navigate(`/profile/${localStorage.getItem('userId')}`);
                 setNotificacion('')
                 }, 3000);
