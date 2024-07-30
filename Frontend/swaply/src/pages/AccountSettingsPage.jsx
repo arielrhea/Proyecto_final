@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext'; // Importa el hook de autentic
 import './AccountSettingsPage.css';
 import { useNavigate } from 'react-router-dom';
 import LoadingScreen from '../components/LoadingScreen'; // Asegúrate de tener el componente LoadingScreen
+import Notification from '../components/Notification';
 
 const AccountSettingsPage = () => {
     const { userId, token } = useAuth(); // Obtén el ID del contexto
@@ -17,6 +18,7 @@ const AccountSettingsPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [ubicaciones, setUbicaciones] = useState([]); // Agregado para las ubicaciones
+    const [notificacion, setNotificacion]=useState('');
 
     useEffect(() => {
         console.log('userId:', userId); // Verificar si userId está disponible
@@ -63,16 +65,22 @@ const AccountSettingsPage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setNotificacion('Esperando respuesta del servidor')
         // Enviar datos del formulario
         axios.post(`http://localhost:8000/api/usuario/${userId}`, formData, {
+          
             headers: { 'Content-Type': 'application/json',
                 'token': localStorage.getItem('token')
             },
             params: { _method: 'PUT' }
         })
             .then(response => {
-                navigate('/');
-                alert('Datos actualizados con éxito.');
+                setNotificacion('Datos actualizados con éxito!')
+                setTimeout(() => {
+                navigate(`/profile/${localStorage.getItem('userId')}`);
+                setNotificacion('')
+                }, 3000);
+               
             })
             .catch(error => {
                 console.error('Error al actualizar los datos:', error);
@@ -81,7 +89,9 @@ const AccountSettingsPage = () => {
     };
 
     return (
+        
         <div className='account'>
+               <Notification message={notificacion} onClose={() => setNotificacion('')} />
             <div className="account-settings-page">
                 {loading && <LoadingScreen />}
                 {error && <div className="error-message">Error al cargar los datos.</div>}
