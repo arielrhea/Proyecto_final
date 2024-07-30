@@ -9,6 +9,8 @@ class Chat extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'ID';
+
     protected $fillable = ['usuario1_id', 'usuario2_id', 'ProductoID'];
 
     public $timestamps = false;

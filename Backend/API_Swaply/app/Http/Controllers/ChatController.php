@@ -19,7 +19,7 @@ class ChatController extends Controller{
     }
     
     public function verificacionChat(Request $request){
-        
+
         $usuario1 = $request->solicitante;
         $producto = $request->producto;
         $productoID = Producto::findorFail($request->producto);
