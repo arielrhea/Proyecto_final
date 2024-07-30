@@ -38,6 +38,7 @@ export const AuthProvider = ({ children }) => {
             }
         } catch (error) {
             console.error('Error de autenticación:', error);
+            return Promise.reject(error)
         }
     };
 

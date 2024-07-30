@@ -4,6 +4,7 @@ import SearchBar from './SearchBar';
 import './Header.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import Notification from '../components/Notification';
 
 const Header = () => {
     const { userId, isAuthenticated, logout } = useAuth();
@@ -14,6 +15,7 @@ const Header = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate(); // Obtén la función de navegación
+    const [notification, setNotification]=useState('');
 
     useEffect(() => {
         if (userId) {
@@ -43,12 +45,19 @@ const Header = () => {
     };
 
     const handleLogout = () => {
+        setNotification(`Adios ${localStorage.getItem('username')}! Hasta la próxima`)
         logout(); // Ejecuta la función logout del contexto
-        navigate('/'); // Redirige al usuario a la página de inicio
+       
+        setTimeout(() => {
+            setNotification('')
+            navigate('/')
+        }, 3000);
+        // Redirige al usuario a la página de inicio
     };
 
     return (
         <header>
+             <Notification message={notification} onClose={() => setNotification('')} />
             <a href="/" className='logoLink'>
                 <h2 className='swaply'>Swaply</h2>
             </a>
