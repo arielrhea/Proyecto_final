@@ -65,17 +65,7 @@ const MtoProductsForm = () => {
       .catch(error => console.error('Error al cargar las categorías:', error));
   }, []);
 
-  useEffect(() => {
-    console.log(notification)
-    if (notification) {
-      const timer = setTimeout(() => {
-        setNotification('');
-        returnProfile();
-      }, 3000); // Ajusta el tiempo según sea necesario
-
-      return () => clearTimeout(timer);
-    }
-  }, [notification]);
+ 
 
   const handleImageRemove = (index) => {
     const imageToRemove = form.Imagenes[index];
@@ -142,6 +132,9 @@ const MtoProductsForm = () => {
     .then(response => {
       console.log('Producto actualizado:', response.data);
       setNotification('El producto se ha modificado con éxito');
+      setTimeout(() => {
+        navigate(`/profile/${userId}`)
+      }, 3000);
       console.log('Notificacion: '+notification)
       
     })
