@@ -20,13 +20,16 @@ class Intercambio extends Model
     public $timestamps = false;
 
     public static function crearIntercambio($datos) {
-        Intercambio::create([
+        $intercambio = Intercambio::create([
             'DonanteID' => $datos['donante'],
             'ProductoID' => $datos['producto'],
             'ReceptorID' => $datos['receptor']
         ]);
 
-        Usuario::where('id', $datos['donante'])->increment('Regalos');
-        Usuario::where('id', $datos['receptor'])->increment('Recibidos');
+        Usuario::where('ID', $datos['donante'])->increment('Regalos');
+        Usuario::where('ID', $datos['receptor'])->increment('Recibidos');
+        Producto::where('ID', $datos['producto'])->update(['ProductoReservado' => 'Entregado']);
+
+        return $intercambio;
     }
 }
