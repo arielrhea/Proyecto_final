@@ -73,7 +73,7 @@
 
 /* Cambia el color de fondo del botón al pasar el ratón sobre él */
 .login-page form button:hover {
-    background-color: #777;
+    background-color: #992525;
 }
 
 /* Mensajes de error (si los hay) */
