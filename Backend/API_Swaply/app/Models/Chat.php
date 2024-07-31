@@ -34,7 +34,7 @@ class Chat extends Model
     }
 
     public static function consulta($id) {
-        return Chat::with(['producto:ID,Titulo','usuario1:ID,NombreUsuario,FotoPerfil', 'usuario2:ID,NombreUsuario,FotoPerfil', 'mensaje' => function ($query) {
+        return Chat::with(['producto:ID,Titulo,Imagenes','usuario1:ID,NombreUsuario,FotoPerfil', 'usuario2:ID,NombreUsuario,FotoPerfil', 'mensaje' => function ($query) {
             $query->orderBy('Fecha', 'desc')->limit(1);
         }])
         ->where(function ($query) use ($id) {
