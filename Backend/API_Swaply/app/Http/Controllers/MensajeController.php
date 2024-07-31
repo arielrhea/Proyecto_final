@@ -24,11 +24,7 @@ class MensajeController extends Controller
 
         $mensaje = Mensaje::crearMensaje($datos);
 
-        // Emite el evento
         event(new MessageSent($mensaje));
-
-        // Verifica si el mensaje y el evento están funcionando
-        
 
         return response()->json($mensaje, 201);
     }

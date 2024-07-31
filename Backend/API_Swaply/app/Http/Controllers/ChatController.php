@@ -12,7 +12,7 @@ class ChatController extends Controller{
 
 
     public function consultaMisChats($id){
-
+        
         return Chat::consulta($id);   
 
     }
@@ -29,15 +29,23 @@ class ChatController extends Controller{
         }
 
         $reglas = [
-            'solicitante' => 'required|exist:usuarios, ID',
-            'producto'    => 'required|exist:productos, ID'
+            'solicitante' => 'required|exists:usuarios,ID',
+            'producto'    => 'required|exists:productos,ID'
         ];
 
-        /*$validator = Validator::make($request->all(), $reglas);
+        $mensajes = [
+            'solicitante.required' => 'El usuario es obligatorio',
+            'solicitante.exists' => 'El usuario no existe',
+            'producto.required' => 'El producto es obligatorio',
+            'producto.exists' => 'El producto no existe',
+        ];
+
+
+        $validator = Validator::make($request->all(), $reglas, $mensajes);
         if($validator->fails()){
             $errores = $validator->getMessageBag()->all();
             return response()->json($errores, 400);
-        }*/
+        }
 
 
         $chat = Chat::where(function ($query) use ($usuario1, $usuario2, $producto) {
