@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\AuthSessionController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\IntercambioController;
 use App\Http\Controllers\MensajeController;
 use App\Http\Controllers\UbicacionController;
 use App\Http\Middleware\VerificacionToken;
@@ -42,3 +43,6 @@ Route::get('/mis-chats/{id}', [ChatController::class,'consultaMisChats']);
 Route::post('/chats', [ChatController::class, 'verificacionChat']);
 Route::post('/chats/{id}/mensajes', [MensajeController::class, 'enviarMensaje']);
 Route::get('/chats/{id}/mensajes', [MensajeController::class, 'consultaMensajes']);
+
+//RUTAS DE INTERCAMBIO
+Route::post('/intercambios', [IntercambioController::class, 'realizarIntercambio']);

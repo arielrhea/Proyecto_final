@@ -50,7 +50,7 @@ class UsuarioController extends Controller{
             'email.unique' => 'Este correo ya esta siendo utilizado',
             'email.email' => 'Formato incorrecto de email',
             'username.required' => 'Nombre de usuario es obligatorio',
-            'username.required' => 'El nombre de usuario no puede exceder los 15 caracteres',
+            'username.max' => 'El nombre de usuario no puede exceder los 15 caracteres',
             'ubicacion.required' => 'Ubicacion es obligatoria',
             'ubicacion.numeric' => 'La ubicacion es de caracter numerico',
             'password.required' => 'Contraseña es obligatoria',
@@ -67,7 +67,9 @@ class UsuarioController extends Controller{
         if ($imagen) {
             $nombreImagen = $imagen->getClientOriginalName();
             Storage::putFileAs('/usuarios', $imagen, $nombreImagen);
-            $datos['img'] = $nombreImagen ?? 'sinportada.jpg';
+            $datos['img'] = $nombreImagen;
+        } else {
+            $datos['img'] = 'sinportada.jpg';
         }
 
         $usuario = Usuario::alta($datos);
