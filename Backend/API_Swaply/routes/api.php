@@ -7,10 +7,12 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\AuthSessionController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\FavoritoController;
 use App\Http\Controllers\IntercambioController;
 use App\Http\Controllers\MensajeController;
 use App\Http\Controllers\UbicacionController;
 use App\Http\Middleware\VerificacionToken;
+use App\Models\Favorito;
 use App\Models\Mensaje;
 use Illuminate\Support\Facades\Route;
 
@@ -46,3 +48,8 @@ Route::get('/chats/{id}/mensajes', [MensajeController::class, 'consultaMensajes'
 
 //RUTAS DE INTERCAMBIO
 Route::post('/intercambios', [IntercambioController::class, 'realizarIntercambio']);
+
+//RUTAS DE FAVORITOS
+Route::get('usuario/{id}/favoritos', [FavoritoController::class, 'consultarFavoritos']);
+Route::post('usuario/{id}/favoritos', [FavoritoController::class, 'agregarFavoritos']);
+Route::delete('usuario/{id}/favoritos/{idproducto}', [FavoritoController::class, 'eliminarFavoritos']);
