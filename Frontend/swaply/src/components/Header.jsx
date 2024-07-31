@@ -18,7 +18,6 @@ const Header = () => {
     const [notification, setNotification]=useState('');
     const BASE_USER_IMAGE_URL = 'http://localhost:8000/assets/img/usuarios/';
     
-
     useEffect(() => {
         if (userId) {
             const fetchUserData = async () => {
@@ -26,9 +25,13 @@ const Header = () => {
                     const response = await axios.get(`http://localhost:8000/api/usuario/${userId}`);
                     const user = response.data[0][0]; // Extrae el primer elemento del array
 
+                    const profileImage = user.FotoPerfil == 'sinportada.jpg'
+                        ? 'https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg' // Cambia esta URL por la URL real de la imagen sinportada
+                        : `${BASE_USER_IMAGE_URL}${user.FotoPerfil}`;
+
                     setUserData({
                         username: user.NombreUsuario || '', // No tiene valor predeterminado
-                        img: `${BASE_USER_IMAGE_URL}${user.FotoPerfil}` // user.FotoPerfil ? `http://localhost:8000/images/${user.FotoPerfil}` :
+                        img: profileImage
                     });
                     setLoading(false);
                 } catch (error) {
@@ -68,6 +71,7 @@ const Header = () => {
                 {isAuthenticated ? (
                     <>
                       <button className='buttonAltaProducto' onClick={()=>navigate('/new-product')}>Haz un regalo</button>
+                      <button className='buttonHeader' onClick={()=>navigate('/chats')}>Chats</button>
                         {!loading && (
                             
                             <div className='user-info-header' onClick={handleProfileClick}>
