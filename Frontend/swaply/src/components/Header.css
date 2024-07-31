@@ -35,7 +35,7 @@ header {
 }
 
 .buttonHeader {
-    color: beige; /* Color de letra del botón */
+    color: rgb(255, 255, 255); /* Color de letra del botón */
     background-color: #555; /* Color del background botón */
     padding: 10px 20px;
     border: none;
@@ -68,6 +68,7 @@ header {
 .botones {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .user-info-header {
