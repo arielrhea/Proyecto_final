@@ -1,7 +1,7 @@
 /* HomePage.css */
 .home-page {
     padding: 20px;
-    background-color: #333333;
+    background-color: white;
     position: relative; /* Asegura que los elementos hijos se posicionen en relación a este contenedor */
     min-height: 100vh; /* Asegura que el contenedor ocupe al menos el alto completo de la ventana */
 }

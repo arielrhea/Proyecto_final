@@ -6,7 +6,7 @@ body {
   padding: 0;
   overflow-x: hidden; /* Evitar el desplazamiento horizontal */
   box-sizing: border-box;
-  background-color: #777777; /* Color de fondo para evitar áreas blancas */
+  background-color: white; /* Color de fondo para evitar áreas blancas */
 }
 
 /* Estilos para la barra de desplazamiento en navegadores Webkit (Chrome, Safari) */
@@ -44,11 +44,11 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Asegura que el contenedor principal tenga al menos el 100% del alto de la ventana */
-  background-color: #777777; /* Color de fondo para el contenedor principal */
+  background-color: #6D6D6C; /* Color de fondo para el contenedor principal */
 }
 
 /* Contenido principal */
 main {
   flex: 1; /* Hace que el contenido principal ocupe el espacio restante */
-  background-color: #777777; /* Asegura que el fondo sea consistente */
+  background-color: #6D6D6C; /* Asegura que el fondo sea consistente */
 }

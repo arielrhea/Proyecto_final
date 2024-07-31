@@ -217,7 +217,7 @@ function NavBar() {
                     </div>
 
                     {/* Desplegable de Estados */}
-                    <div
+                    <div 
                         ref={estadosDesplegableRef}
                         className={`desplegable ${estadosDesplegableAbierto ? 'abierto' : ''}`}
                         onMouseEnter={handleMouseEnterDesplegableEstados}

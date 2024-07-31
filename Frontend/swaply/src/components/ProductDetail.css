@@ -1,3 +1,210 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #C12D2D; /* Color corporativo principal */
+    padding: 10px 20px;
+    color: #FFFFFF; /* Color de texto blanco */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center; /* Centrar el contenedor de botones en la pantalla */
+}
+
+.contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrar el contenido dentro del contenedor */
+    width: 100%;
+    max-width: 800px;
+}
+
+.toggle-desplegable {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #FFFFFF; /* Color de texto blanco */
+    padding: 8px 16px; /* Tamaño más pequeño del botón */
+    background-color: #6D6D6C; /* Color secundario */
+    border-radius: 20px; /* Bordes redondeados */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Centrar el texto */
+    height: 36px; /* Altura del botón más pequeña */
+    display: flex; /* Utilizar flexbox para centrar el contenido verticalmente */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    margin: 0 8px; /* Margen lateral más pequeño */
+    flex: 1; /* Permitir que los botones crezcan para llenar el espacio */
+    min-width: 140px; /* Tamaño mínimo ajustado */
+}
+
+.toggle-desplegable:hover {
+    background-color: #C12D2D; /* Color principal en hover */
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.nav-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center; /* Centrar los botones dentro del contenedor */
+    align-content: center; /* Centrar los botones verticalmente */
+    width: 100%;
+}
+
+.nav-button,
+.button-active {
+    border: none;
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 8px 16px; /* Tamaño más pequeño del botón */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1; /* Permitir que los botones crezcan y se reduzcan de tamaño según el espacio disponible */
+    min-width: 140px; /* Tamaño mínimo ajustado */
+    height: 36px; /* Altura del botón más pequeña */
+    margin: 0 8px; /* Margen lateral más pequeño */
+    text-align: center; /* Centrar el texto dentro del botón */
+    display: flex; /* Utilizar flexbox para centrar el contenido verticalmente */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+}
+
+/* Color de fondo específico para nav-button y button-active */
+.nav-button {
+    background-color: #6D6D6C; /* Color secundario */
+    color: #FFFFFF; /* Color de texto blanco */
+}
+
+.button-active {
+    background-color: #C12D2D; /* Color principal */
+    color: #FFFFFF; /* Color de texto blanco */
+}
+
+/* Hover común para ambos botones */
+.nav-button:hover,
+.button-active:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Mantener el color de fondo igual al estado no hover */
+}
+
+.desplegableOpcion {
+    cursor: pointer;
+}
+
+/* Enlace dentro del botón */
+.nav-button a {
+    text-decoration: none;
+    color: #FFFFFF; /* Color de texto blanco */
+    display: block;
+}
+
+.desplegable {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-desplegable {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #6D6D6C; /* Color secundario */
+    border: 1px solid #C12D2D; /* Color principal para el borde */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 8px; /* Bordes redondeados */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px); /* Mejor efecto de deslizamiento */
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    z-index: 9999;
+    overflow: hidden; /* Asegura que no haya bordes visibles fuera del área */
+}
+
+.desplegable.abierto .menu-desplegable {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.menu-desplegable li {
+    padding: 0;
+}
+
+.menu-desplegable li a {
+    display: block;
+    color: #FFFFFF; /* Color de texto blanco */
+    text-decoration: none;
+    padding: 8px 16px; /* Tamaño de ítem en el menú */
+    background-color: #6D6D6C; /* Color secundario */
+    transition: background-color 0.3s ease;
+}
+
+.menu-desplegable li a:hover {
+    background-color: #C12D2D; /* Color principal en hover */
+}
+
+.menu-desplegable li:last-child a {
+    border-bottom: none;
+}
+
+.divisor-desplegable {
+    height: 1px;
+    background-color: #C12D2D; /* Color principal para el divisor */
+    margin: 0.5rem 0;
+}
+
+/* Estilo de botones con hover */
+.returnButton,
+.deleteButton,
+.pedirButton {
+    color: #FFFFFF; /* Color de texto blanco */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Añadido para la transición de tamaño */
+}
+
+.returnButton {
+    background-color: #6D6D6C; /* Color secundario */
+}
+
+.returnButton:hover {
+    background-color: #C12D2D; /* Color principal en hover */
+    transform: scale(1.05); /* Aumenta el tamaño del botón en hover */
+}
+
+.deleteButton {
+    background-color: #C12D2D; /* Color principal */
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.deleteButton:hover {
+    background-color: #A11A1A; /* Un tono más oscuro del rojo para hover */
+    transform: scale(1.05); /* Aumenta el tamaño del botón en hover */
+}
+
+.pedirButton {
+    background-color: #C12D2D; /* Color principal */
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.pedirButton:hover {
+    background-color: #A11A1A; /* Un tono más oscuro del rojo para hover */
+    transform: scale(1.05); /* Aumenta el tamaño del botón en hover */
+}
+
+/* Resto de los estilos */
 .product-detail-wrapper {
     padding: 20px;
     background-color: #f0f0f0;
@@ -12,7 +219,7 @@
 .product-detail-title {
     font-size: 28px;
     font-weight: bold;
-    color: #333;
+    color: #6D6D6C;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -271,49 +478,46 @@
     margin: 0;
 }
 
-.returnButton {
-    color: beige;
-    background-color: #555;
+.returnButton,
+.deleteButton,
+.pedirButton {
+    color: #FFFFFF; /* Color de texto blanco */
     padding: 10px 20px;
     border: none;
     cursor: pointer;
     border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Añadido para la transición de tamaño */
+}
+
+.returnButton {
+    background-color: #6D6D6C; /* Color secundario */
+}
+
+.returnButton:hover {
+    background-color: #C12D2D; /* Color principal en hover */
+    transform: scale(1.05); /* Aumenta el tamaño del botón en hover */
 }
 
 .deleteButton {
-    color: beige;
-    background-color: red;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 25px;
+    background-color: #C12D2D; /* Color principal */
     margin-left: 20px;
     margin-right: 20px;
 }
 
-.reserved-tag {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background-color: #f44336; /* Rojo para reservado */
-    color: #fff;
-    padding: 10px 15px;
-    border-radius: 25px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    width: auto;
-    z-index: 10;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra para mejorar visibilidad */
+.deleteButton:hover {
+    background-color: #A11A1A; /* Un tono más oscuro del rojo para hover */
+    transform: scale(1.05); /* Aumenta el tamaño del botón en hover */
 }
 
-.pedirButton{
-    color: beige;
-    background-color: red;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 25px;
+.pedirButton {
+    background-color: #C12D2D; /* Color principal */
     margin-left: 20px;
     margin-right: 20px;
 }
+
+.pedirButton:hover {
+    background-color: #A11A1A; /* Un tono más oscuro del rojo para hover */
+    transform: scale(1.05); /* Aumenta el tamaño del botón en hover */
+}
+
+/* Resto de los estilos */

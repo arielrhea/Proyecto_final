@@ -1,6 +1,9 @@
 .searchBar {
     border-radius: 15px;
-    width: 100%;
+    width: 300%;
     height: 40px;
     font-size: 18px; /* Ajusta el tamaño del texto dentro del input */
+    position: relative;
+    transform: translateX(-50%); /* Mueve la barra de búsqueda a la izquierda para centrar el medio */
+    left: 50%; /* Posiciona la barra de búsqueda a la mitad del contenedor */
 }

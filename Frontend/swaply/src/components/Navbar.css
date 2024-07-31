@@ -2,15 +2,17 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+   
 }
 
 .navbar {
-    background-color: #333;
+    background-color: white; /* Color corporativo principal */
     padding: 10px 20px;
-    color: white;
-    box-shadow: 0 2px 4px rgba(226, 224, 224, 0.8);
+    color: #FFFFFF; /* Color de texto blanco */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center; /* Centrar el contenedor de botones en la pantalla */
+    border-bottom:2px solid #C12D2D ;
 }
 
 .contenedor {
@@ -24,10 +26,10 @@ body {
 .toggle-desplegable {
     cursor: pointer;
     background: none;
-    border: none;
-    color: beige;
+   
+    color: #FFFFFF; /* Color de texto blanco */
     padding: 8px 16px; /* Tamaño más pequeño del botón */
-    background-color: #555;
+    background-color: #6D6D6C; /* Color secundario */
     border-radius: 20px; /* Bordes redondeados */
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
@@ -39,10 +41,12 @@ body {
     margin: 0 8px; /* Margen lateral más pequeño */
     flex: 1; /* Permitir que los botones crezcan para llenar el espacio */
     min-width: 140px; /* Tamaño mínimo ajustado */
+   
+
 }
 
 .toggle-desplegable:hover {
-    background-color: #777;
+     /* Color principal en hover */
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
@@ -74,13 +78,17 @@ body {
 
 /* Color de fondo específico para nav-button y button-active */
 .nav-button {
-    background-color: #555;
-    color: beige;
+    background-color: #6D6D6C; /* Color secundario */
+    color: #FFFFFF; /* Color de texto blanco */
+
+}
+.nav-button:hover{
+    background-color: #C12D2D;
 }
 
 .button-active {
-    background-color: #dcdcdc;
-    color: #555;
+    background-color: #C12D2D; /* Color principal */
+    color: #FFFFFF; /* Color de texto blanco */
 }
 
 /* Hover común para ambos botones */
@@ -89,23 +97,25 @@ body {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     /* Mantener el color de fondo igual al estado no hover */
-     
 }
 
-.desplegableOpcion{
+.desplegableOpcion {
     cursor: pointer;
+    border: none;
 }
 
 /* Enlace dentro del botón */
 .nav-button a {
     text-decoration: none;
-    color: beige;
+    color: #FFFFFF; /* Color de texto blanco */
     display: block;
+
 }
 
 .desplegable {
     position: relative;
     display: inline-block;
+    
 }
 
 .menu-desplegable {
@@ -113,8 +123,7 @@ body {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #333;
-    border: 1px solid #555; /* Borde oscuro para el menú desplegable */
+    background-color: #C12D2D; /* Color secundario */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
     list-style-type: none;
     padding: 0;
@@ -133,23 +142,25 @@ body {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    border: none;
 }
 
 .menu-desplegable li {
     padding: 0;
+    border:none;
 }
 
 .menu-desplegable li a {
     display: block;
-    color: beige;
+    color: #FFFFFF; /* Color de texto blanco */
     text-decoration: none;
     padding: 8px 16px; /* Tamaño de ítem en el menú */
-    background-color: #555;
+    background-color: #6D6D6C; /* Color secundario */
     transition: background-color 0.3s ease;
 }
 
 .menu-desplegable li a:hover {
-    background-color: #777;
+    background-color: #C12D2D; /* Color principal en hover */
 }
 
 .menu-desplegable li:last-child a {
@@ -158,6 +169,6 @@ body {
 
 .divisor-desplegable {
     height: 1px;
-    background-color: #e0e0e0;
+    background-color: #C12D2D; /* Color principal para el divisor */
     margin: 0.5rem 0;
 }

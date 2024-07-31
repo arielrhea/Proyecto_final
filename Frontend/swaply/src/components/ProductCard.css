@@ -1,6 +1,7 @@
 /* ProductCard.css */
 .product-card {
-    background-color: #777777;
+    background-color: #6D6D6C
+    ;
     border-radius: 12px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
     overflow: hidden;
@@ -57,14 +58,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: #777777; /* Fondo sólido para una apariencia limpia */
+    background: #6D6D6C
+    ; /* Fondo sólido para una apariencia limpia */
     margin-left: 10px;
 }
 
 .product-title {
     font-size: 20px;
     margin: 0 0 10px;
-    color: #F5F5D6;
+    color: white;
     font-weight: 700;
     line-height: 1.3; /* Mejora la legibilidad */
 }
@@ -72,7 +74,7 @@
 .product-status {
     display: inline-block;
     font-size: 16px;
-    color: #F5F5D6;
+    color: white;
     text-transform: capitalize; /* Asegura que solo la primera letra esté en mayúsculas */
     font-weight: 600;
     margin-top: 10px;
