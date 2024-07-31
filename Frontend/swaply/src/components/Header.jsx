@@ -60,8 +60,8 @@ const Header = () => {
     return (
         <header>
              <Notification message={notification} onClose={() => setNotification('')} />
-            <a href="/" className='logoLink'>
-                <h2 className='swaply'>Swaply</h2>
+              <a href="/" className='logoLink'>
+                <img src="/L1_Swaply_Logo_red.png" alt="Swaply Logo" className='swaplyLogo' />
             </a>
             <SearchBar className="barra" />
             <div className='botones'>

@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     padding: 40px 20px;
-    background-color: #333333;
+    background-color: #6D6D6C;
     min-height: 100vh;
     box-sizing: border-box;
     position: relative; /* Posición relativa para el contenedor del producto */
@@ -15,9 +15,9 @@
     max-width: 1200px;
     width: 100%;
     min-height: 50vh;
-    background: #333333;
+    background: #6D6D6C    ;
     border-radius: 12px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  
     overflow: hidden;
     transition: box-shadow 0.3s ease;
     position: relative; /* Asegura que el LoadingScreen se posicione sobre él */

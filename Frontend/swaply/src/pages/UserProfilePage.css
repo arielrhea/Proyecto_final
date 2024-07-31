@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     padding: 40px 20px;
-    background-color: #333;
+    background-color: white;
     min-height: 100vh;
     box-sizing: border-box;
     position: relative; /* Posición relativa para el contenedor del producto */
@@ -71,7 +71,7 @@
 
 .tituloproductos {
     margin: 0; /* Elimina el margen de izquierda */
-    color: beige;
+    color: #C12D2D;
 }
 
 .product-card-container {
@@ -87,8 +87,8 @@
 }
 
 .buttonEliminar{
-    color: beige; /* Color de letra del botón */
-    background-color: #555; /* Color del background botón */
+    color: white; /* Color de letra del botón */
+    background-color: #C12D2D; /* Color del background botón */
     padding: 10px 20px;
     border: none;
     cursor: pointer;
@@ -100,5 +100,5 @@
 }
 
 .buttonEliminar:hover{
-    background-color: #777;
+    background-color: #9d2525
 }

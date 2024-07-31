@@ -4,8 +4,9 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #333; /* Background del header */
+    background-color: #ffffff; /* Background del header */
     color: white;
+    border-bottom: 2px solid #C12D2D;
 }
 
 .swaply {
@@ -14,12 +15,23 @@ header {
 }
 
 .logoLink {
-    text-decoration: none;
+    display: inline-block;
+    padding: 0; /* Elimina cualquier padding extra */
+    margin: 0;  /* Elimina cualquier margen extra */
+    
+  
+}
+
+.swaplyLogo {
+    width: 200px; /* Ajusta el ancho según tus necesidades */
+    height: auto; /* Mantén la proporción de la imagen */
+    display: block; /* Asegura que la imagen se comporte como un bloque dentro del enlace */
 }
 
 .barra {
-    flex: 1; /* Ocupa todo el espacio restante */
+    flex: 1.5; /* Ocupa más espacio que antes */
     margin: 0 20px; /* Añade un margen a la barra de búsqueda */
+    background-color: rebeccapurple;
 }
 
 .buttonHeader {
@@ -34,9 +46,10 @@ header {
     margin-left: 10px; /* Separación entre botones */
     text-align: center; /* Centra el texto dentro del enlace */
 }
-.buttonAltaProducto{
-    color: beige; /* Color de letra del botón */
-    background-color: #FF0000; /* Color del background botón */
+
+.buttonAltaProducto {
+    color: white; /* Color de letra del botón */
+    background-color: #C12D2D; /* Color del background botón */
     padding: 10px 20px;
     border: none;
     cursor: pointer;
@@ -72,7 +85,7 @@ header {
 }
 
 .username-header {
-    color: white;
+    color: #C12D2D;
     margin: 0;
     font-weight: bold;
 }

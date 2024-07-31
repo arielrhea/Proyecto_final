@@ -1,7 +1,7 @@
 /* Footer.css */
 .footer {
-    background-color: #333;
-    color: beige;
+    background-color: #ffffff;
+    color: #C12D2D;
     padding: 20px;
     font-family: Arial, sans-serif;
 }
@@ -21,11 +21,11 @@
 }
 
 .footer-section h4 {
-    border-bottom: 2px solid beige;
+    border-bottom: 2px solid #C12D2D;
     padding-bottom: 10px;
     margin-bottom: 10px;
     font-size: 16px;
-    color: beige;
+    color: #C12D2D;
 }
 
 .footer-section ul {
@@ -38,13 +38,15 @@
 }
 
 .footer-section ul li a {
-    color: beige;
+    color: #6D6D6C
+    ;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .footer-section ul li a:hover {
-    color: beige;
+    color: #6D6D6C
+    ;
 }
 
 .social-media {
@@ -53,25 +55,29 @@
 }
 
 .social-icon {
-    color: beige;
+    color: #6D6D6C
+    ;
     text-decoration: none;
     font-size: 16px;
     transition: color 0.3s ease;
 }
 
 .social-icon:hover {
-    color: beige;
+    color: #6D6D6C
+    ;
 }
 
 .footer-bottom {
     text-align: center;
     margin-top: 20px;
-    border-top: 1px solid beige;
+    border-top: 1px solid #6D6D6C
+    ;
     padding-top: 10px;
 }
 
 .footer-bottom p {
     margin: 0;
     font-size: 14px;
-    color: beige;
+    color: #6D6D6C
+    ;
 }
