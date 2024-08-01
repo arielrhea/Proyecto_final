@@ -94,3 +94,10 @@
     color: red;
     margin-top: 1rem;
 }
+
+.divButtons{
+    display: flex;
+    flex-direction: column; /* Opcional: Para alinear los elementos en columna */
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente, opcional si se necesita */
+}
