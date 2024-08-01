@@ -24,7 +24,7 @@ class UsuarioController extends Controller{
 
     public function consultaUsuarioProductos($id) {
         $usuario = Usuario::consulta($id);
-        $productos = Producto::where('UsuarioID', $id)->get();
+        $productos = Producto::where('UsuarioID', $id)->where('ProductoReservado', '!=', 'Entregado')->get();
 
         if (!$usuario) {
             return response()->json(['Usuario no encontrado'], 404);
