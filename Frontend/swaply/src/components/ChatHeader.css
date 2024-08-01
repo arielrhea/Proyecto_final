@@ -1,0 +1,57 @@
+/* src/components/ChatHeader.css */
+.chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f4f4f4;
+}
+
+.chat-header-product-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.chat-header-product-title {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.chat-header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.button-entregado,
+.button-reservar {
+    padding: 10px 20px;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-entregado {
+    background-color: #C12D2D;
+    color: #fff;
+}
+
+.button-reservar {
+    background-color: #fff;
+    color: #C12D2D;
+}
+
+.button-entregado:hover {
+    background-color: #fff;
+    color: #C12D2D;
+}
+
+.button-reservar:hover {
+    background-color: #C12D2D;
+    color: #fff;
+}
