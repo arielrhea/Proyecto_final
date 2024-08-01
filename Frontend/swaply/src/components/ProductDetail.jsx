@@ -161,7 +161,7 @@ const ProductDetail = ({ product }) => {
         <div className="product-detail-wrapper">
                <Notification message={notification} onClose={() => setNotification('')} />
 
-            {isReserved && <div className="reserved-tag">Reservado</div>}
+            
             <div className='buttonsFlex'>
                 <button className='returnButton' onClick={handleReturn}>Volver atrás</button>
                 {isAuthenticated && isOwner(product) ? (
@@ -189,6 +189,7 @@ const ProductDetail = ({ product }) => {
                                 <button className="main-image-next-button" onClick={handleNextMainImage}>›</button>
                             </>
                         )}
+                        {isReserved && <div className="reserved-tag">Reservado</div>}
                         <img
                             src={images[expandedImageIndex] || images[0]}
                             alt="Imagen principal"

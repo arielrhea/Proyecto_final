@@ -522,3 +522,19 @@ body {
 }
 
 /* Resto de los estilos */
+
+.reserved-tag {
+    position: absolute;
+    top: 25px;
+    left: 255px;
+    background-color: #f44336; /* Rojo para reservado */
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    width: auto;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra para mejorar visibilidad */
+}

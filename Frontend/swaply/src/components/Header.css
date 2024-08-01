@@ -147,3 +147,49 @@ header {
         margin: 0 5px; /* Reduce el margen para pantallas pequeñas */
     }
 }
+
+.buttonHeader-inicio {
+    color: #C12D2D; /* Color del texto del botón */
+    border: 2px solid #C12D2D; /* Color del borde del botón */
+    background-color: #ffffff;
+    font-weight: bold;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 25px; /* Borde redondeado */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    display: inline-block; /* Para que el padding y el tamaño funcionen */
+    margin-left: 10px; /* Separación entre botones */
+    margin-right: 10px; /* Separación entre botones */
+    text-align: center; /* Centra el texto dentro del botón */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Estilo al pasar el ratón sobre los botones de header */
+.buttonHeader-inicio:hover {
+    transform: scale(1.1);
+    color: white;
+    background-color: #C12D2D;
+}
+
+.buttonHeader-register {
+    color: #C12D2D; /* Color del texto del botón */
+    border: 2px solid #C12D2D; /* Color del borde del botón */
+    background-color: #ffffff;
+    font-weight: bold;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 25px; /* Borde redondeado */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    display: inline-block; /* Para que el padding y el tamaño funcionen */
+    margin-left: 10px; /* Separación entre botones */
+    margin-right: 10px; /* Separación entre botones */
+    text-align: center; /* Centra el texto dentro del botón */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Estilo al pasar el ratón sobre los botones de header */
+.buttonHeader-register:hover {
+    transform: scale(1.1);
+    color: white;
+    background-color: #C12D2D;
+}
