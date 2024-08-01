@@ -11,7 +11,7 @@ class Chat extends Model
 
     protected $primaryKey = 'ID';
 
-    protected $fillable = ['usuario1_id', 'usuario2_id', 'ProductoID'];
+    protected $fillable = ['usuario1_id', 'usuario2_id', 'ProductoID', 'UltimoMensaje'];
 
     public $timestamps = false;
 
@@ -40,6 +40,6 @@ class Chat extends Model
         ->where(function ($query) use ($id) {
             $query->where('Usuario1_ID', $id)
                   ->orWhere('Usuario2_ID', $id);
-        })->orderBy('Fecha', 'desc')->get();
+        })->orderBy('UltimoMensaje', 'desc')->get();
     }
 }

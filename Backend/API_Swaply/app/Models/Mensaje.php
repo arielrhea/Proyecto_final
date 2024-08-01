@@ -30,10 +30,16 @@ class Mensaje extends Model
     }
 
     public static function crearMensaje($datos) {
-        return Mensaje::create([
+        $mensaje = Mensaje::create([
             'ChatID' => $datos['chat'],
             'UsuarioID' => $datos['usuario'],
             'Contenido' => $datos['contenido'],
         ]);
+        
+        $chat = Chat::where('ID', $datos['chat'])->first();
+        $chat->UltimoMensaje = now();
+        $chat->save();
+
+        return $mensaje;
     }
 }
