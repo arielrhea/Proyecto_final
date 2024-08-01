@@ -1,9 +1,28 @@
+.searchForm {
+    flex: 1; /* Permite que el formulario de búsqueda ocupe el espacio disponible */
+    display: flex; /* Flexbox para ajustar el tamaño del input */
+    align-items: center; /* Centra verticalmente el input dentro del formulario */
+}
+
 .searchBar {
-    border-radius: 15px;
-    width: 300%;
+    border-radius: 25px;
+    border: 2px solid #C12D2D;
+    width: 100%; /* Ocupa el 100% del ancho del contenedor */
     height: 40px;
-    font-size: 18px; /* Ajusta el tamaño del texto dentro del input */
-    position: relative;
-    transform: translateX(-50%); /* Mueve la barra de búsqueda a la izquierda para centrar el medio */
-    left: 50%; /* Posiciona la barra de búsqueda a la mitad del contenedor */
+    font-size: 18px;
+    padding: 0 15px; /* Espaciado dentro del input */
+    box-sizing: border-box; /* Asegura que el padding y el borde no afecten el ancho total */
+}
+
+@media (max-width: 900px) {
+    .searchBar {
+        font-size: 16px; /* Ajusta el tamaño del texto para pantallas medianas */
+    }
+}
+
+@media (max-width: 480px) {
+    .searchBar {
+        font-size: 14px; /* Ajusta el tamaño del texto para dispositivos pequeños */
+        height: 35px; /* Ajusta la altura del input para pantallas más pequeñas */
+    }
 }
