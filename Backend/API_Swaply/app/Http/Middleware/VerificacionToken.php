@@ -18,10 +18,10 @@ class VerificacionToken
     {
                 $token = $request->header()['token'][0] ?? null;
 
-                if(!$token) return response()->json(['No autorizado aaaa'], 401);
+                if(!$token) return response()->json(['No autorizado'], 401);
         
                 if(!Usuario::where('Token', $token)->first()){
-                    return response()->json(['No autorizado bbbb'], 401);
+                    return response()->json(['No autorizado'], 401);
                 }
         
                 return $next($request);

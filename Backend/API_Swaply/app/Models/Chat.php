@@ -40,7 +40,6 @@ class Chat extends Model
         ->where(function ($query) use ($id) {
             $query->where('Usuario1_ID', $id)
                   ->orWhere('Usuario2_ID', $id);
-        })
-        ->get();
+        })->orderBy('Fecha', 'desc')->get();
     }
 }
