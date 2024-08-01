@@ -261,7 +261,7 @@ const ProductDetail = ({ product }) => {
                     onClick={handleProfileClick}
                 >
                     <img
-                        src={product?.usuario?.FotoPerfil ? `${BASE_USER_IMAGE_URL}${product.usuario.FotoPerfil}` : "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg"}
+                        src={product?.usuario?.FotoPerfil=='sinportada.jpg' ? "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg" : `${BASE_USER_IMAGE_URL}${product.usuario.FotoPerfil}` }
                         alt={product?.usuario?.NombreUsuario || 'Usuario'}
                         className="product-detail-user-profile-image"
                     />

@@ -61,14 +61,14 @@
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    background-color: #555;
-    color: beige;
+    background-color: #C12D2D;
+    color: rgb(255, 255, 255);
     transition: background-color 0.3s ease;
 }
 
 /* Cambia el color de fondo del botón al pasar el ratón sobre él */
 .register-page form button:hover {
-    background-color: #777;
+    background-color: #922222;
 }
 
 /* Mensajes de error (si los hay) */
@@ -76,3 +76,4 @@
     color: red;
     margin-top: 1rem;
 }
+

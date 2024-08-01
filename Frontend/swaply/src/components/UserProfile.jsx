@@ -6,16 +6,23 @@ const UserProfile = ({ usuario, authenticatedUserId }) => {
     const navigate = useNavigate();
     const profileImageURL = "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg";
     const BASE_USER_IMAGE_URL = 'http://localhost:8000/assets/img/usuarios/';
+    
+    // Determina la URL de la imagen a mostrar
+    const imageUrl = usuario[0].FotoPerfil=='sinportada.jpg'
+        ? profileImageURL
+        : `${BASE_USER_IMAGE_URL}${usuario[0].FotoPerfil}`;
+
     const handleSettingsClick = () => {
         navigate('/account-settings'); // Redirige a la página de configuración
     };
-    console.log(usuario[0].FotoPerfil)
+
+    console.log(usuario[0].FotoPerfil);
 
     return (
         <div className="user-profile-wrapper">
             <div className="user-profile-header">
                 <img 
-                    src={`${BASE_USER_IMAGE_URL}${usuario[0].FotoPerfil}`} 
+                    src={imageUrl} // Usa la URL determinada
                     alt="Perfil" 
                     className="user-profile-image"
                 />

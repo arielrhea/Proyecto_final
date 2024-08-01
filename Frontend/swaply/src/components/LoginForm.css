@@ -5,7 +5,8 @@
     align-items: center;
     justify-content: center;
     min-height: 70vh;
-    background-color: #777777;
+    background-color: #6D6D6C
+    ;
     padding: 1rem;
 }
 
@@ -65,14 +66,14 @@
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    background-color: #555;
-    color: beige;
+    background-color: #C12D2D;
+    color: white;
     transition: background-color 0.3s ease;
 }
 
 /* Cambia el color de fondo del botón al pasar el ratón sobre él */
 .login-page form button:hover {
-    background-color: #777;
+    background-color: #992525;
 }
 
 /* Mensajes de error (si los hay) */

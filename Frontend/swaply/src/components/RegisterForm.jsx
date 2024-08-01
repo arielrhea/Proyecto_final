@@ -167,7 +167,7 @@ const RegisterPage = () => {
                 </select>
                 {errors.ubicacion && <p className="error-message">{errors.ubicacion}</p>}
 
-                <button type="submit">Registrarse</button>
+                <button type="submit" className='register-button'>Registrarse</button>
                 {error && <p className="error-message">{error}</p>}
             </form>
         </div>
