@@ -9,15 +9,22 @@ const BASE_PRODUCT_IMAGE_URL = 'http://localhost:8000/assets/img/productos/'; //
 
 const ChatHeader = ({ chatId }) => {
     const [chatData, setChatData] = useState(null);
+    const [isReserved, setIsReserved] = useState(false); // Estado para verificar si el producto está reservado
+    const [isDelivered, setIsDelivered] = useState(false); // Estado para verificar si el producto ha sido entregado
     const { userId } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Llamada a la API para obtener los detalles del chat y el producto
         axios.get(`http://localhost:8000/api/mis-chats/${userId}`)
             .then(response => {
                 const chat = response.data.find(chat => chat.ID === chatId);
                 setChatData(chat || null);
+                if (chat?.producto?.Reservado) {
+                    setIsReserved(true);
+                }
+                if (chat?.producto?.Entregado) {
+                    setIsDelivered(true);
+                }
             })
             .catch(error => {
                 console.error('Error fetching chat details:', error);
@@ -39,6 +46,7 @@ const ChatHeader = ({ chatId }) => {
                 "producto": chatData.producto.ID
             })
             .then(response => {
+                setIsDelivered(true);
                 console.log('Producto entregado:', response.data);
             })
             .catch(error => {
@@ -49,8 +57,18 @@ const ChatHeader = ({ chatId }) => {
 
     const handleReservarClick = (event) => {
         event.stopPropagation();
-        // Lógica para el botón "Reservar"
-        console.log('Producto reservado');
+        const endpoint = isReserved
+            ? `http://localhost:8000/api/producto/${chatData.producto.ID}/reservar`
+            : `http://localhost:8000/api/producto/${chatData.producto.ID}/reservar`;
+
+        axios.post(endpoint)
+            .then(response => {
+                setIsReserved(!isReserved);
+                console.log(isReserved ? 'Reserva cancelada' : 'Producto reservado:', response.data);
+            })
+            .catch(error => {
+                console.error(isReserved ? 'Error cancelando la reserva' : 'Error reservando el producto:', error);
+            });
     };
 
     const getProductImageUrl = () => {
@@ -67,18 +85,35 @@ const ChatHeader = ({ chatId }) => {
         return 'https://via.placeholder.com/100';
     };
 
+    const showButtons = userId == chatData?.Usuario2_ID && !isDelivered;
+
     return (
-        <div className="chat-header" onClick={handleProductClick}>
+        <div className="chat-header">
             <img
                 src={getProductImageUrl()}
                 alt={chatData?.producto?.Titulo || 'Product'}
                 className="chat-header-product-image"
+                onClick={handleProductClick}
             />
-            <h2 className="chat-header-product-title">{chatData?.producto?.Titulo || 'No Title'}</h2>
-            <div className="chat-header-buttons">
-                <button className="button-entregado" onClick={handleEntregadoClick}>Entregado</button>
-                <button className="button-reservar" onClick={handleReservarClick}>Reservar</button>
+            <div className="chat-header-product-info">
+                <h2 className="chat-header-product-title">{chatData?.producto?.Titulo || 'No Title'}</h2>
             </div>
+            {showButtons && (
+                <div className="chat-header-buttons">
+                    <button
+                        className={`button-entregado ${isDelivered ? 'button-disabled' : ''}`}
+                        onClick={handleEntregadoClick}
+                        disabled={isDelivered}
+                    >
+                        {isDelivered ? 'Entregado' : 'Entregar'}
+                    </button>
+                    {!isDelivered && (
+                        <button className="button-reservar" onClick={handleReservarClick}>
+                            {isReserved ? 'Cancelar Reserva' : 'Reservar'}
+                        </button>
+                    )}
+                </div>
+            )}
         </div>
     );
 };

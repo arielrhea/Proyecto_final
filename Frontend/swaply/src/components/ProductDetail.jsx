@@ -17,7 +17,7 @@ const ProductDetail = ({ product }) => {
     const navigate = useNavigate();
     const { userId, isAuthenticated, token } = useAuth();
 
-    const isReserved = product?.ProductoReservado === 1;
+    const isReserved = product?.ProductoReservado == 'Reservado';
     const hasMultipleImages = images.length > 1;
 
     const [notification, setNotification]=useState('');

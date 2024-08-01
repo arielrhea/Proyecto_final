@@ -6,6 +6,7 @@
     padding: 10px;
     border-bottom: 1px solid #ddd;
     background-color: #f4f4f4;
+    gap: 10px; /* Espacio entre los elementos */
 }
 
 .chat-header-product-image {
@@ -14,12 +15,20 @@
     object-fit: cover;
     border-radius: 50%;
     margin-right: 10px;
+    cursor: pointer;
+}
+
+.chat-header-product-info {
+    flex: 1; /* Ocupa el espacio disponible */
+    display: flex;
+    align-items: center; /* Alinea verticalmente el título del producto */
 }
 
 .chat-header-product-title {
     margin: 0;
     font-size: 1.2em;
     color: #333;
+    text-align: left; /* Alinea el texto a la izquierda */
 }
 
 .chat-header-buttons {
@@ -54,4 +63,10 @@
 .button-reservar:hover {
     background-color: #C12D2D;
     color: #fff;
+}
+
+.button-disabled {
+    background-color: #C12D2D;
+    color: #fff;
+    cursor: not-allowed;
 }
