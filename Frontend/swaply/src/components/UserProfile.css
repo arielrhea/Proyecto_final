@@ -18,7 +18,7 @@
 .user-profile-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex start;
     margin-bottom: 20px;
     position: relative;
 }
@@ -33,7 +33,7 @@
 
 .user-profile-header-content {
     text-align: center;
-    flex-grow: 1;
+    
 }
 
 .user-profile-username {
@@ -54,6 +54,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center;
 }
 
 .settings-button {

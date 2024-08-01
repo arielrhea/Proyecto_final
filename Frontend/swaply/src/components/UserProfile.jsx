@@ -42,7 +42,6 @@ const UserProfile = ({ usuario, authenticatedUserId }) => {
                 </div>
             </div>
             <div className="user-profile-info">
-                <p><strong>Correo Electrónico:</strong> {usuario[0].correoelectronico}</p>
                 <p><strong>Regalos Recibidos:</strong> {usuario[0].Regalos}</p>
                 <p><strong>Regalos Ofrecidos:</strong> {usuario[0].Recibidos}</p>
             </div>
