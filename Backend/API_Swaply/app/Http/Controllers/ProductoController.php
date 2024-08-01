@@ -64,6 +64,18 @@ class ProductoController extends Controller
         return response()->json($producto, 201);
     }
 
+    public function reservarProducto($id) {
+
+        $producto = Producto::where('ID', $id)->update(['ProductoReservado' => 'Reservado']);
+
+        if($producto){
+            return response()->json(['Producto reservado correctamente'] , 200);
+        }
+      
+        return response()->json(['Ocurrio un error en la solicitud'], 400);
+
+    }
+
     public function modificacionProducto(Request $request, $id) {
     
         $producto = Producto::find($id);
