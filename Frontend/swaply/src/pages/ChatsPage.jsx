@@ -65,7 +65,7 @@ const ChatPage = () => {
             </div>
             <div className="chat-detail">
             
-                {selectedChatId ? <Chat chatId={selectedChatId} /> : <p>Select a chat to view messages.</p>}
+                {selectedChatId ? <Chat chatId={selectedChatId} /> : <p className='selecciona'>Selecciona un chat para visualizar los mensajes</p>}
             </div>
         </div>
     );

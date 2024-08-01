@@ -9,10 +9,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #333333; /* Fondo semitransparente para mayor contraste */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente para contraste */
     backdrop-filter: blur(8px); /* Desenfoque del fondo */
     z-index: 1000; /* Asegúrate de que esté sobre otros elementos */
-   
 }
 
 .loading-screen {
@@ -20,16 +19,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 80%; /* Ocupa el 100% de la altura del contenedor padre */
-    width: 80%;  /* Ocupa el 100% de la anchura del contenedor padre */
-    background: #333333; /* Fondo blanco para el contenedor del spinner y el texto */
-    border-radius:0px; /* Borde redondeado para un acabado más suave */
+    height: 200px; /* Ajusta la altura según tu diseño */
+    width: 200px;  /* Ajusta la anchura según tu diseño */
+    background: #FFFFFF; /* Fondo blanco para el contenedor del spinner y el texto */
+    border-radius: 10px; /* Borde redondeado para un acabado más suave */
     padding: 20px; /* Espacio interno */
 }
 
 .spinner {
-    border: 16px solid rgba(0, 0, 0, 0.1); /* Fondo del spinner en color gris claro con transparencia */
-    border-top: 16px solid #F5F5DC; /* Color de la parte superior del spinner en gris oscuro */
+    border: 16px solid rgba(0, 0, 0, 0.1); /* Fondo del spinner en gris claro con transparencia */
+    border-top: 16px solid #C12D2D; /* Color de la parte superior del spinner en rojo */
     border-radius: 50%;
     width: 80px;
     height: 80px;
@@ -44,7 +43,7 @@
 
 .loading-screen p {
     font-size: 18px;
-    color: #F5F5DC; /* Color del texto en gris oscuro */
+    color: #C12D2D; /* Color del texto en rojo */
     margin: 0;
     font-weight: 600; /* Hacer el texto un poco más destacado */
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Sombra ligera para resaltar el texto */

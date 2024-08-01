@@ -250,10 +250,10 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0);
     border: none;
-    color: #fff;
-    font-size: 24px;
+    color: #6D6D6C;
+    font-size: 80px;
     cursor: pointer;
     border-radius: 50%;
     padding: 10px;
@@ -263,7 +263,8 @@ body {
 
 .main-image-prev-button:hover,
 .main-image-next-button:hover {
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0);
+    color: #C12D2D;
 }
 
 .main-image-prev-button {
@@ -322,12 +323,12 @@ body {
 .expanded-prev-button,
 .expanded-next-button {
     position: absolute;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0);
     border: none;
     color: #fff;
-    font-size: 24px;
+    font-size: 40px;
     cursor: pointer;
-    border-radius: 50%;
+    
     padding: 10px;
     transition: background 0.3s ease;
 }
@@ -335,7 +336,7 @@ body {
 .expanded-close-button:hover,
 .expanded-prev-button:hover,
 .expanded-next-button:hover {
-    background: rgba(0, 0, 0, 0.9);
+    color: #6D6D6C;
 }
 
 .expanded-close-button {

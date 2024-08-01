@@ -1,107 +1,118 @@
+/* Contenedor principal del header */
 header {
     margin: 0;
     padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #ffffff; /* Background del header */
-    color: white;
-    border-bottom: 2px solid #C12D2D;
+    background-color: #ffffff; /* Fondo del header */
+    color: #000000; /* Color del texto (puedes ajustarlo según tus necesidades) */
+    border-bottom: 2px solid #C12D2D; /* Línea inferior */
     position: fixed;
     top: 0;
     left: 0;
-    width: 98%;
-    background-color: #fff; /* Cambia esto según tu diseño */
-    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Opcional: añade una sombra */
+    width: 98%; /* Asegura que el header ocupe todo el ancho */
+    z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Opcional: sombra */
 }
 
-.swaply {
-    color: red;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
+/* Contenedor para el logo */
 .logoLink {
     display: inline-block;
-    padding: 0; /* Elimina cualquier padding extra */
-    margin: 0;  /* Elimina cualquier margen extra */
-    
-  
 }
 
+/* Estilo del logo */
 .swaplyLogo {
     width: 200px; /* Ajusta el ancho según tus necesidades */
     height: auto; /* Mantén la proporción de la imagen */
     display: block; /* Asegura que la imagen se comporte como un bloque dentro del enlace */
 }
 
-.barra {
-    flex: 1.5; /* Ocupa más espacio que antes */
-    margin: 0 20px; /* Añade un margen a la barra de búsqueda */
-    background-color: rebeccapurple;
+/* Contenedor para la barra de búsqueda */
+.search-container {
+    flex: 1; /* Permite que la barra de búsqueda ocupe el espacio disponible */
+    display: flex;
+    align-items: center; /* Centra verticalmente la barra de búsqueda dentro del contenedor */
+    margin: 0 20px; /* Espaciado entre la barra de búsqueda y otros elementos */
 }
 
-.buttonHeader-inicio {
-    color: rgb(255, 255, 255); /* Color de letra del botón */
-    background-color: #C12D2D; /* Color del background botón */
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 25px; /* Ajustado a 25px */
-    text-decoration: none; /* Quita el subrayado del enlace */
-    display: inline-block; /* Para que el padding y el tamaño funcionen */
-    margin-left: 10px; /* Separación entre botones */
-    text-align: center; /* Centra el texto dentro del enlace */
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-.buttonHeader-register {
-    color: #ffffff; /* Color de letra del botón */
-    background-color: #6D6D6C; /* Color del background botón */
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 25px; /* Ajustado a 25px */
-    text-decoration: none; /* Quita el subrayado del enlace */
-    display: inline-block; /* Para que el padding y el tamaño funcionen */
-    margin-left: 10px; /* Separación entre botones */
-    text-align: center; /* Centra el texto dentro del enlace */
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.buttonAltaProducto {
-    color: white; /* Color de letra del botón */
-    background-color: #C12D2D; /* Color del background botón */
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 25px; /* Ajustado a 25px */
-    text-decoration: none; /* Quita el subrayado del enlace */
-    display: inline-block; /* Para que el padding y el tamaño funcionen */
-    margin-left: 10px; /* Separación entre botones */
-    margin-right: 10px; /* Separación entre botones */
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    text-align: center; /* Centra el texto dentro del enlace */
-}
-.buttonAltaProducto:hover{
-    transform: scale(1.1);
-}
-
-.buttonHeader-inicio:hover {
-    background-color: #963d2e;
-    transform: scale(1.1);
-    
-}
-.buttonHeader-register:hover{
-    background-color: #555554;
-    transform: scale(1.1);
-}
-
+/* Estilo de los botones en el header */
 .botones {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
+/* Estilo de los botones de header */
+.buttonHeader {
+    color: #C12D2D; /* Color del texto del botón */
+    border: 2px solid #C12D2D; /* Color del borde del botón */
+    background-color: #ffffff;
+    font-weight: bold;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 25px; /* Borde redondeado */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    display: inline-block; /* Para que el padding y el tamaño funcionen */
+    margin-left: 10px; /* Separación entre botones */
+    margin-right: 10px; /* Separación entre botones */
+    text-align: center; /* Centra el texto dentro del botón */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Estilo al pasar el ratón sobre los botones de header */
+.buttonHeader:hover {
+    transform: scale(1.1);
+    color: white;
+    background-color: #C12D2D;
+}
+
+/* Estilo de los botones de inicio de sesión y registro */
+.buttonHeader-inicio {
+    color: rgb(255, 255, 255); /* Color de texto del botón */
+    background-color: #C12D2D; /* Color del fondo del botón */
+}
+
+.buttonHeader-register {
+    color: #ffffff; /* Color de texto del botón */
+    background-color: #6D6D6C; /* Color del fondo del botón */
+}
+
+/* Estilo de los botones de inicio de sesión y registro al pasar el ratón */
+.buttonHeader-inicio:hover {
+    background-color: #963d2e;
+    transform: scale(1.1);
+}
+
+.buttonHeader-register:hover {
+    background-color: #555554;
+    transform: scale(1.1);
+}
+
+/* Estilo de los botones de alta de producto */
+.buttonAltaProducto {
+    color: white; /* Color del texto del botón */
+    background-color: #C12D2D; /* Color del fondo del botón */
+    font-weight: bold;
+    border: 2px solid #C12D2D; /* Color del borde del botón */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px; /* Borde redondeado */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    display: inline-block; /* Para que el padding y el tamaño funcionen */
+    margin-left: 10px; /* Separación entre botones */
+    margin-right: 10px; /* Separación entre botones */
+    text-align: center; /* Centra el texto dentro del botón */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Estilo al pasar el ratón sobre el botón de alta de producto */
+.buttonAltaProducto:hover {
+    transform: scale(1.1);
+}
+
+/* Estilo del contenedor de la información del usuario */
 .user-info-header {
     display: flex;
     align-items: center;
@@ -109,35 +120,30 @@ header {
     cursor: pointer;
 }
 
+/* Estilo de la imagen del perfil del usuario */
 .user-profile-image-header {
     border-radius: 50%; /* Imagen circular */
     width: 40px; /* Tamaño de la imagen */
     height: 40px; /* Tamaño de la imagen */
-    margin-right: 10px; /* Separación entre imagen y nombre de usuario */
+    margin-right: 10px; /* Espaciado entre la imagen y el nombre de usuario */
 }
 
+/* Estilo del nombre de usuario */
 .username-header {
     color: #C12D2D;
     margin: 0;
     font-weight: bold;
 }
-.buttonHeader{
-    color: #C12D2D; /* Color de letra del botón */
-    border: 2px solid #C12D2D ;
-    padding: 10px 20px;
-    
-    cursor: pointer;
-    border-radius: 25px; /* Ajustado a 25px */
-    text-decoration: none; /* Quita el subrayado del enlace */
-    display: inline-block; /* Para que el padding y el tamaño funcionen */
-    margin-left: 10px; /* Separación entre botones */
-    margin-right: 10px; /* Separación entre botones */
-    text-align: center; /* Centra el texto dentro del enlace */
-    transition: transform 0.3s ease, background-color 0.3s ease;
 
+/* Estilos responsivos para la barra de búsqueda */
+@media (max-width: 900px) {
+    .search-container {
+        margin: 0 10px; /* Reduce el margen para pantallas medianas */
+    }
 }
-.buttonHeader:hover{
-    transform: scale(1.1);
-    color: white;
-    background-color: #C12D2D;
+
+@media (max-width: 480px) {
+    .search-container {
+        margin: 0 5px; /* Reduce el margen para pantallas pequeñas */
+    }
 }

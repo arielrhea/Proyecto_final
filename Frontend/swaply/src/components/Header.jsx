@@ -66,7 +66,9 @@ const Header = () => {
               <a href="/" className='logoLink'>
                 <img src="/L1_Swaply_Logo_red.png" alt="Swaply Logo" className='swaplyLogo' />
             </a>
-            <SearchBar className="barra" />
+            <div className="search-container">
+                <SearchBar />
+            </div>
             <div className='botones'>
                 {isAuthenticated ? (
                     <>

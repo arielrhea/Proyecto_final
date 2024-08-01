@@ -84,3 +84,9 @@
 .titulo-chats{
     text-align: center;
 }
+
+.selecciona {
+    font-size: 25px;
+    color: black;
+    font-weight: bold;
+}
