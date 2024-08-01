@@ -19,23 +19,29 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #777777; /* Fondo del área de la barra de desplazamiento */
+  background: #fff; /* Fondo del área de la barra de desplazamiento */
   border-radius: 10px; /* Bordes redondeados del área de la barra de desplazamiento */
 }
 
+::-webkit-scrollbar-track:hover {
+  background: #C12D2D; /* Fondo del área de la barra de desplazamiento */
+  border-radius: 10px; /* Bordes redondeados del área de la barra de desplazamiento */
+}
+
+
 ::-webkit-scrollbar-thumb {
-  background: #f5f5d6; /* Color del thumb de la barra de desplazamiento */
+  background: #C12D2D; /* Color del thumb de la barra de desplazamiento */
   border-radius: 10px; /* Bordes redondeados del thumb */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra para darle un efecto de profundidad */
   transition: background 0.3s ease; /* Transición suave para el color del thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #f44336; /* Color del thumb cuando se pasa el mouse sobre él */
+  background: #fff; /* Color del thumb cuando se pasa el mouse sobre él */
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: #d32f2f; /* Color del thumb cuando está activo (clicado) */
+  background: #fff; /* Color del thumb cuando está activo (clicado) */
 }
 
 ::-webkit-scrollbar-corner {
