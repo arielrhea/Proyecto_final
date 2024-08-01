@@ -64,7 +64,7 @@ class Producto extends Model{
         $consulta->orderBy('FechaPublicacion' , 'desc');
       }
 
-      return $consulta->select('ID','Titulo','EstadoProducto', 'Imagenes','ProductoReservado')->get();
+      return $consulta->select('ID','Titulo','EstadoProducto', 'Imagenes','ProductoReservado')->paginate(24);
     }
 
     public static function alta($datos, $imagenes) {
