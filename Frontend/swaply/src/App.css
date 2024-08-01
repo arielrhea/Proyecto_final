@@ -1,6 +1,9 @@
 /* App.css */
 
 /* Estilos globales para la página */
+main{
+  padding-top: 120px;
+}
 body {
   margin: 0;
   padding: 0;

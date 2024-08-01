@@ -84,9 +84,15 @@ const UserProfilePage = () => {
                                                     </>
                                                 )}
                                             </div>
+                                            
+                                            
                                         ))
                                     ) : (
                                         <p className="no-products-message">Este usuario no ha ofrecido productos.</p>
+                                    )}
+                                    {isAuthenticated&&userId==id &&(
+                                <button className='agregar-button' onClick={()=>{navigate('/new-product')}}>Agregar un nuevo producto</button>
+
                                     )}
                                 </div>
                             </div>
@@ -95,6 +101,8 @@ const UserProfilePage = () => {
                         <div>Perfil de usuario no encontrado.</div>
                     )}
                 </div>
+              
+
             </div>
         </div>
     );

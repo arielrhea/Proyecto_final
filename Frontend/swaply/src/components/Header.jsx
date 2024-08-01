@@ -86,8 +86,8 @@ const Header = () => {
                     </>
                 ) : (
                     <>
-                        <a href="/login" className='buttonHeader'>Iniciar Sesión</a>
-                        <a href="/register" className='buttonHeader'>Regístrate</a>
+                        <a href="/login" className='buttonHeader-inicio'>Iniciar Sesión</a>
+                        <a href="/register" className='buttonHeader-register'>Regístrate</a>
                     </>
                 )}
             </div>

@@ -192,7 +192,7 @@ function NavBar() {
                             onMouseLeave={handleMouseLeaveBoton}
                             className="toggle-desplegable"
                         >
-                            {nombreCategoria || '☰ Todas las categorías'}
+                            {nombreCategoria || <strong>☰ Todas las categorías</strong>}
                             {nombreCategoria && (
                                 <span className="deselect-btn" onClick={() => deseleccionarCategoria()}>
                                     ❌
@@ -228,7 +228,7 @@ function NavBar() {
                             onMouseLeave={handleMouseLeaveBotonEstados}
                             className="toggle-desplegable"
                         >
-                            {estadoSeleccionado || '☰ Estado del producto'}
+                            {estadoSeleccionado || <strong>☰ Estado del producto</strong>}
                             {estadoSeleccionado && (
                                 <span className="deselect-btn" onClick={() => deseleccionarEstado()}>
                                     ❌
@@ -265,7 +265,7 @@ function NavBar() {
                             onMouseLeave={handleMouseLeaveBotonUbicaciones}
                             className="toggle-desplegable"
                         >
-                            {ubicacionSeleccionada || '☰ Todas las ubicaciones'}
+                            {ubicacionSeleccionada || <strong>☰ Todas las ubicaciones</strong>}
                             {ubicacionSeleccionada && (
                                 <span className="deselect-btn" onClick={() => deseleccionarUbicacion()}>
                                     ❌
@@ -291,7 +291,7 @@ function NavBar() {
                     </div>
 
                     <button className={`nav-button ${butonActive ? 'nav-button' : 'button-active'}`} onClick={handleClick}>
-                        Agregados Recientemente
+                        <strong>Agregados Recientemente</strong>
                     </button>
                 </div>
             </div>
