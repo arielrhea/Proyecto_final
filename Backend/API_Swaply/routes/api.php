@@ -27,10 +27,10 @@ Route::put('/usuario/{id}', [UsuarioController::class, 'modificacionUsuario'])->
 Route::delete('/usuario/{id}', [UsuarioController::class, 'bajaUsuario'])->middleware(VerificacionToken::class);
 
 //RUTAS DE PRODUCTOS
-Route::get('/inicio', [ProductoController::class, 'index']);
 Route::get('/productos', [ProductoController::class, 'consultaProductos']);
 Route::post('/producto', [ProductoController::class, 'altaProducto'])->middleware(VerificacionToken::class);
 Route::get('/producto/{id}', [ProductoController::class, 'consultaProductos']);
+Route::post('/producto/{id}/reservar', [ProductoController::class, 'reservarProducto']);
 Route::put('/producto/{id}', [ProductoController::class, 'modificacionProducto'])->middleware(VerificacionToken::class);
 Route::delete('/producto/{id}', [ProductoController::class, 'bajaProducto'])->middleware(VerificacionToken::class);
 
