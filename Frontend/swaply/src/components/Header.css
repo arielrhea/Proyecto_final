@@ -10,7 +10,7 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 97%;
+    width: 98%;
     background-color: #fff; /* Cambia esto según tu diseño */
     z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Opcional: añade una sombra */

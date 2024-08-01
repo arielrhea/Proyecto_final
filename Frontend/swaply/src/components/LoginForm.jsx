@@ -69,9 +69,13 @@ const LoginPage = () => {
                         required
                     />
                 </div>
+                <div className='divButtons'>
                 <button type="submit" className='inicio-button'>Iniciar sesión</button>
+              
+                <hr />
                 <p>No tienes cuenta?</p>
                 <button type="button" onClick={handleRegister} className='register-button'>Registrarme</button>
+                </div>
             </form>
         </div>
     );

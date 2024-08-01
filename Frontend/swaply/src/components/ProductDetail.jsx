@@ -170,7 +170,7 @@ const ProductDetail = ({ product }) => {
                         <button className='deleteButton' onClick={handleDeleteProduct}>Eliminar Producto</button>
                     </div>
                 ) : (
-                    <button className='pedirButton' onClick={handleCreateChat}>Pedir Producto</button>
+                    <button className='pedirButton' onClick={handleCreateChat}><strong>Lo quiero!</strong></button>
                 )}
             </div>
             <h1 className="product-detail-title">{product?.Titulo}</h1>

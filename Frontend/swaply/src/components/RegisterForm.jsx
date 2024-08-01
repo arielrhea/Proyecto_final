@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './RegisterForm.css'; // Agrega estilos según sea necesario
+import { useNavigate } from 'react-router-dom';
+import Notification from './Notification';
+
 
 const RegisterPage = () => {
     const [form, setForm] = useState({
@@ -10,10 +13,11 @@ const RegisterPage = () => {
         img: '',
         ubicacion: '', // Cambiado a ubicacion
     });
+    const navigate=useNavigate();
     const [ubicaciones, setUbicaciones] = useState([]);
     const [error, setError] = useState(null);
     const [errors, setErrors] = useState({}); // Para manejar errores de validación
-
+    const [notification, setNotification]=useState('');
     useEffect(() => {
         const fetchUbicaciones = async () => {
             try {
@@ -102,7 +106,15 @@ const RegisterPage = () => {
             });
 
             console.log('Respuesta del servidor:', response.data); // Debugging
-            alert('Registro exitoso');
+            setNotification('Te has registrado con éxito!')
+            setTimeout(() => {
+                setNotification('');
+                navigate('/login');
+            }, 3000);
+           
+          
+            
+
             // Opcional: Redirigir al usuario a la página de inicio de sesión o al perfil
         } catch (error) {
             console.error('Error al registrar:', error.response || error.message); // Debugging
@@ -112,6 +124,7 @@ const RegisterPage = () => {
 
     return (
         <div className="register-page">
+               <Notification message={notification} onClose={() => setNotification('')} />
             
             <form onSubmit={handleSubmit}>
             <h1>Registrarse</h1>
