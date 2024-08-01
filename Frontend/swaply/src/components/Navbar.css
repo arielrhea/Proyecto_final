@@ -13,6 +13,14 @@ body {
     display: flex;
     justify-content: center; /* Centrar el contenedor de botones en la pantalla */
     border-bottom:2px solid #C12D2D ;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff; /* Cambia esto según tu diseño */
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Opcional: añade una sombra */
+    margin-top: 70px; /* Ajusta este valor según la altura del header */
 }
 
 .contenedor {
@@ -27,10 +35,12 @@ body {
     cursor: pointer;
     background: none;
    
-    color: #FFFFFF; /* Color de texto blanco */
+    color: #C12D2D; /* Color de texto blanco */
     padding: 8px 16px; /* Tamaño más pequeño del botón */
-    background-color: #6D6D6C; /* Color secundario */
+    
+    
     border-radius: 20px; /* Bordes redondeados */
+    border: 2px solid #C12D2D;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     text-align: center; /* Centrar el texto */
@@ -49,6 +59,7 @@ body {
      /* Color principal en hover */
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: white;
 }
 
 .nav-buttons {
@@ -78,12 +89,14 @@ body {
 
 /* Color de fondo específico para nav-button y button-active */
 .nav-button {
-    background-color: #6D6D6C; /* Color secundario */
-    color: #FFFFFF; /* Color de texto blanco */
+    border: 2px solid #C12D2D; 
+    color: #C12D2D; /* Color de texto blanco */
+    background-color: #FFFFFF;
 
 }
 .nav-button:hover{
     background-color: #C12D2D;
+    color: #FFFFFF;
 }
 
 .button-active {

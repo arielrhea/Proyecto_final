@@ -21,7 +21,7 @@ const SearchBar = () => {
         <form>
             <input className='searchBar'
                 type="text"
-                placeholder="Buscar..."
+                placeholder="   Buscar..."
                 value={busqueda}
                 onKeyDown={disablEnter}
                 onChange={handleBusquedaChange}

@@ -102,3 +102,26 @@
 .buttonEliminar:hover{
     background-color: #9d2525
 }
+
+.agregar-button {
+    display: inline-block;
+   border: 2px solid #C12D2D;
+    color: #C12D2D; /* Color secundario (blanco) */
+    padding: 12px 24px;
+    
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+.agregar-button:hover {
+    color: white;
+    background-color: #C12D2D;
+}

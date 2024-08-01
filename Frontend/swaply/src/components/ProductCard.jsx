@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
     };
 
     // Verificar si ProductoReservado es 1
-    const isReserved = ProductoReservado === 1;
+    const isReserved = ProductoReservado == 'Reservado';
 
     // Función para manejar el clic en la tarjeta
     const handleClick = () => {

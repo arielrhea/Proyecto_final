@@ -7,6 +7,13 @@ header {
     background-color: #ffffff; /* Background del header */
     color: white;
     border-bottom: 2px solid #C12D2D;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 98%;
+    background-color: #fff; /* Cambia esto según tu diseño */
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Opcional: añade una sombra */
 }
 
 .swaply {
@@ -34,9 +41,9 @@ header {
     background-color: rebeccapurple;
 }
 
-.buttonHeader {
+.buttonHeader-inicio {
     color: rgb(255, 255, 255); /* Color de letra del botón */
-    background-color: #555; /* Color del background botón */
+    background-color: #C12D2D; /* Color del background botón */
     padding: 10px 20px;
     border: none;
     cursor: pointer;
@@ -45,6 +52,20 @@ header {
     display: inline-block; /* Para que el padding y el tamaño funcionen */
     margin-left: 10px; /* Separación entre botones */
     text-align: center; /* Centra el texto dentro del enlace */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.buttonHeader-register {
+    color: #ffffff; /* Color de letra del botón */
+    background-color: #6D6D6C; /* Color del background botón */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 25px; /* Ajustado a 25px */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    display: inline-block; /* Para que el padding y el tamaño funcionen */
+    margin-left: 10px; /* Separación entre botones */
+    text-align: center; /* Centra el texto dentro del enlace */
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .buttonAltaProducto {
@@ -58,11 +79,21 @@ header {
     display: inline-block; /* Para que el padding y el tamaño funcionen */
     margin-left: 10px; /* Separación entre botones */
     margin-right: 10px; /* Separación entre botones */
+    transition: transform 0.3s ease, background-color 0.3s ease;
     text-align: center; /* Centra el texto dentro del enlace */
 }
+.buttonAltaProducto:hover{
+    transform: scale(1.1);
+}
 
-.buttonHeader:hover {
-    background-color: #777;
+.buttonHeader-inicio:hover {
+    background-color: #963d2e;
+    transform: scale(1.1);
+    
+}
+.buttonHeader-register:hover{
+    background-color: #555554;
+    transform: scale(1.1);
 }
 
 .botones {
@@ -89,4 +120,24 @@ header {
     color: #C12D2D;
     margin: 0;
     font-weight: bold;
+}
+.buttonHeader{
+    color: #C12D2D; /* Color de letra del botón */
+    border: 2px solid #C12D2D ;
+    padding: 10px 20px;
+    
+    cursor: pointer;
+    border-radius: 25px; /* Ajustado a 25px */
+    text-decoration: none; /* Quita el subrayado del enlace */
+    display: inline-block; /* Para que el padding y el tamaño funcionen */
+    margin-left: 10px; /* Separación entre botones */
+    margin-right: 10px; /* Separación entre botones */
+    text-align: center; /* Centra el texto dentro del enlace */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+
+}
+.buttonHeader:hover{
+    transform: scale(1.1);
+    color: white;
+    background-color: #C12D2D;
 }

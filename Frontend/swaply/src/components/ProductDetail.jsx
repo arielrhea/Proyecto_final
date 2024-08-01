@@ -17,7 +17,7 @@ const ProductDetail = ({ product }) => {
     const navigate = useNavigate();
     const { userId, isAuthenticated, token } = useAuth();
 
-    const isReserved = product?.ProductoReservado === 1;
+    const isReserved = product?.ProductoReservado == 'Reservado';
     const hasMultipleImages = images.length > 1;
 
     const [notification, setNotification]=useState('');
@@ -170,7 +170,7 @@ const ProductDetail = ({ product }) => {
                         <button className='deleteButton' onClick={handleDeleteProduct}>Eliminar Producto</button>
                     </div>
                 ) : (
-                    <button className='pedirButton' onClick={handleCreateChat}>Pedir Producto</button>
+                    <button className='pedirButton' onClick={handleCreateChat}><strong>Lo quiero!</strong></button>
                 )}
             </div>
             <h1 className="product-detail-title">{product?.Titulo}</h1>

@@ -1,19 +1,20 @@
 .notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #333;
-    color: #fff;
-    border: 1px solid #555;
-    padding: 15px 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    font-family: 'Arial', sans-serif;
-    z-index: 1000;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    opacity: 0;
-    transform: translateY(-20px);
-  }
+  position: fixed;
+  bottom: 20px; /* Cambiado de top a bottom */
+  right: 20px;
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-family: 'Arial', sans-serif;
+  z-index: 1000;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 0;
+  transform: translateY(20px); /* Cambiado de -20px a 20px para que la animación salga de abajo hacia arriba */
+}
+
   
   .notification.show {
     opacity: 1;
