@@ -53,6 +53,7 @@
 .button-reservar {
     background-color: #fff;
     color: #C12D2D;
+    border: 2px solid #C12D2D ;
 }
 
 .button-entregado:hover {
