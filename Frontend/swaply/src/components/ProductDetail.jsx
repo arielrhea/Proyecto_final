@@ -155,14 +155,19 @@ const ProductDetail = ({ product }) => {
     // Función para crear un chat y navegar a la página de chats
     const handleCreateChat = async () => {
         try {
-            const response = await axios.post('http://localhost:8000/api/chats', {
-                'solicitante': userId,
-                'producto': product.ID
-            });
-            const newChatId = response.data.ID;
-            console.log('New Chat ID:', newChatId); // Agregar esta línea
+            if (!isAuthenticated) {
+                navigate('/login')
+            } else {
+                const response = await axios.post('http://localhost:8000/api/chats', {
+                    'solicitante': userId,
+                    'producto': product.ID
+                });
+                const newChatId = response.data.ID;
+                console.log('New Chat ID:', newChatId); // Agregar esta línea
+                
+                navigate('/chats', { state: { chatId: newChatId } });
+            }
             
-            navigate('/chats', { state: { chatId: newChatId } });
         } catch (error) {
             console.error('Error al crear el chat:', error);
             {
