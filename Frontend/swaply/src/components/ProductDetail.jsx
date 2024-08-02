@@ -19,6 +19,7 @@ const ProductDetail = ({ product }) => {
     const navigate = useNavigate();
     const { userId, isAuthenticated, token } = useAuth();
 
+  
     const isReserved = product?.ProductoReservado == 'Reservado';
     const hasMultipleImages = images.length > 1;
 
@@ -129,9 +130,10 @@ const ProductDetail = ({ product }) => {
     };
 
     const confirmDeleteProduct = async () => {
+        console.log(token)
         try {
             await axios.delete(`http://localhost:8000/api/producto/${product.ID}`, {
-                headers: { token }
+                headers: { 'token': localStorage.getItem('token') }
             });
             setNotification(`${product.Titulo} se ha eliminado con éxito`);
             setTimeout(() => {
