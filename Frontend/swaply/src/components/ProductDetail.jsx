@@ -149,11 +149,16 @@ const ProductDetail = ({ product }) => {
             });
             const newChatId = response.data.ID;
             console.log('New Chat ID:', newChatId); // Agregar esta línea
-            alert('Chat creado con éxito.');
+            
             navigate('/chats', { state: { chatId: newChatId } });
         } catch (error) {
             console.error('Error al crear el chat:', error);
-            alert('Error al crear el chat.');
+            {
+                setNotification('Ha habido un problema al crear el chat. Pruebe más tarde.')
+                setTimeout(() => {
+                 setNotification('')
+                }, 5000);
+            }
         }
     };
 
