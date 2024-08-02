@@ -9,7 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente para contraste */
+    background: #FFFFFF; /* Fondo blanco para el contenedor del spinner y el texto */
     backdrop-filter: blur(8px); /* Desenfoque del fondo */
     z-index:900; /* Asegúrate de que esté sobre otros elementos */
 }

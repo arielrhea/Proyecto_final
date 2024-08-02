@@ -4,6 +4,7 @@ import axios from 'axios';
 import './ProductDetail.css';
 import { useAuth } from '../context/AuthContext';
 import Notification from './Notification';
+import ConfirmationModal from './ConfirmationModal';
 
 const BASE_PRODUCT_IMAGE_URL = 'http://localhost:8000/assets/img/productos/';
 const BASE_USER_IMAGE_URL = 'http://localhost:8000/assets/img/usuarios/';
@@ -14,13 +15,14 @@ const ProductDetail = ({ product }) => {
     const [isHoveringImage, setIsHoveringImage] = useState(false);
     const [formattedDate, setFormattedDate] = useState('');
     const [images, setImages] = useState([]);
+    const [showConfirmation, setShowConfirmation] = useState(false);
     const navigate = useNavigate();
     const { userId, isAuthenticated, token } = useAuth();
 
     const isReserved = product?.ProductoReservado == 'Reservado';
     const hasMultipleImages = images.length > 1;
 
-    const [notification, setNotification]=useState('');
+    const [notification, setNotification] = useState('');
     useEffect(() => {
         if (product?.Imagenes) {
             try {
@@ -123,21 +125,29 @@ const ProductDetail = ({ product }) => {
 
     // Función para eliminar un producto
     const handleDeleteProduct = async () => {
+        setShowConfirmation(true);
+    };
+
+    const confirmDeleteProduct = async () => {
         try {
             await axios.delete(`http://localhost:8000/api/producto/${product.ID}`, {
                 headers: { token }
             });
-           setNotification(`${product.Titulo} se ha eliminado con éxito`)
-           setTimeout(() => {
-            setNotification('')
-            navigate(`/profile/${userId}`)
-           }, 2500);
-        } catch (error) {
-            setNotification('Ha habido un problema al eliminar el producto')
+            setNotification(`${product.Titulo} se ha eliminado con éxito`);
             setTimeout(() => {
-             setNotification('')
+                setNotification('');
+                navigate(`/profile/${userId}`);
+            }, 2500);
+        } catch (error) {
+            setNotification('Ha habido un problema al eliminar el producto');
+            setTimeout(() => {
+                setNotification('');
             }, 5000);
         }
+    };
+
+    const cancelDeleteProduct = () => {
+        setShowConfirmation(false);
     };
 
     // Función para crear un chat y navegar a la página de chats
@@ -164,9 +174,16 @@ const ProductDetail = ({ product }) => {
 
     return (
         <div className="product-detail-wrapper">
-               <Notification message={notification} onClose={() => setNotification('')} />
+            <Notification message={notification} onClose={() => setNotification('')} />
 
-            
+            {showConfirmation && (
+                <ConfirmationModal
+                    message="¿Está seguro de que quiere eliminar este regalo?"
+                    onConfirm={confirmDeleteProduct}
+                    onCancel={cancelDeleteProduct}
+                />
+            )}
+
             <div className='buttonsFlex'>
                 <button className='returnButton' onClick={handleReturn}>Volver atrás</button>
                 {isAuthenticated && isOwner(product) ? (
@@ -267,7 +284,7 @@ const ProductDetail = ({ product }) => {
                     onClick={handleProfileClick}
                 >
                     <img
-                        src={product?.usuario?.FotoPerfil=='sinportada.jpg' ? "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg" : `${BASE_USER_IMAGE_URL}${product.usuario.FotoPerfil}` }
+                        src={product?.usuario?.FotoPerfil == 'sinportada.jpg' ? "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg" : `${BASE_USER_IMAGE_URL}${product.usuario.FotoPerfil}`}
                         alt={product?.usuario?.NombreUsuario || 'Usuario'}
                         className="product-detail-user-profile-image"
                     />
