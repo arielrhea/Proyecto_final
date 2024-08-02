@@ -47,7 +47,6 @@ const ChatHeader = ({ chatId }) => {
             })
             .then(response => {
                 setIsDelivered(true);
-                console.log('Producto entregado:', response.data);
             })
             .catch(error => {
                 console.error('Error entregando el producto:', error);
@@ -64,7 +63,6 @@ const ChatHeader = ({ chatId }) => {
         axios.post(endpoint)
             .then(response => {
                 setIsReserved(!isReserved);
-                console.log(isReserved ? 'Reserva cancelada' : 'Producto reservado:', response.data);
             })
             .catch(error => {
                 console.error(isReserved ? 'Error cancelando la reserva' : 'Error reservando el producto:', error);
