@@ -39,7 +39,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/profile/:id" element={<UserProfilePage />} />
               <Route path="/product/:id" element={<ProductDetailPage />} />
-              <Route path="/new-product" element={<ProductFormPage />} />
+              <Route path="/new-product" element={<PrivateRoute component={ProductFormPage}/>} />
               <Route path="/quienes-somos" element={<AboutUs />} />
               <Route path="/como-funciona" element={<HowItWorks />} />
               <Route path="/register" element={<RegisterForm />} />
@@ -49,8 +49,8 @@ function App() {
               <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
               <Route path="/account-settings" element={<PrivateRoute component={AccountSettingsPage} />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/mto/:id" element={<MtoProductsPage />} />
-              <Route path="/chats" element={<ChatPage />} />
+              <Route path="/mto/:id" element={<PrivateRoute component={MtoProductsPage} />} />
+              <Route path="/chats" element={<PrivateRoute component={ChatPage}/>} />
               <Route path="*" element={<ErrorMessage message="404: Página no encontrada" />} />
             </Routes>
 

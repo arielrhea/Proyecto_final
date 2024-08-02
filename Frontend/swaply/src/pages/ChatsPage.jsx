@@ -63,7 +63,7 @@ const ChatPage = () => {
                                             handleProfileClick(profileUserId);
                                         }}
                                     />
-                                    {chat.usuario1.ID === userId ? chat.usuario2.NombreUsuario : chat.usuario1.NombreUsuario}
+                                    {chat.usuario1.ID == userId ? chat.usuario2.NombreUsuario : chat.usuario1.NombreUsuario}
                                 </span>
                                 <span className='producto-info'>{chat.producto.Titulo}</span>
                                 <span className='last-message'>{chat.lastMessage}</span>

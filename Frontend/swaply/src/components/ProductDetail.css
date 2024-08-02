@@ -421,7 +421,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
+    
     align-items: center;
     gap: 15px;
     transition: background 0.3s ease;
@@ -452,25 +452,29 @@ body {
 
 .product-detail-user-details {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    align-items: center;
+    
+   
 }
 
 .product-detail-user-name {
     font-size: 20px;
     font-weight: bold;
     color: #333;
+    padding: 10px;
 }
 
 .product-detail-user-city {
     font-size: 16px;
     color: #777;
+    padding: 10px;
+
 }
 
 .product-additional-info {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    padding: 10px;
 }
 
 .product-additional-info > p {
