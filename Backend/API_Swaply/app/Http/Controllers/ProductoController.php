@@ -72,14 +72,16 @@ class ProductoController extends Controller
         if($producto){
             if($producto->ProductoReservado  == 'Reservado'){
                 $producto->ProductoReservado = 'Disponible';
+                $estado = 'Disponible';
             }
             else if($producto->ProductoReservado   == 'Disponible'){
                 $producto->ProductoReservado = 'Reservado';
+                $estado = 'Reservado';
             }
 
             $producto->save();
 
-            return response()->json([] , 200);
+            return response()->json([$estado] , 200);
         }
       
         return response()->json(['Producto no existente'], 400);
