@@ -56,7 +56,7 @@ class ChatController extends Controller{
             $query->where('usuario1_id', $usuario2)
                   ->where('usuario2_id', $usuario1)
                   ->where('ProductoID', $producto);
-        })->with('producto:ID,Titulo,Imagenes')->first();
+        })->with('producto:ID,Titulo,Imagenes,ProductoReservado')->first();
         
         if (!$chat) {
             $chat = Chat::create([
@@ -64,7 +64,7 @@ class ChatController extends Controller{
                 'usuario2_id' => $usuario2,
                 'ProductoID' => $producto,
             ]);
-            $chat->load('producto:ID,Titulo,Imagenes');
+            $chat->load('producto:ID,Titulo,Imagenes,ProductoReservado');
         }
 
         return response()->json($chat, 200);
