@@ -108,10 +108,13 @@ const Presentacion = () => {
                 {currentSection === 'herramientas' && (
                     <div className="presentacion-text">
                         <h2 className="section-title">Herramientas Técnicas</h2>
-                        <p className="section-description">
-                            Utilizamos metodologías ágiles y trello para desarrollar el proyecto de manera eficiente y colaborativa.
-                            En cuanto a las tecnologias utilizamos Figma para el prototipo, React para el Frontend, Laravel para el backend, SQL para la base de datos y HTML/CSS para la estructura y los estilos.
-                        </p>
+                        <div className="tools-container">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp1qb4_f1sKSsZOYyCaqbY3ST6D-Pdi66wMA&s" alt="Trello" className="tool-image" />
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/free-react-1-282599.png" alt="React" className="tool-image" />
+                            <img src="https://miro.medium.com/v2/resize:fit:1400/1*CmBkKFujQyxwdvSkSKzUrg.png" alt="Miro" className="tool-image" />
+                            <img src="https://static.vecteezy.com/system/resources/previews/011/260/238/non_2x/html5-css3-js-icon-set-web-development-logo-icon-set-of-html-css-and-javascript-programming-symbol-free-vector.jpg" alt="CSS" className="tool-image" />
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZYFi82dCf8BjsFqYeB6LC86rbrpWE9s9OZA&s" alt="GitHub" className="tool-image" />
+                        </div>
                         <button className="section-button" onClick={() => handleSectionChange('ods')}>
                             Volver
                         </button>

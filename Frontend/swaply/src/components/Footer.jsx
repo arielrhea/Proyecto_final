@@ -32,8 +32,8 @@ const Footer = () => {
                 <div className="footer-section">
                     <h4>Información Legal</h4>
                     <ul>
-                        <li><Link to="/terminos">Términos y Condiciones</Link></li>
-                        <li><Link to="/privacidad">Política de Privacidad</Link></li>
+                        <li><Link to="/terminos-condiciones">Términos y Condiciones</Link></li>
+                        <li><Link to="/politica-privacidad">Política de Privacidad</Link></li>
                     </ul>
                 </div>
             </div>

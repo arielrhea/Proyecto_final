@@ -122,3 +122,25 @@
     max-width: 100%; /* Asegura que no se desborde */
     margin-top: 20px; /* Espacio superior */
 }
+
+/* src/components/Presentacion.css */
+
+.tools-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.tool-image {
+    width: 150px; /* Ajusta el tamaño de las imágenes */
+    height: 250px; /* Mantiene la proporción de las imágenes */
+    object-fit: contain;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.tool-image:hover {
+    transform: scale(1.1); /* Efecto de aumento al pasar el ratón */
+}
