@@ -290,7 +290,10 @@ function NavBar() {
                         </ul>
                     </div>
 
-                    <button className={`nav-button ${butonActive ? 'nav-button' : 'button-active'}`} onClick={handleClick}>
+                    <button className={`nav-button ${butonActive ? 'nav-button' : 'button-active'}`} onClick={()=>{
+                        handleClick()
+                        navigate('/')
+                    }}>
                         <strong>Agregados Recientemente</strong>
                     </button>
                 </div>

@@ -47,8 +47,9 @@ const UserProfilePage = () => {
     const confirmDeleteProduct = async () => {
         if (!productToDelete) return;
         try {
+            console.log()
             await axios.delete(`http://localhost:8000/api/producto/${productToDelete.ID}`, {
-                headers: { token } // Incluye el token en el encabezado
+                headers: {" token":localStorage.getItem('token') } // Incluye el token en el encabezado
             });
             // Filtrar el producto eliminado del estado
             setNotification(`${productToDelete.Titulo} se ha eliminado correctamente`);

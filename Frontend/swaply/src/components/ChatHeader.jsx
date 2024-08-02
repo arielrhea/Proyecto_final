@@ -19,7 +19,7 @@ const ChatHeader = ({ chatId }) => {
             .then(response => {
                 const chat = response.data.find(chat => chat.ID === chatId);
                 setChatData(chat || null);
-                if (chat?.producto?.Reservado) {
+                if (chat?.producto?.ProductoReservado === 'Reservado') {
                     setIsReserved(true);
                 }
                 if (chat?.producto?.Entregado) {
