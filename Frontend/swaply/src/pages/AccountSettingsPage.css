@@ -1,7 +1,7 @@
 /* AccountSettingsPage.css */
 
 .account {
-    height: 80vh;
+    height: 100vh;
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
@@ -17,7 +17,7 @@
     max-width: 600px;
     width: 100%; /* Asegura que el contenedor use todo el ancho disponible */
     margin: 0 auto;
-   height: 60vh;
+   height: 80vh;
 }
 
 .account-settings-page h1 {

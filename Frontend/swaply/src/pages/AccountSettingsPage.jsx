@@ -14,14 +14,14 @@ const AccountSettingsPage = () => {
         correoelectronico: '',
         password: '',
         ubicacionID: '', // Agregado para la ubicación
+        img: null, // Agregado para la imagen
     });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [ubicaciones, setUbicaciones] = useState([]); // Agregado para las ubicaciones
-    const [notificacion, setNotificacion]=useState('');
+    const [notificacion, setNotificacion] = useState('');
 
     useEffect(() => {
-
         const fetchData = async () => {
             try {
                 // Recuperar datos del usuario
@@ -33,6 +33,7 @@ const AccountSettingsPage = () => {
                     correoelectronico: userData.correoelectronico || '',
                     password: '', // Inicializa la contraseña como vacía
                     ubicacionID: userData.UbicacionID || '', // Establece la ubicación
+                    img: null, // Inicializa la imagen como null
                 });
 
                 // Recuperar ubicaciones
@@ -60,25 +61,41 @@ const AccountSettingsPage = () => {
         });
     };
 
+    const handleFileChange = (e) => {
+        setFormData({
+            ...formData,
+            img: e.target.files[0]
+        });
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        setNotificacion('Esperando respuesta del servidor')
+        setNotificacion('Esperando respuesta del servidor');
+
+        const data = new FormData();
+        data.append('NombreUsuario', formData.NombreUsuario);
+        data.append('correoelectronico', formData.correoelectronico);
+        data.append('password', formData.password);
+        data.append('ubicacionID', formData.ubicacionID);
+        if (formData.img) {
+            data.append('img', formData.img);
+        }
+
         // Enviar datos del formulario
-        axios.post(`http://localhost:8000/api/usuario/${userId}`, formData, {
-          
-            headers: { 'Content-Type': 'application/json',
+        axios.post(`http://localhost:8000/api/usuario/${userId}`, data, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
                 'token': localStorage.getItem('token')
             },
             params: { _method: 'PUT' }
         })
             .then(response => {
-                setNotificacion('Datos actualizados con éxito!')
+                setNotificacion('Datos actualizados con éxito!');
                 setTimeout(() => {
-                localStorage.setItem('username', formData.NombreUsuario);
-                navigate(`/profile/${localStorage.getItem('userId')}`);
-                setNotificacion('')
+                    localStorage.setItem('username', formData.NombreUsuario);
+                    navigate(`/profile/${localStorage.getItem('userId')}`);
+                    setNotificacion('');
                 }, 3000);
-               
             })
             .catch(error => {
                 console.error('Error al actualizar los datos:', error);
@@ -87,9 +104,8 @@ const AccountSettingsPage = () => {
     };
 
     return (
-        
         <div className='account'>
-               <Notification message={notificacion} onClose={() => setNotificacion('')} />
+            <Notification message={notificacion} onClose={() => setNotificacion('')} />
             <div className="account-settings-page">
                 {loading && <LoadingScreen />}
                 {error && <div className="error-message">Error al cargar los datos.</div>}
@@ -146,6 +162,15 @@ const AccountSettingsPage = () => {
                                     ))}
                                 </select>
                             </div>
+                            <div className="form-group">
+                                <label htmlFor="img">Foto de Perfil</label>
+                                <input
+                                    type="file"
+                                    id="img"
+                                    name="img"
+                                    onChange={handleFileChange}
+                                />
+                            </div>
                             <button type="submit" className="submit-button">Guardar Cambios</button>
                         </form>
                     </>
@@ -156,3 +181,4 @@ const AccountSettingsPage = () => {
 };
 
 export default AccountSettingsPage;
+
