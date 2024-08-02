@@ -106,7 +106,7 @@ class UsuarioController extends Controller{
         if($imagen){
             $nombreImagen = $imagen->getClientOriginalName();
 
-            if ($usuario->FotoPerfil != $nombreImagen) {
+            if ($usuario->FotoPerfil != "sinportada.jpg") {
                 Storage::disk('local')->delete('usuarios/' . $usuario->FotoPerfil);
             }
     
