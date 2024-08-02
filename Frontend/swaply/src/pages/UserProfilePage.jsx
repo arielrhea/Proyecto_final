@@ -88,10 +88,10 @@ const UserProfilePage = () => {
                                             
                                         ))
                                     ) : (
-                                        <p className="no-products-message">Este usuario no ha ofrecido productos.</p>
+                                        <p className="no-products-message">¡Aún no se han ofrecido regalos!</p>
                                     )}
                                     {isAuthenticated&&userId==id &&(
-                                <button className='agregar-button' onClick={()=>{navigate('/new-product')}}>Agregar un nuevo producto</button>
+                                <button className='agregar-button' onClick={()=>{navigate('/new-product')}}>Agregar un nuevo regalo</button>
 
                                     )}
                                 </div>
