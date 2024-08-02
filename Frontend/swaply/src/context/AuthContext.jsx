@@ -25,7 +25,6 @@ export const AuthProvider = ({ children }) => {
 
             if (response.data.Token) {
                 const { ID, username, img } = response.data.usuario;
-                console.log('Authenticated user:', { ID, username, img }); // Verificar datos autenticados
                 setUserId(ID);
                 setUsername(username);
                 setImg(img);
@@ -35,7 +34,6 @@ export const AuthProvider = ({ children }) => {
                 localStorage.setItem('userId', ID);
                 localStorage.setItem('username', username);
                 localStorage.setItem('img', img);
-                console.log(userId)
             }
         } catch (error) {
             console.error('Error de autenticación:', error);

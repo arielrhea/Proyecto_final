@@ -130,12 +130,10 @@ const MtoProductsForm = () => {
       params: { _method: 'PUT' }
     })
     .then(response => {
-      console.log('Producto actualizado:', response.data);
       setNotification('El producto se ha modificado con éxito');
       setTimeout(() => {
         navigate(`/profile/${userId}`)
       }, 3000);
-      console.log('Notificacion: '+notification)
       
     })
     .catch(error => {

@@ -21,13 +21,11 @@ const AccountSettingsPage = () => {
     const [notificacion, setNotificacion]=useState('');
 
     useEffect(() => {
-        console.log('userId:', userId); // Verificar si userId está disponible
 
         const fetchData = async () => {
             try {
                 // Recuperar datos del usuario
                 const userResponse = await axios.get(`http://localhost:8000/api/usuario/${userId}`);
-                console.log('API response:', userResponse.data); // Verificar la respuesta de la API
                 const userData = userResponse.data[0][0]; // Asumir que los datos del usuario están en la primera posición del array anidado
 
                 setFormData({
@@ -39,7 +37,6 @@ const AccountSettingsPage = () => {
 
                 // Recuperar ubicaciones
                 const ubicacionesResponse = await axios.get('http://localhost:8000/api/ubicaciones');
-                console.log('Ubicaciones response:', ubicacionesResponse.data);
                 setUbicaciones(ubicacionesResponse.data); // Asume que las ubicaciones están directamente en la respuesta
 
                 setLoading(false);
@@ -76,7 +73,6 @@ const AccountSettingsPage = () => {
         })
             .then(response => {
                 setNotificacion('Datos actualizados con éxito!')
-                console.log(formData)
                 setTimeout(() => {
                 localStorage.setItem('username', formData.NombreUsuario);
                 navigate(`/profile/${localStorage.getItem('userId')}`);

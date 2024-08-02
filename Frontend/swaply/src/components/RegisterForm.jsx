@@ -23,7 +23,6 @@ const RegisterPage = () => {
             try {
                 const response = await axios.get('http://localhost:8000/api/ubicaciones');
                 setUbicaciones(response.data);
-                console.log('Ubicaciones cargadas:', response.data); // Debugging
             } catch (error) {
                 console.error('Error al cargar ubicaciones:', error);
                 setError('Error al cargar ubicaciones.');
@@ -105,7 +104,6 @@ const RegisterPage = () => {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
 
-            console.log('Respuesta del servidor:', response.data); // Debugging
             setNotification('Te has registrado con éxito!')
             setTimeout(() => {
                 setNotification('');

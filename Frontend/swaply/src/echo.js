@@ -12,6 +12,5 @@ const echo = new Echo({
     // Puedes añadir más opciones si es necesario
 });
 
-console.log('Echo configurado:', echo);
 
 export default echo;

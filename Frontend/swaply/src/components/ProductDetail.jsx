@@ -163,7 +163,6 @@ const ProductDetail = ({ product }) => {
                     'producto': product.ID
                 });
                 const newChatId = response.data.ID;
-                console.log('New Chat ID:', newChatId); // Agregar esta línea
                 
                 navigate('/chats', { state: { chatId: newChatId } });
             }
@@ -291,7 +290,7 @@ const ProductDetail = ({ product }) => {
                     onClick={handleProfileClick}
                 >
                     <img
-                        src={product?.usuario?.FotoPerfil == 'sinportada.jpg' ? "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg" : `${BASE_USER_IMAGE_URL}${product.usuario.FotoPerfil}`}
+                        src={`${BASE_USER_IMAGE_URL}${product.usuario.FotoPerfil}`}
                         alt={product?.usuario?.NombreUsuario || 'Usuario'}
                         className="product-detail-user-profile-image"
                     />

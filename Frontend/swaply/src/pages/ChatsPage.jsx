@@ -25,7 +25,6 @@ const ChatPage = () => {
                     });
                     setChats(updatedChats);
                     const chatId = location.state?.chatId;
-                    console.log('Chat ID:', chatId);
                     if (chatId) {
                         setSelectedChatId(chatId);
                     }

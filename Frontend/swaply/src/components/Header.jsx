@@ -25,9 +25,7 @@ const Header = () => {
                     const response = await axios.get(`http://localhost:8000/api/usuario/${userId}`);
                     const user = response.data[0][0]; // Extrae el primer elemento del array
 
-                    const profileImage = user.FotoPerfil == 'sinportada.jpg'
-                        ? 'https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg' // Cambia esta URL por la URL real de la imagen sinportada
-                        : `${BASE_USER_IMAGE_URL}${user.FotoPerfil}`;
+                    const profileImage = `${BASE_USER_IMAGE_URL}${user.FotoPerfil}`;
 
                     setUserData({
                         username: user.NombreUsuario || '', // No tiene valor predeterminado

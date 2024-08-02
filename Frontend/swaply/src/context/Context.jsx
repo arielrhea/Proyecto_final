@@ -24,7 +24,6 @@ export const ContextoProvider = ({ children }) => {
 
     const handleNombreUbicacion=(ubi)=>{
         setUbicacion(ubi);
-        console.log('hello');
     }
 
     const handleNombreEstado=(nombre)=>{

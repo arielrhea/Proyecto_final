@@ -37,7 +37,6 @@ const ProductFormPage = () => {
             },
         })
         .then(response => {
-            console.log(response);
             setNotification('Alta de producto exitosa');
             setTimeout(() => {
                 setNotification('');

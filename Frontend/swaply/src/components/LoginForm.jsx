@@ -25,7 +25,6 @@ const LoginPage = () => {
             .then(() => {
 
                setNotification(`Bienvenido de nuevo ${localStorage.getItem('username')}!`)
-               console.log(localStorage.getItem('username'))
                 setTimeout(() => {
                     setNotification('');
                     navigate('/');

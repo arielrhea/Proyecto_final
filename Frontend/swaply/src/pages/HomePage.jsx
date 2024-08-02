@@ -17,9 +17,6 @@ const HomePage = () => {
     useEffect(() => {
         setLoading(true); // Mostrar loading antes de la solicitud
       
-        // Mostrar en consola los valores actuales de los filtros
-        console.log(`ID Categoría: ${idCategoria}, Busqueda: ${busqueda}, Estado: ${nombreEstado}, recientes: ${recientes}, Ubicación: ${ubicacion}`);
-
         // Construir la URL de la solicitud con el parámetro de página
         const fetchUrl = `http://localhost:8000/api/productos?busqueda=${busqueda}&categoria=${idCategoria}&estado=${nombreEstado}&recientes=${recientes}&ubicacion=${ubicacion}&page=${currentPage}`;
 
