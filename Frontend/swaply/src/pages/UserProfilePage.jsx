@@ -69,7 +69,7 @@ const UserProfilePage = () => {
                         <>
                             <UserProfile usuario={usuario} authenticatedUserId={userId} />
                             <div className="user-products-section">
-                                <h2 className='tituloproductos'>Productos Ofrecidos</h2>
+                                <h2 className='tituloproductos'>Regalos ofrecidos</h2>
                                 <div className="product-card-container">
                                     {productos.length > 0 ? (
                                         productos.map(producto => (
