@@ -1,0 +1,124 @@
+/* src/components/Presentacion.css */
+
+.presentacion-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 60px); /* Ajusta la altura según la altura del header */
+    background-color: #ffffff;
+    color: #6D6D6C;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.presentacion-content {
+    background: #ffffff;
+    padding: 60px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+}
+
+.presentacion-text {
+    position: relative;
+}
+
+.presentacion-title {
+    font-size: 5rem; /* Muy grande para visibilidad desde lejos */
+    margin-bottom: 30px;
+    color: #C12D2D;
+}
+
+.presentacion-description {
+    font-size: 2.5rem; /* Muy grande para visibilidad desde lejos */
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 4rem; /* Muy grande para visibilidad desde lejos */
+    margin-top: 40px;
+    color: #C12D2D;
+}
+
+.section-description {
+    font-size: 2rem; /* Muy grande para visibilidad desde lejos */
+    margin-bottom: 30px;
+}
+
+.ods-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.ods-image {
+    width: 300px; /* Aumentado para mayor visibilidad */
+    height: 300px; /* Aumentado para mayor visibilidad */
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.presentacion-button {
+    font-size: 2.5rem; /* Muy grande para visibilidad desde lejos */
+    padding: 15px 30px;
+    background-color: #C12D2D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.presentacion-button:hover {
+    background-color: #A12B2B;
+    transform: scale(1.05); /* Efecto de escala al pasar el ratón */
+}
+
+.section-button {
+    font-size: 2rem; /* Grande para visibilidad desde lejos */
+    padding: 12px 24px;
+    background-color: #C12D2D;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.section-button:hover {
+    background-color: #A12B2B;
+    transform: scale(1.05); /* Efecto de escala al pasar el ratón */
+}
+
+.section-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(193, 45, 45, 0.5); /* Resaltar el botón en foco */
+}
+
+/* src/components/Presentacion.css */
+
+.team-roles {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 25px;
+    background-color: #f4f4f4; /* Fondo gris claro para simular una ventana de código */
+    color: #333; /* Color del texto */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    border: 1px solid #ddd; /* Borde sutil */
+    white-space: pre-wrap; /* Mantener los espacios y saltos de línea */
+    overflow-x: auto; /* Desplazamiento horizontal si el contenido es más ancho */
+    text-align: left; /* Alinear el texto a la izquierda */
+    max-width: 100%; /* Asegura que no se desborde */
+    margin-top: 20px; /* Espacio superior */
+}

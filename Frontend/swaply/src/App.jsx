@@ -24,6 +24,7 @@ import MtoProductsPage from './pages/MtoProductsPage';
 import ChatPage from './pages/ChatsPage';
 import Chat from './components/Chat';
 import ScrollToTop from './components/ScrolltoTop';
+import Presentacion from './components/Presentacion';
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/mto/:id" element={<PrivateRoute component={MtoProductsPage} />} />
               <Route path="/chats" element={<PrivateRoute component={ChatPage}/>} />
+              <Route path="/presentacion" element={<Presentacion/>} />
               <Route path="*" element={<ErrorMessage message="404: Página no encontrada" />} />
             </Routes>
 

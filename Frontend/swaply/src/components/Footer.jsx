@@ -11,6 +11,7 @@ const Footer = () => {
                     <ul>
                         <li><Link to="/quienes-somos">Quiénes Somos</Link></li>
                         <li><Link to="/como-funciona">Cómo Funciona</Link></li>
+                        <li><Link to="/presentacion">Presentacion</Link></li>
                     </ul>
                 </div>
                 <div className="footer-section">
