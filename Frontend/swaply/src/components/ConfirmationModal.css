@@ -1,0 +1,50 @@
+/* ConfirmationModal.css */
+.confirmation-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.confirmation-modal {
+    background-color: #FFFFFF;
+    border: 2px solid #C12D2D;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.confirmation-modal p {
+    margin-bottom: 20px;
+}
+
+.confirmation-modal-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.confirm-button,
+.cancel-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.confirm-button {
+    background-color: #C12D2D;
+    color: #FFFFFF;
+}
+
+.cancel-button {
+    background-color: #FFFFFF;
+    color: #C12D2D;
+    border: 2px solid #C12D2D;
+}

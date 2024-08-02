@@ -74,6 +74,11 @@ const Header = () => {
                     <>
                       <button className='buttonAltaProducto' onClick={()=>navigate('/new-product')}>Haz un regalo</button>
                       <button className='buttonHeader' onClick={()=>navigate('/chats')}>Chats</button>
+                       
+                      
+                        <button className='buttonHeader' onClick={handleLogout}>
+                            Logout
+                        </button>
                         {!loading && (
                             
                             <div className='user-info-header' onClick={handleProfileClick}>
@@ -81,10 +86,6 @@ const Header = () => {
                                 {userData.username && <p className='username-header'>{localStorage.getItem('username')}</p>}
                             </div>
                         )}
-                      
-                        <button className='buttonHeader' onClick={handleLogout}>
-                            Logout
-                        </button>
                     </>
                 ) : (
                     <>

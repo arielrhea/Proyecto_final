@@ -2,7 +2,8 @@
 
 .user-profile-wrapper {
     padding: 20px;
-    background-color: #6D6D6C;
+    background-color: white;
+    border: 2px solid #C12D2D;
     border-radius: 12px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
     width: 600px;
@@ -39,17 +40,21 @@
 .user-profile-username {
     font-size: 24px;
     font-weight: bold;
-    color: beige;
+    color: black;
+    font-weight: bold;
+    margin-left: 10px;
 }
 
 .user-profile-city {
-    font-size: 18px;
-    color: beige;
+    font-size: 16px;
+    color: black;
+    margin-left: 10px;
+
 }
 
 .user-profile-info {
     font-size: 16px;
-    color: beige;
+    color: #C12D2D;
     line-height: 1.6;
     display: flex;
     flex-direction: column;

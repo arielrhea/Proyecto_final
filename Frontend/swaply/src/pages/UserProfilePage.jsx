@@ -7,6 +7,7 @@ import LoadingScreen from '../components/LoadingScreen';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext'; // Importa useAuth
 import Notification from '../components/Notification';
+import ConfirmationModal from '../components/ConfirmationModal'; // Importar ConfirmationModal
 
 const UserProfilePage = () => {
     const { id } = useParams();
@@ -16,7 +17,9 @@ const UserProfilePage = () => {
     const [error, setError] = useState(null);
     const { userId, isAuthenticated, token } = useAuth(); // Obtener token de autenticación
     const navigate = useNavigate();
-    const [notification, setNotification]=useState('');
+    const [notification, setNotification] = useState('');
+    const [showConfirmation, setShowConfirmation] = useState(false);
+    const [productToDelete, setProductToDelete] = useState(null);
 
     useEffect(() => {
         // Obtener datos del usuario y productos ofrecidos
@@ -35,31 +38,48 @@ const UserProfilePage = () => {
     const isOwner = (producto) => {
         return producto.UsuarioID == userId;
     };
-    console.log(productos)
 
-    // Función para eliminar un producto
-    const handleDeleteProduct = async (product) => {
+    const handleDeleteProduct = (product) => {
+        setProductToDelete(product);
+        setShowConfirmation(true);
+    };
+
+    const confirmDeleteProduct = async () => {
+        if (!productToDelete) return;
         try {
-            await axios.delete(`http://localhost:8000/api/producto/${product.ID}`, {
+            await axios.delete(`http://localhost:8000/api/producto/${productToDelete.ID}`, {
                 headers: { token } // Incluye el token en el encabezado
             });
             // Filtrar el producto eliminado del estado
-            setNotification(`${product.Titulo} se ha eliminado correctamente`)
-            setProductos(productos.filter(producto => producto.ID !== product.ID));
+            setNotification(`${productToDelete.Titulo} se ha eliminado correctamente`);
+            setProductos(productos.filter(producto => producto.ID !== productToDelete.ID));
+            setShowConfirmation(false);
+            setProductToDelete(null);
             setTimeout(() => {
-                setNotification('')
+                setNotification('');
             }, 3000);
-          
-           
         } catch (error) {
             console.error('Error al eliminar el producto:', error);
             alert('Error al eliminar el producto.');
         }
     };
 
+    const cancelDeleteProduct = () => {
+        setShowConfirmation(false);
+        setProductToDelete(null);
+    };
+
     return (
         <div className="user-profile-page">
-               <Notification message={notification} onClose={() => setNotification('')} />
+            <Notification message={notification} onClose={() => setNotification('')} />
+
+            {showConfirmation && (
+                <ConfirmationModal
+                    message="¿Está seguro de que quiere eliminar este regalo?"
+                    onConfirm={confirmDeleteProduct}
+                    onCancel={cancelDeleteProduct}
+                />
+            )}
 
             <div className="profile-and-products">
                 <div className="profile-content">
@@ -69,7 +89,7 @@ const UserProfilePage = () => {
                         <>
                             <UserProfile usuario={usuario} authenticatedUserId={userId} />
                             <div className="user-products-section">
-                                <h2 className='tituloproductos'>Productos Ofrecidos</h2>
+                                <h2 className='tituloproductos'>Regalos ofrecidos</h2>
                                 <div className="product-card-container">
                                     {productos.length > 0 ? (
                                         productos.map(producto => (
@@ -84,15 +104,12 @@ const UserProfilePage = () => {
                                                     </>
                                                 )}
                                             </div>
-                                            
-                                            
                                         ))
                                     ) : (
-                                        <p className="no-products-message">Este usuario no ha ofrecido productos.</p>
+                                        <p className="no-products-message">¡Aún no se han ofrecido regalos!</p>
                                     )}
-                                    {isAuthenticated&&userId==id &&(
-                                <button className='agregar-button' onClick={()=>{navigate('/new-product')}}>Agregar un nuevo producto</button>
-
+                                    {isAuthenticated && userId == id && (
+                                        <button className='agregar-button' onClick={() => { navigate('/new-product') }}>Agregar un nuevo regalo</button>
                                     )}
                                 </div>
                             </div>
@@ -101,12 +118,9 @@ const UserProfilePage = () => {
                         <div>Perfil de usuario no encontrado.</div>
                     )}
                 </div>
-              
-
             </div>
         </div>
     );
 };
 
 export default UserProfilePage;
-
