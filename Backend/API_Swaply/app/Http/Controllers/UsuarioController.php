@@ -66,6 +66,7 @@ class UsuarioController extends Controller{
 
         if ($imagen) {
             $nombreImagen = $imagen->getClientOriginalName();
+            $nombreImagen = time() . '-' . $nombreImagen;
             Storage::putFileAs('/usuarios', $imagen, $nombreImagen);
             $datos['img'] = $nombreImagen;
         } else {
@@ -105,7 +106,7 @@ class UsuarioController extends Controller{
 
         if($imagen){
             $nombreImagen = $imagen->getClientOriginalName();
-
+            $nombreImagen = time() . '-' . $nombreImagen;
             if ($usuario->FotoPerfil != "sinportada.jpg") {
                 Storage::disk('local')->delete('usuarios/' . $usuario->FotoPerfil);
             }
